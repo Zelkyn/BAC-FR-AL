@@ -2,105 +2,137 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Bac Français</title>
+<title>Révisions Bac Français</title>
 
 <style>
-body { font-family: Arial; margin:0; background:white;}
-#home { padding:20px;}
-.text { border:1px solid #ccc; padding:10px; margin:10px; cursor:pointer;}
-#viewer { display:none; padding:20px;}
-.segment { cursor:pointer; padding:4px;}
-.segment.active { background:#fff3a0;}
-.analysis { color:red; display:none; margin-left:15px;}
+
+body {
+    margin:0;
+    font-family: "Georgia", serif;
+    background:#f9f9f9;
+    color:#222;
+}
+
+#home {
+    padding:30px;
+}
+
+h1 {
+    text-align:center;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap:20px;
+}
+
+.card {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.card:hover {
+    transform:scale(1.03);
+}
+
+#viewer {
+    display:none;
+    padding:40px;
+    max-width:800px;
+    margin:auto;
+    background:white;
+    min-height:100vh;
+}
+
+.line {
+    margin:10px 0;
+    cursor:pointer;
+}
+
+.line:hover {
+    background:#fff3a0;
+}
+
+.analysis {
+    display:none;
+    color:#c0392b;
+    margin-left:20px;
+    font-size:0.95em;
+}
+
+button {
+    margin:10px;
+    padding:10px 15px;
+    border:none;
+    background:black;
+    color:white;
+    cursor:pointer;
+}
+
 </style>
 
 </head>
+
 <body>
 
 <div id="home">
 <h1>Révisions Bac Français</h1>
 
-<div class="text" onclick="openText('sarraute1')">Sarraute 1</div>
-<div class="text" onclick="openText('sarraute2')">Sarraute 2</div>
-<div class="text" onclick="openText('sarraute3')">Sarraute 3</div>
-
-<div class="text" onclick="openText('domjuan')">Dom Juan</div>
-
-<div class="text" onclick="openText('colette1')">Sido</div>
-<div class="text" onclick="openText('colette2')">Nuit blanche</div>
-<div class="text" onclick="openText('colette3')">Toby-Chien</div>
-
-<div class="text" onclick="openText('rousseau')">Rousseau</div>
-
-<div class="text" onclick="openText('rimbaud1')">Vénus</div>
-<div class="text" onclick="openText('rimbaud2')">Le Mal</div>
-<div class="text" onclick="openText('rimbaud3')">Ma Bohème</div>
-
-<div class="text" onclick="openText('ponge')">Le Pain</div>
+<div class="grid">
+<div class="card" onclick="openText()">Dom Juan - Molière</div>
+</div>
 
 </div>
 
 <div id="viewer">
-<button onclick="back()">← Retour</button>
+<button onclick="back()">Retour</button>
 <button onclick="toggleGlobal()">Analyse globale</button>
 
-<div id="content"></div>
-<div id="global" style="color:red; display:none;"></div>
+<div id="text"></div>
+<div id="global" style="display:none; color:#c0392b; margin-top:20px;"></div>
+
 </div>
 
 <script>
 
-const texts = {
+const textData = [
+{
+line: "Je veux savoir un peu vos pensées à fond.",
+analysis: "Sganarelle initie le débat philosophique."
+},
+{
+line: "Je crois que deux et deux sont quatre.",
+analysis: "Dom Juan affirme un rationalisme provocateur."
+}
+];
 
-// SARraute
-sarraute1:{content:[["Ecoute…","Hésitation"],["Qu’as-tu…","Conflit"],["Rien","Déni"],["quelque chose","Non-dit"],["rien","Paradoxe"],["à cause de ce rien","Absurdité"]],global:"Conflit basé sur le non-dit."},
-sarraute2:{content:[["présente","Procès"],["différend","Conflit"],["condescendant","Cause"],["excessif","Jugement"],["souricière","Piège"]],global:"Conflit subjectif."},
-sarraute3:{content:[["acharner","Fatigue"],["sain","Lexique médical"],["parfaite","Ironie"],["rompre","Rupture"],["oui ou non","Thème"]],global:"Rupture absurde."},
-
-// MOLIÈRE
-domjuan:{content:[["Je veux savoir","Question"],["Laissons","Refus"],["2+2=4","Rationalisme"],["belle croyance","Ironie"],["champignon","Naïf"],["cassé","Comique"]],global:"Foi vs raison."},
-
-// COLETTE
-colette1:{content:[["grands hivers","Nostalgie"],["aucun été","Idéalisation"],["neige","Sensoriel"],["mère","Protection"],["élançais","Énergie"]],global:"Souvenir d’enfance."},
-colette2:{content:[["gis","Immobilité"],["sommeil","Métaphore"],["respires","Présence"],["ne puis","Contradiction"],["insomnie","Oxymore"]],global:"Insomnie poétique."},
-colette3:{content:[["haletais","Animal"],["quatre pattes","Transformation"],["bonheur","Concept"],["tristesse","Oxymore"],["aboya","Humour"]],global:"Bonheur instable."},
-
-// ROUSSEAU
-rousseau:{content:[["herborisant","Nature"],["rêver","Liberté"],["vagues","Apaisement"],["rêverie","Bonheur"],["instabilité","Philosophie"]],global:"Bonheur dans la nature."},
-
-// RIMBAUD
-rimbaud1:{content:[["Vénus","Mythe"],["naissance","Origine"],["corps","Description"],["déformé","Critique"],["grotesque","Provocation"]],global:"Anti-beauté."},
-rimbaud2:{content:[["Le Mal","Titre engagé"],["soldats","Guerre"],["Dieu rit","Ironie"],["horreur","Violence"],["indifférence","Critique"]],global:"Dénonciation de la guerre."},
-rimbaud3:{content:[["Bohème","Liberté"],["marchais","Errance"],["poches","Pauvreté"],["rêveur","Poésie"],["auberge","Vie libre"]],global:"Vie poétique libre."},
-
-// PONGE
-ponge:{content:[["Pain","Objet"],["croûte","Texture"],["géologie","Métaphore"],["mie","Intérieur"],["univers","Poésie"]],global:"Objet banal transformé."}
-
-};
-
-function openText(id){
+function openText(){
 document.getElementById("home").style.display="none";
 document.getElementById("viewer").style.display="block";
 
 let html="";
-texts[id].content.forEach((e,i)=>{
-html+=`<div class="segment" onclick="toggle(${i},this)">${e[0]}</div>`;
-html+=`<div class="analysis" id="a${i}">${e[1]}</div>`;
+textData.forEach((l,i)=>{
+html += `<div class="line" onclick="toggle(${i})">${l.line}</div>`;
+html += `<div class="analysis" id="a${i}">${l.analysis}</div>`;
 });
 
-document.getElementById("content").innerHTML=html;
-document.getElementById("global").innerText=texts[id].global;
+document.getElementById("text").innerHTML = html;
+document.getElementById("global").innerText = "Opposition entre foi et raison.";
 }
 
-function toggle(i,el){
-let a=document.getElementById("a"+i);
-a.style.display=a.style.display==="none"?"block":"none";
-el.classList.toggle("active");
+function toggle(i){
+let el = document.getElementById("a"+i);
+el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
 function toggleGlobal(){
-let g=document.getElementById("global");
-g.style.display=g.style.display==="none"?"block":"none";
+let g = document.getElementById("global");
+g.style.display = g.style.display === "block" ? "none" : "block";
 }
 
 function back(){
