@@ -8,9 +8,8 @@
 
 body {
     margin:0;
-    font-family: "Georgia", serif;
-    background:#f9f9f9;
-    color:#222;
+    font-family: Georgia, serif;
+    background:#f4f4f4;
 }
 
 #home {
@@ -21,52 +20,33 @@ h1 {
     text-align:center;
 }
 
-.grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap:20px;
-}
-
 .card {
     background:white;
     padding:20px;
+    margin:20px auto;
+    max-width:600px;
     border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
     cursor:pointer;
-    transition:0.2s;
-}
-
-.card:hover {
-    transform:scale(1.03);
 }
 
 #viewer {
     display:none;
     padding:40px;
-    max-width:800px;
+    max-width:900px;
     margin:auto;
     background:white;
     min-height:100vh;
 }
 
-.line {
-    margin:10px 0;
-    cursor:pointer;
-}
-
-.line:hover {
-    background:#fff3a0;
-}
-
-.analysis {
-    display:none;
-    color:#c0392b;
-    margin-left:20px;
-    font-size:0.95em;
+#lineText {
+    white-space:pre-line;
+    line-height:1.8;
+    font-size:18px;
 }
 
 button {
-    margin:10px;
+    margin-bottom:20px;
     padding:10px 15px;
     border:none;
     background:black;
@@ -83,56 +63,105 @@ button {
 <div id="home">
 <h1>Révisions Bac Français</h1>
 
-<div class="grid">
-<div class="card" onclick="openText()">Dom Juan - Molière</div>
+<div class="card" onclick="openText('texte1')">
+Texte 1 – Nathalie Sarraute
 </div>
 
 </div>
 
 <div id="viewer">
-<button onclick="back()">Retour</button>
-<button onclick="toggleGlobal()">Analyse globale</button>
+<button onclick="back()">← Retour</button>
 
-<div id="text"></div>
-<div id="global" style="display:none; color:#c0392b; margin-top:20px;"></div>
+<div id="lineText"></div>
 
 </div>
 
 <script>
 
-const textData = [
-{
-line: "Je veux savoir un peu vos pensées à fond.",
-analysis: "Sganarelle initie le débat philosophique."
-},
-{
-line: "Je crois que deux et deux sont quatre.",
-analysis: "Dom Juan affirme un rationalisme provocateur."
-}
-];
+const textes = {
 
-function openText(){
+texte1: `H.I : Ecoute, je voulais te demander…C’est un peu pour ça que je suis venu…je voudrais savoir…que s’est-il passé ? Qu’est-ce que tu as contre moi ?
+
+H.2 : Mais rien…Pourquoi ?
+
+H.I : Oh, je ne sais pas…Il me semble que tu t’éloignes…tu ne fais plus jamais signe…il faut toujours que ce soit moi…
+
+H.2 : Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.
+
+H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là…Non, je sens qu’il y a quelque chose…
+
+H.2 : Mais que veux-tu qu’il y ait ?
+
+H.I : C’est justement ce que je me demande. J’ai beau chercher…jamais…depuis tant d’années…il n’y a jamais rien eu entre nous… rien dont je me souvienne…
+
+H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…
+
+H.I : Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait…un ami sûr…Tu te souviens comme on attendrissait ta mère ?…
+
+H.2 : Oui, pauvre maman…Elle t’aimait bien…elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.
+
+H.I : Alors ?
+
+H.2 : …Alors…que veux-tu que je te dise !
+
+H.I : Si, dis-moi…je te connais trop bien : il y a quelque chose de changé…Tu étais toujours à une certaine distance… de tout le monde, du reste…mais maintenant avec moi… encore l’autre jour, au téléphone…tu étais à l’autre bout du monde…ça me fait de la peine, tu sais…
+
+H.2 : Mais moi aussi, figure-toi…
+
+H.I : Ah tu vois, j’ai donc raison…
+
+H.2 : Que veux-tu…je t’aime tout autant, tu sais…ne crois pas ça…mais c’est plus fort que moi…
+
+H.I : Qu’est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…
+
+H.2 : Non…vraiment rien…Rien qu’on puisse dire…
+
+H.I : Essaie quand même…
+
+H.2 : Oh non…je ne veux pas…
+
+H.I : Pourquoi ? Dis-moi pourquoi ?
+
+H.2 : Non, ne me force pas…
+
+H.I : C’est donc si terrible ?
+
+H.2 : Non, pas terrible…ce n’est pas ça…
+
+H.I : Mais qu’est-ce que c’est, alors ?
+
+H.2 : C’est…c’est plutôt que ce n’est rien…ce qui s’appelle rien…ce qu’on appelle ainsi…en parler seulement, évoquer ça…ça peut vous entraîner…de quoi on aurait l’air ? Personne, du reste…personne ne l’ose…on n’en entend jamais parler…
+
+H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère…de nos parents… je t’adjure solennellement, tu ne peux plus reculer…Qu’est-ce qu’il y a eu ? Dis-le…tu me dois ça…
+
+H.2 : Je te dis : ce n’est rien qu’on puisse dire…rien dont il soit permis de parler…
+
+H.I : Allons, vas-y…
+
+H.2 : Eh bien, c’est juste des mots…
+
+H.I : Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots…ce n’est pas possible…et je m’en serais souvenu…
+
+H.2 : Non, pas des mots comme ça…d’autres mots…pas ceux dont on dit qu’on les a « eus »…Des mots qu’on n’a pas « eus », justement…On ne sait pas comment ils vous viennent…
+
+H.I : Lesquels ? Quels mots ? Tu me fais languir…tu me taquines…
+
+H.2 : Mais non, je ne te taquine pas… Mais si je te les dis…
+
+H.I : Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…
+
+H.2 : Mais justement, ce n’est rien… Et c’est à cause de ce rien…
+
+H.I : Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
+
+H.2 : Oui…C’est à cause de ça…Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…`
+};
+
+function openText(id){
 document.getElementById("home").style.display="none";
 document.getElementById("viewer").style.display="block";
 
-let html="";
-textData.forEach((l,i)=>{
-html += `<div class="line" onclick="toggle(${i})">${l.line}</div>`;
-html += `<div class="analysis" id="a${i}">${l.analysis}</div>`;
-});
-
-document.getElementById("text").innerHTML = html;
-document.getElementById("global").innerText = "Opposition entre foi et raison.";
-}
-
-function toggle(i){
-let el = document.getElementById("a"+i);
-el.style.display = el.style.display === "block" ? "none" : "block";
-}
-
-function toggleGlobal(){
-let g = document.getElementById("global");
-g.style.display = g.style.display === "block" ? "none" : "block";
+document.getElementById("lineText").innerText = textes[id];
 }
 
 function back(){
