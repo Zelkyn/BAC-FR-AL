@@ -19,25 +19,28 @@ body {
     left:10px;
 }
 
+/* 🔥 BOUTON AUTEURS / TEXTES (AGRANDI ENCORE PLUS) */
 .top-btn {
     background:black;
     color:white;
-    padding:20px 32px;
+    padding:20px 32px;      /* ↑ augmenté */
     border:none;
     border-radius:12px;
     cursor:pointer;
-    font-size:24px;
+    font-size:24px;         /* ↑ augmenté */
 }
 
+/* TITRE EN HAUT À DROITE (AGRANDI ENCORE PLUS) */
 #page-title {
     position:fixed;
     top:15px;
     right:20px;
-    font-size:30px;
+    font-size:30px;         /* ↑ augmenté */
     color:#333;
     font-weight:600;
 }
 
+/* CONTENU PRINCIPAL */
 #home {
     padding:60px 30px 30px 30px;
 }
@@ -75,23 +78,16 @@ h1 {
     min-height:100vh;
 }
 
-/* TEXTE */
-#lineText {
-    white-space:pre-line;
-    font-size:18px;
-    line-height:2.8; /* 🔥 espace pour l’analyse */
-}
-
-/* BOUTON RETOUR */
+/* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
 .back-btn {
     display:inline-block;
     margin-bottom:30px;
-    padding:20px 36px;
+    padding:20px 36px;      /* ↑ augmenté */
     border-radius:35px;
     background:#111;
     color:white;
     border:none;
-    font-size:24px;
+    font-size:24px;         /* ↑ augmenté */
     cursor:pointer;
     transition:0.2s;
 }
@@ -107,25 +103,106 @@ h1 {
 
 <body>
 
+<!-- BOUTON SWITCH -->
 <div id="topbar">
     <button id="switchBtn" class="top-btn" onclick="togglePage()">Auteurs</button>
 </div>
 
+<!-- TITRE DROITE -->
 <div id="page-title">Textes</div>
 
+<!-- CONTENU -->
 <div id="home">
 <h1>Révisions Bac Français</h1>
 
 <div id="contentList">
+
+<!-- TEXTES -->
 
 <div class="card" onclick="openText('texte1')">
     <div class="card-title"><strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture</div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
+<div class="card" onclick="openText('texte2')">
+    <div class="card-title"><strong>Texte 2</strong> – Pour un oui ou pour un non, scène du différend</div>
+    <div class="card-sub">Nathalie Sarraute, 1981</div>
+</div>
+
+<div class="card" onclick="openText('texte3')">
+    <div class="card-title"><strong>Texte 3</strong> – Pour un oui ou pour un non, scène finale</div>
+    <div class="card-sub">Nathalie Sarraute, 1981</div>
+</div>
+
+<div class="card" onclick="openText('texte4')">
+    <div class="card-title"><strong>Texte 4</strong> – Dom Juan, scène de l’athéisme</div>
+    <div class="card-sub">Molière, 1665</div>
+</div>
+
+<div class="card" onclick="openText('texte5')">
+    <div class="card-title"><strong>Texte 5</strong> – Sido, souvenir d’enfance</div>
+    <div class="card-sub">Colette, 1930</div>
+</div>
+
+<div class="card" onclick="openText('texte6')">
+    <div class="card-title"><strong>Texte 6</strong> – Nuit blanche</div>
+    <div class="card-sub">Colette, 1908</div>
+</div>
+
+<div class="card" onclick="openText('texte7')">
+    <div class="card-title"><strong>Texte 7</strong> – Toby-Chien parle</div>
+    <div class="card-sub">Colette, 1908</div>
+</div>
+
+<div class="card" onclick="openText('texte8')">
+    <div class="card-title"><strong>Texte 8</strong> – Cinquième promenade</div>
+    <div class="card-sub">Jean-Jacques Rousseau, 1782</div>
+</div>
+
+<div class="card" onclick="openText('texte9')">
+    <div class="card-title"><strong>Texte 9</strong> – Vénus anadyomène</div>
+    <div class="card-sub">Arthur Rimbaud, 1870</div>
+</div>
+
+<div class="card" onclick="openText('texte10')">
+    <div class="card-title"><strong>Texte 10</strong> – Le Mal</div>
+    <div class="card-sub">Arthur Rimbaud, 1870</div>
+</div>
+
+<div class="card" onclick="openText('texte11')">
+    <div class="card-title"><strong>Texte 11</strong> – Ma Bohème</div>
+    <div class="card-sub">Arthur Rimbaud, 1870</div>
+</div>
+
+<div class="card" onclick="openText('texte12')">
+    <div class="card-title"><strong>Texte 12</strong> – Le Pain</div>
+    <div class="card-sub">Francis Ponge, 1942</div>
+</div>
+
+<div class="card" onclick="openText('texte13')">
+    <div class="card-title"><strong>Texte 13</strong> – Texte inconnu</div>
+    <div class="card-sub">Auteur inconnu, Date inconnue</div>
+</div>
+
+<div class="card" onclick="openText('texte14')">
+    <div class="card-title"><strong>Texte 14</strong> – Texte inconnu</div>
+    <div class="card-sub">Auteur inconnu, Date inconnue</div>
+</div>
+
+<div class="card" onclick="openText('texte15')">
+    <div class="card-title"><strong>Texte 15</strong> – Texte inconnu</div>
+    <div class="card-sub">Auteur inconnu, Date inconnue</div>
+</div>
+
+<div class="card" onclick="openText('texte16')">
+    <div class="card-title"><strong>Texte 16</strong> – Texte inconnu</div>
+    <div class="card-sub">Auteur inconnu, Date inconnue</div>
+</div>
+
 </div>
 </div>
 
+<!-- VIEWER -->
 <div id="viewer">
 <button class="back-btn" onclick="back()">← Retour</button>
 <div id="content"></div>
@@ -137,7 +214,37 @@ let currentPage = "textes";
 
 const textesHTML = document.getElementById("contentList").innerHTML;
 
-const auteursHTML = "";
+const auteursHTML = `
+<div class="card" onclick="openAuthor('rimbaud')">
+    <div class="card-title"><strong>Arthur Rimbaud</strong></div>
+    <div class="card-sub">1854 – 1891</div>
+</div>
+
+<div class="card" onclick="openAuthor('sarraute')">
+    <div class="card-title"><strong>Nathalie Sarraute</strong></div>
+    <div class="card-sub">1900 – 1999</div>
+</div>
+
+<div class="card" onclick="openAuthor('moliere')">
+    <div class="card-title"><strong>Molière</strong></div>
+    <div class="card-sub">1622 – 1673</div>
+</div>
+
+<div class="card" onclick="openAuthor('colette')">
+    <div class="card-title"><strong>Colette</strong></div>
+    <div class="card-sub">1873 – 1954</div>
+</div>
+
+<div class="card" onclick="openAuthor('rousseau')">
+    <div class="card-title"><strong>Jean-Jacques Rousseau</strong></div>
+    <div class="card-sub">1712 – 1778</div>
+</div>
+
+<div class="card" onclick="openAuthor('ponge')">
+    <div class="card-title"><strong>Francis Ponge</strong></div>
+    <div class="card-sub">1899 – 1988</div>
+</div>
+`;
 
 function togglePage(){
     if(currentPage === "textes"){
@@ -158,9 +265,12 @@ function openText(id){
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
 
+    let content = "";
+
     if(id === "texte1"){
-        document.getElementById("content").innerHTML = `
-<div id="lineText">
+        content = `
+<pre style="line-height:2; font-family:Georgia, serif; font-size:18px; white-space:pre-wrap;">
+
 H.I : Ecoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?
 
 H.2 : Mais rien… Pourquoi ?
@@ -170,13 +280,13 @@ jamais signe… il faut toujours que ce soit moi…
 
 H.2 : Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.
 
-H.I : Mais pas avec moi ? Tu sais que je te dirais…  Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…
+H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…
 
 H.2 : Mais que veux-tu qu’il y ait ?
 
-H.I : C’est justement ce que je me demande. J ‘ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous…  rien dont je me souvienne…
+H.I : C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…
 
-H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic…  il y a eu des circonstances…
+H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…
 
 H.I : Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…
 
@@ -186,13 +296,13 @@ H.I : Alors ?
 
 H. 2, Hausse les épaules :… Alors…. que veux-tu que je te dise !
 
-H. I : Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance…  de tout le monde, du reste… mais maintenant avec moi…  encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…
+H. I : Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…
 
 H.2, dans un élan : Mais moi aussi, figure-toi…
 
 H.I : Ah tu vois, j’ai donc raison…
 
-H.2 : Que veux-tu… je t’aime tout autant, tu sais… ne crois pas ça… mais c’est plus fort que moi…
+H.2 : Que veux-tu…je t’aime tout autant, tu sais… ne crois pas ça… mais c’est plus fort que moi…
 
 H.I : Qu’est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…
 
@@ -214,7 +324,7 @@ H.I : Mais qu’est-ce que c’est, alors ?
 
 H.2 : C’est… c’est plutôt que ce n’est rien… ce qui s’appelle rien… ce qu’on appelle ainsi… en parler seulement, évoquer ça… ça peut vous entraîner… de quoi on aurait l’air ? Personne, du reste… personne ne l’ose… on n’en entend jamais parler…
 
-H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi…  au nom de ta mère… de nos parents…  je t’adjure solennellement, tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…
+H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère…de nos parents… je t’adjure solennellement, tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…
 
 H .2, piteusement : Je te dis : ce n’est rien qu’on puisse dire… rien dont il soit permis de parler…
 
@@ -226,20 +336,23 @@ H.I : Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots… ce n’est 
 
 H.2 : Non, pas des mots comme ça… d’autres mots… pas ceux dont on dit qu’on les a « eus »… Des mots qu’on n’a pas « eus », justement… On ne sait pas comment ils vous viennent…
 
-H.I : Lesquelles ? Quels mots ? Tu me fais languir… tu me taquines…
+H.I : Lesquelles ? Quels mots ? Tu me fais languir…tu me taquines…
 
-H.2 : Mais non, je ne te taquine pas…  Mais si je te les dis…
+H.2 : Mais non, je ne te taquine pas… Mais si je te les dis…
 
 H.I : Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…
 
-H.2 : Mais justement, ce n’est rien…  Et c’est à cause de ce rien…
+H.2 : Mais justement, ce n’est rien… Et c’est à cause de ce rien…
 
-H.I : Ah on y arrive…  C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
+H.I : Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
 
-H. 2, Soupire : Oui… C’est à cause de ça… Tu ne comprendras jamais…  Personne, du reste, ne pourra comprendre…
-</div>
+H. 2, Soupire : Oui… C’est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…
+
+</pre>
         `;
     }
+
+    document.getElementById("content").innerHTML = content;
 }
 
 function openAuthor(id){
