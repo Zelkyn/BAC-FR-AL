@@ -72,9 +72,10 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:20px;
-    max-width:none;
-    width:100%;
+    padding:100px 40px 40px 40px; /* ← espace en haut augmenté */
+    max-width:100%;
+    margin:auto;
+    min-height:100vh;
 }
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
@@ -98,11 +99,22 @@ h1 {
 
 .full-text {
     width:100%;
-    margin:0;
+    margin-top:80px;   /* ← AJOUT IMPORTANT */
     padding:0;
     line-height:2.2;
     font-size:20px;
     white-space:pre-wrap;
+}
+
+.line {
+    cursor:pointer;
+    margin-bottom:15px;
+}
+
+.analysis {
+    display:none;
+    color:red;
+    margin-bottom:25px;
 }
 
 </style>
