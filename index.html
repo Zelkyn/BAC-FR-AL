@@ -12,8 +12,26 @@ body {
     background:#f4f4f4;
 }
 
+/* HEADER */
+#topbar {
+    position:fixed;
+    top:10px;
+    left:10px;
+}
+
+.top-btn {
+    background:black;
+    color:white;
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+/* HOME */
 #home {
-    padding:30px;
+    padding:60px 30px 30px 30px;
 }
 
 h1 {
@@ -40,7 +58,8 @@ h1 {
     margin-top:5px;
 }
 
-#viewer {
+/* VIEWER */
+#viewer, #authors {
     display:none;
     padding:40px;
     max-width:900px;
@@ -49,13 +68,30 @@ h1 {
     min-height:100vh;
 }
 
-button {
-    margin-bottom:20px;
-    padding:10px 15px;
-    border:none;
-    background:black;
+/* BOUTON RETOUR AMÉLIORÉ */
+.back-btn {
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 18px;
+    border-radius:25px;
+    background:#111;
     color:white;
+    border:none;
+    font-size:14px;
     cursor:pointer;
+    transition:0.2s;
+}
+
+.back-btn:hover {
+    background:#444;
+    transform:scale(1.05);
+}
+
+/* CONTENU TEXTE */
+#lineText {
+    white-space:pre-line;
+    line-height:1.8;
+    font-size:18px;
 }
 
 </style>
@@ -64,102 +100,72 @@ button {
 
 <body>
 
+<!-- BOUTON AUTEURS -->
+<div id="topbar">
+    <button class="top-btn" onclick="openAuthors()">Auteurs</button>
+</div>
+
+<!-- PAGE ACCUEIL -->
 <div id="home">
 <h1>Révisions Bac Français</h1>
 
-<!-- TEXTE 1 -->
 <div class="card" onclick="openText('texte1')">
-    <div class="card-title">
-        <strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture
-    </div>
+    <div class="card-title"><strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture</div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
-<!-- TEXTE 2 -->
 <div class="card" onclick="openText('texte2')">
-    <div class="card-title">
-        <strong>Texte 2</strong> – Pour un oui ou pour un non, scène du différend
-    </div>
+    <div class="card-title"><strong>Texte 2</strong> – Pour un oui ou pour un non, scène du différend</div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
-<!-- TEXTE 3 -->
 <div class="card" onclick="openText('texte3')">
-    <div class="card-title">
-        <strong>Texte 3</strong> – Pour un oui ou pour un non, scène finale
-    </div>
+    <div class="card-title"><strong>Texte 3</strong> – Pour un oui ou pour un non, scène finale</div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
-<!-- TEXTE 4 -->
 <div class="card" onclick="openText('texte4')">
-    <div class="card-title">
-        <strong>Texte 4</strong> – Dom Juan, scène de l’athéisme
-    </div>
+    <div class="card-title"><strong>Texte 4</strong> – Dom Juan, scène de l’athéisme</div>
     <div class="card-sub">Molière, 1665</div>
 </div>
 
-<!-- TEXTE 5 -->
 <div class="card" onclick="openText('texte5')">
-    <div class="card-title">
-        <strong>Texte 5</strong> – Sido, souvenir d’enfance
-    </div>
+    <div class="card-title"><strong>Texte 5</strong> – Sido, souvenir d’enfance</div>
     <div class="card-sub">Colette, 1930</div>
 </div>
 
-<!-- TEXTE 6 -->
 <div class="card" onclick="openText('texte6')">
-    <div class="card-title">
-        <strong>Texte 6</strong> – Nuit blanche
-    </div>
+    <div class="card-title"><strong>Texte 6</strong> – Nuit blanche</div>
     <div class="card-sub">Colette, 1908</div>
 </div>
 
-<!-- TEXTE 7 -->
 <div class="card" onclick="openText('texte7')">
-    <div class="card-title">
-        <strong>Texte 7</strong> – Toby-Chien parle
-    </div>
+    <div class="card-title"><strong>Texte 7</strong> – Toby-Chien parle</div>
     <div class="card-sub">Colette, 1908</div>
 </div>
 
-<!-- TEXTE 8 -->
 <div class="card" onclick="openText('texte8')">
-    <div class="card-title">
-        <strong>Texte 8</strong> – Cinquième promenade
-    </div>
+    <div class="card-title"><strong>Texte 8</strong> – Cinquième promenade</div>
     <div class="card-sub">Jean-Jacques Rousseau, 1782</div>
 </div>
 
-<!-- TEXTE 9 -->
 <div class="card" onclick="openText('texte9')">
-    <div class="card-title">
-        <strong>Texte 9</strong> – Vénus anadyomène
-    </div>
+    <div class="card-title"><strong>Texte 9</strong> – Vénus anadyomène</div>
     <div class="card-sub">Arthur Rimbaud, 1870</div>
 </div>
 
-<!-- TEXTE 10 -->
 <div class="card" onclick="openText('texte10')">
-    <div class="card-title">
-        <strong>Texte 10</strong> – Le Mal
-    </div>
+    <div class="card-title"><strong>Texte 10</strong> – Le Mal</div>
     <div class="card-sub">Arthur Rimbaud, 1870</div>
 </div>
 
-<!-- TEXTE 11 -->
 <div class="card" onclick="openText('texte11')">
-    <div class="card-title">
-        <strong>Texte 11</strong> – Ma Bohème
-    </div>
+    <div class="card-title"><strong>Texte 11</strong> – Ma Bohème</div>
     <div class="card-sub">Arthur Rimbaud, 1870</div>
 </div>
 
-<!-- TEXTE 12 -->
 <div class="card" onclick="openText('texte12')">
-    <div class="card-title">
-        <strong>Texte 12</strong> – Le Pain
-    </div>
+    <div class="card-title"><strong>Texte 12</strong> – Le Pain</div>
     <div class="card-sub">Francis Ponge, 1942</div>
 </div>
 
@@ -197,23 +203,69 @@ button {
 
 </div>
 
-<!-- PAGE VIDE POUR L’INSTANT -->
+<!-- PAGE TEXTE -->
 <div id="viewer">
-<button onclick="back()">← Retour</button>
+<button class="back-btn" onclick="back()">← Retour</button>
 <div id="content"></div>
+</div>
+
+<!-- PAGE AUTEURS -->
+<div id="authors">
+<button class="back-btn" onclick="back()">← Retour</button>
+
+<h2>Auteurs</h2>
+
+<div class="card">
+    <div class="card-title"><strong>Arthur Rimbaud</strong></div>
+    <div class="card-sub">1854 – 1891</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Nathalie Sarraute</strong></div>
+    <div class="card-sub">1900 – 1999</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Molière</strong></div>
+    <div class="card-sub">1622 – 1673</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Colette</strong></div>
+    <div class="card-sub">1873 – 1954</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Jean-Jacques Rousseau</strong></div>
+    <div class="card-sub">1712 – 1778</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Francis Ponge</strong></div>
+    <div class="card-sub">1899 – 1988</div>
+</div>
+
 </div>
 
 <script>
 
 function openText(id){
     document.getElementById("home").style.display="none";
+    document.getElementById("authors").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("content").innerHTML = "";
+}
+
+function openAuthors(){
+    document.getElementById("home").style.display="none";
+    document.getElementById("viewer").style.display="none";
+    document.getElementById("authors").style.display="block";
 }
 
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
+    document.getElementById("authors").style.display="none";
 }
 
 </script>
