@@ -67,7 +67,7 @@ h1 {
     margin-top:5px;
 }
 
-/* VIEWER (lecture texte) */
+/* VIEWER */
 #viewer {
     display:none;
     padding:40px;
@@ -115,7 +115,7 @@ h1 {
 
 <div id="contentList">
 
-<!-- TEXTES (par défaut affichés) -->
+<!-- TEXTES -->
 
 <div class="card" onclick="openText('texte1')">
     <div class="card-title"><strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture</div>
@@ -198,7 +198,6 @@ h1 {
 </div>
 
 </div>
-
 </div>
 
 <!-- VIEWER -->
@@ -214,32 +213,32 @@ let currentPage = "textes";
 const textesHTML = document.getElementById("contentList").innerHTML;
 
 const auteursHTML = `
-<div class="card">
+<div class="card" onclick="openAuthor('rimbaud')">
     <div class="card-title"><strong>Arthur Rimbaud</strong></div>
     <div class="card-sub">1854 – 1891</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openAuthor('sarraute')">
     <div class="card-title"><strong>Nathalie Sarraute</strong></div>
     <div class="card-sub">1900 – 1999</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openAuthor('moliere')">
     <div class="card-title"><strong>Molière</strong></div>
     <div class="card-sub">1622 – 1673</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openAuthor('colette')">
     <div class="card-title"><strong>Colette</strong></div>
     <div class="card-sub">1873 – 1954</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openAuthor('rousseau')">
     <div class="card-title"><strong>Jean-Jacques Rousseau</strong></div>
     <div class="card-sub">1712 – 1778</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openAuthor('ponge')">
     <div class="card-title"><strong>Francis Ponge</strong></div>
     <div class="card-sub">1899 – 1988</div>
 </div>
@@ -262,11 +261,19 @@ function togglePage(){
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
+}
+
+function openAuthor(id){
+    document.getElementById("home").style.display="none";
+    document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
 }
 
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
+    document.getElementById("topbar").style.display="block";
 }
 
 </script>
