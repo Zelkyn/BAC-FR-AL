@@ -72,10 +72,9 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:40px;
-    max-width:900px;
-    margin:auto;
-    min-height:100vh;
+    padding:20px;
+    max-width:none;
+    width:100%;
 }
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
@@ -95,6 +94,15 @@ h1 {
 .back-btn:hover {
     background:#444;
     transform:scale(1.05);
+}
+
+.full-text {
+    width:100%;
+    margin:0;
+    padding:0;
+    line-height:2.2;
+    font-size:20px;
+    white-space:pre-wrap;
 }
 
 </style>
@@ -204,7 +212,6 @@ h1 {
 
 <!-- VIEWER -->
 <div id="viewer">
-<button class="back-btn" onclick="back()">← Retour</button>
 <div id="content"></div>
 </div>
 
@@ -263,13 +270,17 @@ function togglePage(){
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
+
+    // 🔥 transforme le bouton Auteurs en Retour
+    const btn = document.getElementById("switchBtn");
+    btn.innerText = "← Retour";
+    btn.onclick = back;
 
     let content = "";
 
     if(id === "texte1"){
         content = `
-<pre style="line-height:2; font-family:Georgia, serif; font-size:18px; white-space:pre-wrap;">
+<pre class="full-text">
 
 H.I : Ecoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?
 
@@ -358,13 +369,19 @@ H. 2, Soupire : Oui… C’est à cause de ça… Tu ne comprendras jamais… Pe
 function openAuthor(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
+
+    const btn = document.getElementById("switchBtn");
+    btn.innerText = "← Retour";
+    btn.onclick = back;
 }
 
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
-    document.getElementById("topbar").style.display="block";
+
+    const btn = document.getElementById("switchBtn");
+    btn.innerText = currentPage === "textes" ? "Auteurs" : "Textes";
+    btn.onclick = togglePage;
 }
 
 </script>
