@@ -22,13 +22,14 @@ h1 {
 
 /* CARTE ACCUEIL */
 .card {
-    background:white;
-    padding:20px;
-    margin:20px auto;
-    max-width:600px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    cursor:pointer;
+    <div class="card" onclick="openText('texte1')">
+    <div class="card-title">
+        <strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture
+    </div>
+    <div class="card-sub">
+        Nathalie Sarraute, 1981
+    </div>
+</div>
 }
 
 .card-title {
@@ -86,6 +87,20 @@ button {
     background:black;
     color:white;
     cursor:pointer;
+}
+
+.card-title {
+    font-size:18px;
+}
+
+.card-title strong {
+    font-weight:bold;
+}
+
+.card-sub {
+    font-size:14px;
+    color:#666;
+    margin-top:5px;
 }
 
 </style>
