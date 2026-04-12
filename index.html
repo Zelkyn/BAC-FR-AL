@@ -1,3 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Révisions Bac Français</title>
+
+<style>
+
+body {
+    margin:0;
+    font-family: Georgia, serif;
+    background:#f4f4f4;
+}
+
+#home {
+    padding:30px;
+}
+
+h1 {
+    text-align:center;
+}
+
+.card {
+    background:white;
+    padding:20px;
+    margin:20px auto;
+    max-width:600px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    cursor:pointer;
+}
+
+#viewer {
+    display:none;
+    padding:40px;
+    max-width:900px;
+    margin:auto;
+    background:white;
+    min-height:100vh;
+}
+
+#lineText {
+    white-space:pre-line;
+    line-height:1.8;
+    font-size:18px;
+}
+
+button {
+    margin-bottom:20px;
+    padding:10px 15px;
+    border:none;
+    background:black;
+    color:white;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="home">
+<h1>Révisions Bac Français</h1>
+
+<div class="card" onclick="openText('texte1')">
+Texte 1 – Nathalie Sarraute
+</div>
+
+</div>
+
+<div id="viewer">
+<button onclick="back()">← Retour</button>
+
+<div id="lineText"></div>
+
+</div>
+
 <script>
 
 const textes = {
@@ -112,3 +190,6 @@ document.getElementById("viewer").style.display="none";
 }
 
 </script>
+
+</body>
+</html>
