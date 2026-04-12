@@ -72,7 +72,7 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:100px 40px 40px 40px; /* ← espace en haut augmenté */
+    padding:40px 40px 40px 40px; /* ↓ réduit */
     max-width:100%;
     margin:auto;
     min-height:100vh;
@@ -108,13 +108,16 @@ h1 {
 
 .line {
     cursor:pointer;
-    margin-bottom:15px;
+    display:block;
+    margin-bottom:0px; /* ← important : plus d’espaces entre lignes */
+    transition:all 0.2s ease;
 }
 
 .analysis {
     display:none;
     color:red;
-    margin-bottom:25px;
+    margin:10px 0 10px 20px;
+    line-height:1.5;
 }
 
 </style>
@@ -281,6 +284,7 @@ function togglePage(){
 
 function toggleAnalysis(id){
     const el = document.getElementById(id);
+
     if(el.style.display === "block"){
         el.style.display = "none";
     } else {
@@ -301,7 +305,14 @@ function openText(id){
 
     if(id === "texte1"){
     content = `
-<pre style="line-height:2.3; font-family:Georgia, serif; font-size:20px; white-space:pre-wrap; width:100%; margin:0;">
+<pre style="
+line-height:1.9;
+font-family:Georgia, serif;
+font-size:20px;
+white-space:pre-wrap;
+width:100%;
+margin:0;
+">
 
 <span class="line" onclick="toggleAnalysis('a1')">
 H.I : Ecoute, je voulais te demander…C’est un peu pour ça que je suis venu…je voudrais savoir…que s’est-il passé ? Qu’est-ce que tu as contre moi ?
