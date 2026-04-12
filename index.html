@@ -1,167 +1,109 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Révisions Bac Français</title>
-
-<style>
-
-body {
-    margin:0;
-    font-family: Georgia, serif;
-    background:#f4f4f4;
-}
-
-#home {
-    padding:30px;
-}
-
-h1 {
-    text-align:center;
-}
-
-.card {
-    background:white;
-    padding:20px;
-    margin:20px auto;
-    max-width:600px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    cursor:pointer;
-}
-
-#viewer {
-    display:none;
-    padding:40px;
-    max-width:900px;
-    margin:auto;
-    background:white;
-    min-height:100vh;
-}
-
-#lineText {
-    white-space:pre-line;
-    line-height:1.8;
-    font-size:18px;
-}
-
-button {
-    margin-bottom:20px;
-    padding:10px 15px;
-    border:none;
-    background:black;
-    color:white;
-    cursor:pointer;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div id="home">
-<h1>Révisions Bac Français</h1>
-
-<div class="card" onclick="openText('texte1')">
-Texte 1 – Nathalie Sarraute
-</div>
-
-</div>
-
-<div id="viewer">
-<button onclick="back()">← Retour</button>
-
-<div id="lineText"></div>
-
-</div>
-
 <script>
 
 const textes = {
 
-texte1: `H.I : Ecoute, je voulais te demander…C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?
+texte1: [
+{
+text: "H.I : Ecoute, je voulais te demander…C’est un peu pour ça que je suis venu…je voudrais savoir…que s’est-il passé ? Qu’est-ce que tu as contre moi ?",
+analysis: "Entrée in medias res : H.I exprime une inquiétude immédiate. Les nombreuses hésitations (points de suspension) traduisent un malaise et une difficulté à formuler clairement le problème."
+},
+{
+text: "H.2 : Mais rien…Pourquoi ?",
+analysis: "Réponse brève et évasive. Le refus d'explication contraste avec l’insistance de H.I, ce qui crée une tension dramatique."
+},
+{
+text: "H.I : Oh, je ne sais pas…Il me semble que tu t’éloignes…tu ne fais plus jamais signe…il faut toujours que ce soit moi…",
+analysis: "Accumulation de reproches implicites. Le langage reste flou (“il me semble”) : Sarraute met en scène une communication incertaine."
+},
+{
+text: "H.2 : Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.",
+analysis: "Justification rationnelle. H.2 tente de banaliser la situation en invoquant un trait de caractère."
+},
+{
+text: "H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là…Non, je sens qu’il y a quelque chose…",
+analysis: "Refus de l’explication logique. H.I insiste sur un ressenti, montrant que le conflit est affectif plus que rationnel."
+},
+{
+text: "H.2 : Mais que veux-tu qu’il y ait ?",
+analysis: "Déni. Question rhétorique qui ferme le dialogue."
+},
+{
+text: "H.I : C’est justement ce que je me demande. J’ai beau chercher…jamais…depuis tant d’années…il n’y a jamais rien eu entre nous… rien dont je me souvienne…",
+analysis: "Insistance sur la durée (“tant d’années”). Le paradoxe apparaît : une rupture sans cause identifiable."
+},
+{
+text: "H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…",
+analysis: "Première fissure : H.2 suggère l’existence d’un événement, sans le nommer. Suspense."
+},
+{
+text: "H.I : Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait…un ami sûr…",
+analysis: "Refus d’envisager un conflit réel. H.I idéalise leur relation."
+},
+{
+text: "H.2 : Oui…Elle t’aimait bien…\"un vrai copain\"...",
+analysis: "Appui sur la figure maternelle : valeur morale de l’amitié."
+},
+{
+text: "H.I : Alors ?",
+analysis: "Relance dramatique : attente d’une révélation."
+},
+{
+text: "H.2 : …Alors…que veux-tu que je te dise !",
+analysis: "Échec du langage : incapacité à formuler."
+},
+{
+text: "H.I : Si, dis-moi…il y a quelque chose de changé…",
+analysis: "H.I perçoit une rupture invisible → thème central : l’infra-ordinaire."
+},
+{
+text: "H.2 : Mais moi aussi, figure-toi…",
+analysis: "Renversement : le malaise est partagé."
+},
+{
+text: "H.2 : Que veux-tu…je t’aime tout autant…mais c’est plus fort que moi…",
+analysis: "Paradoxe : amour + rupture. L’émotion échappe à la volonté."
+},
+{
+text: "H.2 : C’est…c’est plutôt que ce n’est rien…",
+analysis: "Notion clé : le “rien”. Sarraute montre que les conflits naissent de micro-événements imperceptibles."
+},
+{
+text: "H.2 : Eh bien, c’est juste des mots…",
+analysis: "Révélation centrale : le langage est à l’origine du conflit."
+},
+{
+text: "H.2 : Des mots qu’on n’a pas « eus »…",
+analysis: "Concept sarrautien : les mots inconscients, non maîtrisés."
+},
+{
+text: "H.2 : Et c’est à cause de ce rien…",
+analysis: "Conclusion paradoxale : une rupture majeure née d’un détail insignifiant."
+},
+{
+text: "H.2 : Oui…C’est à cause de ça…Tu ne comprendras jamais…",
+analysis: "Fin pessimiste : impossibilité de comprendre → échec définitif de la communication."
+}
+]
 
-H.2 : Mais rien…Pourquoi ?
-
-H.I : Oh, je ne sais pas…Il me semble que tu t’éloignes… tu ne fais plus jamais signe…il faut toujours que ce soit moi…
-
-H.2 : Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.
-
-H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…
-
-H.2 : Mais que veux-tu qu’il y ait ?
-
-H.I : C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années…il n’y a jamais rien eu entre nous… rien dont je me souvienne…
-
-H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…
-
-H.I : Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait…un ami sûr…Tu te souviens comme on attendrissait ta mère ?…
-
-H.2 : Oui, pauvre maman… Elle t’aimait bien… elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.
-
-H.I : Alors ?
-
-H.2 : …Alors… que veux-tu que je te dise !
-
-H.I : Si, dis-moi… je te connais trop bien : il y a quelque chose de changé…Tu étais toujours à une certaine distance… de tout le monde, du reste…mais maintenant avec moi… encore l’autre jour, au téléphone…tu étais à l’autre bout du monde…ça me fait de la peine, tu sais…
-
-H.2 : Mais moi aussi, figure-toi…
-
-H.I : Ah tu vois, j’ai donc raison…
-
-H.2 : Que veux-tu… je t’aime tout autant, tu sais…ne crois pas ça…mais c’est plus fort que moi…
-
-H.I : Qu’est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…
-
-H.2 : Non… vraiment rien…Rien qu’on puisse dire…
-
-H.I : Essaie quand même…
-
-H.2 : Oh non… je ne veux pas…
-
-H.I : Pourquoi ? Dis-moi pourquoi ?
-
-H.2 : Non, ne me force pas…
-
-H.I : C’est donc si terrible ?
-
-H.2 : Non, pas terrible… ce n’est pas ça…
-
-H.I : Mais qu’est-ce que c’est, alors ?
-
-H.2 : C’est… c’est plutôt que ce n’est rien… ce qui s’appelle rien… ce qu’on appelle ainsi… en parler seulement, évoquer ça… ça peut vous entraîner… de quoi on aurait l’air ? Personne, du reste… personne ne l’ose…on n’en entend jamais parler…
-
-H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère… de nos parents… je t’adjure solennellement, tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…
-
-H.2 : Je te dis : ce n’est rien qu’on puisse dire…rien dont il soit permis de parler…
-
-H.I : Allons, vas-y…
-
-H.2 : Eh bien, c’est juste des mots…
-
-H.I : Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots…ce n’est pas possible…et je m’en serais souvenu…
-
-H.2 : Non, pas des mots comme ça… d’autres mots… pas ceux dont on dit qu’on les a « eus »… Des mots qu’on n’a pas « eus », justement… On ne sait pas comment ils vous viennent…
-
-H.I : Lesquels ? Quels mots ? Tu me fais languir… tu me taquines…
-
-H.2 : Mais non, je ne te taquine pas… Mais si je te les dis…
-
-H.I : Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…
-
-H.2 : Mais justement, ce n’est rien… Et c’est à cause de ce rien…
-
-H.I : Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
-
-H.2 : Oui…C’est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…`
 };
 
 function openText(id){
 document.getElementById("home").style.display="none";
 document.getElementById("viewer").style.display="block";
 
-document.getElementById("lineText").innerText = textes[id];
+let html = "";
+
+textes[id].forEach((line, i) => {
+html += `<div class="line" onclick="toggle(${i})">${line.text}</div>`;
+html += `<div class="analysis" id="a${i}">${line.analysis}</div>`;
+});
+
+document.getElementById("lineText").innerHTML = html;
+}
+
+function toggle(i){
+let el = document.getElementById("a"+i);
+el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
 function back(){
@@ -170,6 +112,3 @@ document.getElementById("viewer").style.display="none";
 }
 
 </script>
-
-</body>
-</html>
