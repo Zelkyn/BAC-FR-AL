@@ -72,7 +72,7 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:35px 40px 40px 40px; /* ↓ réduit */
+    padding:60px 40px 40px 40px; /* ↓ réduit */
     max-width:100%;
     margin:auto;
     min-height:100vh;
@@ -281,13 +281,13 @@ function togglePage(){
     }
 }
 
-function toggleAnalysis(id){
-    const el = document.getElementById(id);
+function toggleAnalysis(element){
+    const analysis = element.querySelector(".analysis");
 
-    if(el.style.display === "block"){
-        el.style.display = "none";
+    if(analysis.style.display === "block"){
+        analysis.style.display = "none";
     } else {
-        el.style.display = "block";
+        analysis.style.display = "block";
     }
 }
 
