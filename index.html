@@ -72,7 +72,7 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:30px 40px 40px 40px; /* ↓ réduit */
+    padding:35px 40px 40px 40px; /* ↓ réduit */
     max-width:100%;
     margin:auto;
     min-height:100vh;
@@ -304,208 +304,278 @@ function openText(id){
 
     if(id === "texte1"){
     content = `
-<pre style="
-line-height:1.6;
-font-family:Georgia, serif;
-font-size:20px;
-white-space:normal;
-margin:0;
-">
 
-<span class="line" onclick="toggleAnalysis('a1')">
-H.I : Ecoute, je voulais te demander…C’est un peu pour ça que je suis venu…je voudrais savoir…que s’est-il passé ? Qu’est-ce que tu as contre moi ?
-</span>
-<div class="analysis" id="a1">→ Entrée directe dans le dialogue : interrogation + tension sous-jacente.</div>
+<div style="line-height:1.5; font-size:18px; font-family:Georgia, serif;">
 
-<span class="line" onclick="toggleAnalysis('a2')">
-H.2 : Mais rien…Pourquoi ?
-</span>
-<div class="analysis" id="a2">→ Réponse brève et défensive : stratégie de dénégation.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Ecoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?
+<div class="analysis">
+Dès le début, H.I montre qu’il est inquiet. Les points de suspension traduisent son hésitation. Les questions directes montrent qu’il cherche une explication claire.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a3')">
-H.I : Oh, je ne sais pas…Il me semble que tu t’éloignes…tu ne fais plus jamais signe…il faut toujours que ce soit moi…
-</span>
-<div class="analysis" id="a3">→ Reproche implicite + sentiment d’abandon + déséquilibre relationnel.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H.2 : Mais rien… Pourquoi ?
+<div class="analysis">
+Réponse très courte. H.2 minimise le problème, ce qui crée déjà un décalage entre les deux personnages.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a4')">
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Oh, je ne sais pas… Il me semble que tu t’éloignes… tu ne fais plus
+jamais signe… il faut toujours que ce soit moi…
+<div class="analysis">
+H.I exprime un ressenti avec "il me semble". Le champ lexical de la distance ("t’éloignes") montre une rupture progressive dans leur relation.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.
-</span>
-<div class="analysis" id="a4">→ Auto-justification + posture d’effacement social.</div>
+<div class="analysis">
+H.2 se justifie de manière rationnelle. Il évite le conflit en donnant une explication simple.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a5')">
-H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là…Non, je sens qu’il y a quelque chose…
-</span>
-<div class="analysis" id="a5">→ Insistance + intuition d’un problème non dit.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…
+<div class="analysis">
+H.I insiste. Le verbe "sentir" montre qu’il n’a pas de preuve, mais une intuition forte.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a6')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Mais que veux-tu qu’il y ait ?
-</span>
-<div class="analysis" id="a6">→ Fermeture du débat + refus de reconnaître un problème.</div>
+<div class="analysis">
+Question rhétorique. H.2 refuse d’admettre qu’il y a un problème.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a7')">
-H.I : C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…
-</span>
-<div class="analysis" id="a7">→ Remise en cause de la relation + vide mémoriel + doute profond.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : C’est justement ce que je me demande. J ‘ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…
+<div class="analysis">
+Le mot "rien" apparaît déjà. Il est central dans toute la scène.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a8')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…
-</span>
-<div class="analysis" id="a8">→ Opposition mémoire/silence + sous-entendu d’événements passés.</div>
+<div class="analysis">
+Opposition entre les deux personnages. H.2 introduit un passé chargé.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a9')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…
-</span>
-<div class="analysis" id="a9">→ Nostalgie + référence familiale pour légitimer la relation.</div>
+<div class="analysis">
+H.I idéalise leur relation. Cela montre qu’il ne comprend pas le conflit.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a10')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Oui, pauvre maman… Elle t’aimait bien… elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.
-</span>
-<div class="analysis" id="a10">→ Appui sur l’autorité maternelle + fidélité passée.</div>
+<div class="analysis">
+Référence au passé et à la mère → tentative d’éviter le vrai sujet.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a11')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Alors ?
-</span>
-<div class="analysis" id="a11">→ Relance courte : insistance dramatique.</div>
+<div class="analysis">
+Relance brusque → H.I veut revenir au problème.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a12')">
-H.2, Hausse les épaules :…Alors….que veux-tu que je te dise !
-</span>
-<div class="analysis" id="a12">→ Impuissance + retrait émotionnel.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H. 2, Hausse les épaules :… Alors…. que veux-tu que je te dise !
+<div class="analysis">
+H.2 montre qu’il ne sait pas comment expliquer. Difficulté à mettre en mots.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a13')">
-H.I : Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…
-</span>
-<div class="analysis" id="a13">→ Analyse du changement comportemental + souffrance affective.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H. I : Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…
+<div class="analysis">
+H.I constate une évolution dans la relation → rupture implicite.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a14')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2, dans un élan : Mais moi aussi, figure-toi…
-</span>
-<div class="analysis" id="a14">→ Symétrie émotionnelle inattendue + aveu implicite.</div>
+<div class="analysis">
+H.2 souffre aussi → conflit partagé.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a15')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Ah tu vois, j’ai donc raison…
-</span>
-<div class="analysis" id="a15">→ Interprétation rapide + confirmation subjective.</div>
+<div class="analysis">
+H.I cherche une confirmation de son intuition.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a16')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Que veux-tu… je t’aime tout autant, tu sais… ne crois pas ça… mais c’est plus fort que moi…
-</span>
-<div class="analysis" id="a16">→ Ambivalence affective + conflit intérieur.</div>
+<div class="analysis">
+H.2 exprime une perte de contrôle → dimension psychologique.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a17')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Qu’est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…
-</span>
-<div class="analysis" id="a17">→ Pression argumentative + quête de vérité cachée.</div>
+<div class="analysis">
+H.I cherche une cause logique.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a18')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Non… vraiment rien… Rien qu’on puisse dire…
-</span>
-<div class="analysis" id="a18">→ Refus de verbalisation + tabou implicite.</div>
+<div class="analysis">
+Idée essentielle : le problème ne peut pas être exprimé clairement.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a19')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Essaie quand même…
-</span>
-<div class="analysis" id="a19">→ Insistance persistante + tension croissante.</div>
+<div class="analysis">
+H.I insiste encore → tension qui monte.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a20')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Oh non… je ne veux pas…
-</span>
-<div class="analysis" id="a20">→ Blocage émotionnel + refus catégorique.</div>
+<div class="analysis">
+Refus clair → blocage du dialogue.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a21')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Pourquoi ? Dis-moi pourquoi ?
-</span>
-<div class="analysis" id="a21">→ Relance insistante + incompréhension.</div>
+<div class="analysis">
+Accumulation de questions → impatience.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a22')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Non, ne me force pas…
-</span>
-<div class="analysis" id="a22">→ Résistance + protection du non-dit.</div>
+<div class="analysis">
+H.2 subit la pression.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a23')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : C’est donc si terrible ?
-</span>
-<div class="analysis" id="a23">→ Hypothèse dramatique + montée de tension.</div>
+<div class="analysis">
+H.I imagine quelque chose de grave.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a24')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Non, pas terrible… ce n’est pas ça…
-</span>
-<div class="analysis" id="a24">→ Nuance + impossibilité de qualifier l’événement.</div>
+<div class="analysis">
+Paradoxe : ce n’est pas grave mais ça détruit tout.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a25')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Mais qu’est-ce que c’est, alors ?
-</span>
-<div class="analysis" id="a25">→ Dernière tentative de clarification.</div>
+<div class="analysis">
+Retour au cœur du problème.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a26')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : C’est… c’est plutôt que ce n’est rien… ce qui s’appelle rien… ce qu’on appelle ainsi… en parler seulement, évoquer ça… ça peut vous entraîner… de quoi on aurait l’air ? Personne, du reste… personne ne l’ose… on n’en entend jamais parler…
-</span>
-<div class="analysis" id="a26">→ Indicible + poids du non-dit + tabou social et linguistique.</div>
+<div class="analysis">
+Réflexion sur le langage : ce "rien" est difficile à exprimer. Thème majeur de la pièce.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a27')">
-H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère… de nos parents… je t’adjure solennellement, tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…
-</span>
-<div class="analysis" id="a27">→ Argument d’autorité + pression émotionnelle maximale.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère… de nos parents… je t’adjure solennellement… tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…
+<div class="analysis">
+H.I met une forte pression morale → sommet de la tension.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a28')">
-H.2, piteusement : Je te dis : ce n’est rien qu’on puisse dire… rien dont il soit permis de parler…
-</span>
-<div class="analysis" id="a28">→ Soumission + impossibilité de verbalisation.</div>
+<div class="line" onclick="toggleAnalysis(this)">
+H .2, piteusement : Je te dis : ce n’est rien qu’on puisse dire… rien dont il soit permis de parler…
+<div class="analysis">
+Retour à l’idée d’indicible.
+</div>
+</div>
 
-<span class="line" onclick="toggleAnalysis('a29')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.I : Allons, vas-y…
-</span>
-<div class="analysis" id="a29">→ Ultime incitation + tension maximale.
-
+<div class="analysis">
+Dernière tentative de H.I.
+</div>
 </div>
 
-<span class="line" onclick="toggleAnalysis('a30')">
+<div class="line" onclick="toggleAnalysis(this)">
 H.2 : Eh bien, c’est juste des mots…
-</span>
-<div class="analysis" id="a30">→ Révélation minimale + déception du contenu attendu.</div>
-
-<span class="line" onclick="toggleAnalysis('a31')">
-H.I : Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots… ce n’est pas possible… et je m’en serais souvenu…
-</span>
-<div class="analysis" id="a31">→ Incrédulité + rejet de la banalisation.</div>
-
-<span class="line" onclick="toggleAnalysis('a32')">
-H.2 : Non, pas des mots comme ça… d’autres mots… pas ceux dont on dit qu’on les a « eus »… Des mots qu’on n’a pas « eus », justement… On ne sait pas comment ils vous viennent…
-</span>
-<div class="analysis" id="a32">→ Langage instable + réflexion sur la parole et l’indicible.</div>
-
-<span class="line" onclick="toggleAnalysis('a33')">
-H.I : Lesquelles ? Quels mots ? Tu me fais languir… tu me taquines…
-</span>
-<div class="analysis" id="a33">→ Exaspération + impatience.</div>
-
-<span class="line" onclick="toggleAnalysis('a34')">
-H.2 : Mais non, je ne te taquine pas… Mais si je te les dis…
-</span>
-<div class="analysis" id="a34">→ Suspense + hésitation finale.</div>
-
-<span class="line" onclick="toggleAnalysis('a35')">
-H.I : Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…
-</span>
-<div class="analysis" id="a35">→ Contradiction + incompréhension.</div>
-
-<span class="line" onclick="toggleAnalysis('a36')">
-H.2 : Mais justement, ce n’est rien… Et c’est à cause de ce rien…
-</span>
-<div class="analysis" id="a36">→ Paradoxe central de la scène : le « rien » déclenche tout.</div>
-
-<span class="line" onclick="toggleAnalysis('a37')">
-H.I : Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
-</span>
-<div class="analysis" id="a37">→ Compréhension progressive + rupture annoncée.</div>
-
-<span class="line" onclick="toggleAnalysis('a38')">
-H.2, Soupire : Oui… C’est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…
-</span>
-<div class="analysis" id="a38">→ Clôture tragique + incompréhension irréductible.
+<div class="analysis">
+Révélation centrale : le conflit vient du langage.
+</div>
 </div>
 
-</pre>
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots… ce n’est pas possible… et je m’en serais souvenu…
+<div class="analysis">
+Incompréhension → H.I ne voit pas comment des mots peuvent détruire une relation.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.2 : Non, pas des mots comme ça… d’autres mots… pas ceux dont on dit qu’on les a « eus »… Des mots qu’on n’a pas « eus », justement… On ne sait pas comment ils vous viennent…
+<div class="analysis">
+Paradoxe : ce sont des mots implicites, non dits → idée clé.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Lesquelles ? Quels mots ? Tu me fais languir… tu me taquines…
+<div class="analysis">
+H.I ne comprend toujours pas → décalage total.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.2 : Mais non, je ne te taquine pas… Mais si je te les dis…
+<div class="analysis">
+H.2 hésite encore → difficulté à dire.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…
+<div class="analysis">
+H.I minimise → incompréhension persistante.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.2 : Mais justement, ce n’est rien… Et c’est à cause de ce rien…
+<div class="analysis">
+Paradoxe central : un "rien" provoque une rupture.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H.I : Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?
+<div class="analysis">
+H.I reformule → tentative de comprendre.
+</div>
+</div>
+
+<div class="line" onclick="toggleAnalysis(this)">
+H. 2, Soupire : Oui… C’est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…
+<div class="analysis">
+Conclusion pessimiste : échec total de la communication.
+</div>
+</div>
+
+</div>
+
 `;
 }
 
