@@ -72,7 +72,7 @@ h1 {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:40px 40px 40px 40px; /* ↓ réduit */
+    padding:30px 40px 40px 40px; /* ↓ réduit */
     max-width:100%;
     margin:auto;
     min-height:100vh;
@@ -109,15 +109,14 @@ h1 {
 .line {
     cursor:pointer;
     display:block;
-    margin-bottom:0px; /* ← important : plus d’espaces entre lignes */
-    transition:all 0.2s ease;
+    margin:2px 0; /* ↓ espace très réduit */
 }
 
 .analysis {
     display:none;
     color:red;
-    margin:10px 0 10px 20px;
-    line-height:1.5;
+    margin:5px 0 8px 15px; /* ↓ plus compact */
+    line-height:1.4;
 }
 
 </style>
@@ -306,11 +305,10 @@ function openText(id){
     if(id === "texte1"){
     content = `
 <pre style="
-line-height:1.9;
+line-height:1.6;
 font-family:Georgia, serif;
 font-size:20px;
-white-space:pre-wrap;
-width:100%;
+white-space:normal;
 margin:0;
 ">
 
