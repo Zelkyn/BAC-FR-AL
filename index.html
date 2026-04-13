@@ -581,6 +581,58 @@ function openAuthor(id){
     const btn = document.getElementById("switchBtn");
     btn.innerText = "← Retour";
     btn.onclick = back;
+
+    let content = "";
+
+    if(id === "rimbaud"){
+        content = `
+
+<div style="line-height:1.6; font-size:18px; font-family:Georgia, serif;">
+
+<h2>Arthur Rimbaud</h2>
+
+<p><strong>Nom complet :</strong> Jean Nicolas Arthur Rimbaud<br>
+<strong>Naissance :</strong> 20 octobre 1854, Charleville<br>
+<strong>Mort :</strong> 10 novembre 1891, Marseille<br>
+<strong>Mouvement :</strong> Poète inclassable, proche du symbolisme</p>
+
+<p><strong>Biographie :</strong><br>
+Arthur Rimbaud est un poète extrêmement précoce. Il écrit ses premiers textes à l’adolescence et se fait rapidement remarquer par son talent et son originalité. Il mène une vie marquée par la révolte et le refus des normes. Il monte à Paris pendant la guerre de 1870 et rencontre Verlaine, avec qui il entretient une relation intense et conflictuelle. Il abandonne complètement la poésie vers l’âge de 20 ans, puis mène une vie d’aventurier et de commerçant en Afrique.</p>
+
+<p><strong>Œuvres principales :</strong><br>
+- Poésies (Le Dormeur du val, Ma Bohème, Le Mal, Vénus anadyomène)<br>
+- Une Saison en enfer (1873)<br>
+- Illuminations (posthume)</p>
+
+<p><strong>Caractéristiques de son écriture :</strong></p>
+
+<p><strong>1. Une poésie de rupture :</strong><br>
+Rimbaud rejette les règles classiques. Il mélange les registres et cherche à choquer le lecteur.</p>
+
+<p><strong>2. Le poète voyant :</strong><br>
+Il développe l’idée que le poète doit explorer l’inconnu. Il écrit : « Je est un autre ».</p>
+
+<p><strong>3. Importance des sensations :</strong><br>
+Sa poésie mélange les sens (couleurs, sons, sensations).</p>
+
+<p><strong>4. Une poésie engagée :</strong><br>
+Il critique la guerre et la société, notamment dans Le Mal.</p>
+
+<p><strong>Thèmes principaux :</strong><br>
+Liberté, révolte, voyage, jeunesse, refus des normes.</p>
+
+<p><strong>À retenir pour le bac :</strong><br>
+Rimbaud est un poète révolutionnaire qui transforme la poésie et abandonne l’écriture très tôt, ce qui en fait une figure unique.</p>
+
+<p><strong>Résumé rapide (oral) :</strong><br>
+Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œuvre très jeune. Il révolutionne la poésie en refusant les règles traditionnelles et en cherchant un langage nouveau. Il abandonne la poésie à 20 ans pour mener une vie d’aventurier.</p>
+
+</div>
+
+        `;
+    }
+
+    document.getElementById("content").innerHTML = content;
 }
 
 function back(){
