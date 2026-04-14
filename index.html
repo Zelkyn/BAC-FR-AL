@@ -28,7 +28,7 @@ body {
 .top-btn {
     background:black;
     color:white;
-    padding:16px 22px;
+    padding:16px 26px;
     border:none;
     border-radius:12px;
     cursor:pointer;
@@ -120,9 +120,8 @@ html {
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
 .back-btn {
-    position:fixed;
-    top:20px;
-    left:20px;
+    position:relative;
+    margin-bottom:20px;
 
     padding:16px 26px;
     border-radius:12px;
@@ -141,9 +140,8 @@ html {
 }
 
 #backContainer {
-    position:fixed;
-    top:20px;
-    left:20px;
+    width:100%;
+    padding:20px;
     display:flex;
     flex-direction:column;
     gap:12px;
@@ -324,7 +322,9 @@ html {
 
 <!-- VIEWER -->
 <div id="viewer">
-    <button class="back-btn" onclick="back()">← Retour</button>
+    <div id="backContainer">
+        <button class="back-btn" onclick="back()">← Retour</button>
+    </div>
     <div id="content"></div>
 </div>
 
