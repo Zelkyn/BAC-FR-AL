@@ -69,13 +69,28 @@ h1 {
     margin-top:5px;
 }
 
+.card:hover {
+    transform:scale(1.02);
+    transition:0.2s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 /* VIEWER */
 #viewer {
     display:none;
     padding:80px 40px 40px 40px; /* ↓ réduit */
-    max-width:100%;
+    max-width:900px;
     margin:auto;
-    min-height:100vh;
+    min-height:100vh;animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity:0; transform:translateY(10px); }
+    to { opacity:1; transform:translateY(0); }
+}
 }
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
@@ -109,7 +124,15 @@ h1 {
 .line {
     cursor:pointer;
     display:block;
-    margin:2px 0; /* ↓ espace très réduit */
+    margin:2px 0;
+}
+
+.line:hover {
+    background:#f0f0f0;
+}
+
+.line:active {
+    background:#ddd;
 }
 
 .analysis {
@@ -117,6 +140,7 @@ h1 {
     color:red;
     margin:5px 0 8px 15px; /* ↓ plus compact */
     line-height:1.4;
+    transition:0.2s;
 }
 
 </style>
@@ -147,7 +171,8 @@ h1 {
 
 <!-- BOUTON SWITCH -->
 <div id="topbar">
-    <button id="switchBtn" class="top-btn" onclick="togglePage()">Auteurs</button>
+    <button id="btn1" class="top-btn" onclick="goTo('auteurs')">Auteurs</button>
+    <button id="btn2" class="top-btn" onclick="goTo('oeuvres')">Œuvres</button>
 </div>
 
 <!-- TITRE DROITE -->
@@ -246,7 +271,8 @@ h1 {
 
 <!-- VIEWER -->
 <div id="viewer">
-<div id="content"></div>
+    <button class="back-btn" onclick="back()">← Retour</button>
+    <div id="content"></div>
 </div>
 
 <script>
@@ -287,27 +313,64 @@ const auteursHTML = `
 </div>
 `;
 
-function togglePage(){
-    if(currentPage === "textes"){
-        document.getElementById("contentList").innerHTML = auteursHTML;
-        document.getElementById("switchBtn").innerText = "Textes";
-        document.getElementById("page-title").innerText = "Auteurs";
-        currentPage = "auteurs";
-    } else {
-        document.getElementById("contentList").innerHTML = textesHTML;
-        document.getElementById("switchBtn").innerText = "Auteurs";
+const oeuvresHTML = `
+<div class="card">
+    <div class="card-title"><strong>Pour un oui ou pour un non</strong></div>
+    <div class="card-sub">Nathalie Sarraute, 1981</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Cahier de Douai</strong></div>
+    <div class="card-sub">Arthur Rimbaud, 1893</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Discours de la servitude volontaire</strong></div>
+    <div class="card-sub">Étienne de La Boétie, 1577</div>
+</div>
+
+<div class="card">
+    <div class="card-title"><strong>Les vrilles de la vigne</strong></div>
+    <div class="card-sub">Colette, 1908</div>
+</div>
+`;
+
+function goTo(page){
+
+    const content = document.getElementById("contentList");
+    currentPage = page;
+
+    if(page === "textes"){
+        content.innerHTML = textesHTML;
         document.getElementById("page-title").innerText = "Textes";
-        currentPage = "textes";
+
+        document.getElementById("btn1").innerText = "Auteurs";
+        document.getElementById("btn1").onclick = () => goTo("auteurs");
+
+        document.getElementById("btn2").innerText = "Œuvres";
+        document.getElementById("btn2").onclick = () => goTo("oeuvres");
     }
-}
 
-function toggleAnalysis(element){
-    const analysis = element.querySelector(".analysis");
+    if(page === "auteurs"){
+        content.innerHTML = auteursHTML;
+        document.getElementById("page-title").innerText = "Auteurs";
 
-    if(analysis.style.display === "block"){
-        analysis.style.display = "none";
-    } else {
-        analysis.style.display = "block";
+        document.getElementById("btn1").innerText = "Textes";
+        document.getElementById("btn1").onclick = () => goTo("textes");
+
+        document.getElementById("btn2").innerText = "Œuvres";
+        document.getElementById("btn2").onclick = () => goTo("oeuvres");
+    }
+
+    if(page === "oeuvres"){
+        content.innerHTML = oeuvresHTML;
+        document.getElementById("page-title").innerText = "Œuvres";
+
+        document.getElementById("btn1").innerText = "Textes";
+        document.getElementById("btn1").onclick = () => goTo("textes");
+
+        document.getElementById("btn2").innerText = "Auteurs";
+        document.getElementById("btn2").onclick = () => goTo("auteurs");
     }
 }
 
@@ -315,12 +378,11 @@ function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
 
-    // 🔥 transforme le bouton Auteurs en Retour
-    const btn = document.getElementById("switchBtn");
-    btn.innerText = "← Retour";
-    btn.onclick = back;
-
     let content = "";
+
+if(analysis){
+    analysis.style.display = "block";
+}
 
     if(id === "texte1"){
 content = `
@@ -358,7 +420,7 @@ jamais signe… il faut toujours que ce soit moi…
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H.I</strong> : C’est justement ce que je me demande. J ‘ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…
+<strong>H.I</strong> : C’est justement ce que je me demande. J‘ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…
 <div class="analysis">Mot “rien” central → paradoxe du conflit sans cause apparente.</div>
 </div>
 
@@ -786,10 +848,6 @@ function openAuthor(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
 
-    const btn = document.getElementById("switchBtn");
-    btn.innerText = "← Retour";
-    btn.onclick = back;
-
     let content = "";
 
 if(id === "ponge"){
@@ -1088,10 +1146,14 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
+}
 
-    const btn = document.getElementById("switchBtn");
-    btn.innerText = currentPage === "textes" ? "Auteurs" : "Textes";
-    btn.onclick = togglePage;
+function toggleAnalysis(element){
+    document.querySelectorAll(".analysis").forEach(a => {
+        a.style.display = "none";
+    });
+
+    const analysis = element.querySelector(".analysis");
 }
 
 </script>
