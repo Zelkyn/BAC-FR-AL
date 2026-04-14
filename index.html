@@ -28,14 +28,17 @@ body {
 .top-btn {
     background:black;
     color:white;
-    padding:16px 26px;
+    padding:16px 22px;
     border:none;
     border-radius:12px;
     cursor:pointer;
     font-size:20px;
 
-    min-width:140px; /* 🔥 largeur fixe */
-    text-align:left;
+    min-width:140px;
+
+    display:flex;              /* 🔥 */
+    justify-content:center;    /* centre horizontal */
+    align-items:center;        /* centre vertical */
 }
 
 /* animation */
@@ -1151,16 +1154,10 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 }
 
 function back(){
-    document.getElementById("home").style.display="block";
-    document.getElementById("viewer").style.display="none";
-
-    // réaffiche les boutons correctement en colonne
-    const topbar = document.getElementById("topbar");
-    topbar.style.display = "flex";
-    topbar.style.flexDirection = "column";
-    document.getElementById("home").style.display="block";
-    document.getElementById("viewer").style.display="none";
+    document.getElementById("home").style.display = "block";
+    document.getElementById("viewer").style.display = "none";
     document.getElementById("topbar").style.display = "flex";
+
     window.scrollTo(0, 0);
 }
 
