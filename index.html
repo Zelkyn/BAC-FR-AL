@@ -99,16 +99,17 @@ html {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:80px 40px 40px 40px; /* ↓ réduit */
-    max-width:900px;
-    margin:auto;
-    min-height:100vh;animation: fadeIn 0.3s ease;
+    padding:20px; /* réduit */
+    max-width:none; /* 🔥 supprime la limite */
+    margin:0; /* centre plus */
+    width:100%; /* prend toute la largeur */
+    min-height:100vh;
+    animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
     from { opacity:0; transform:translateY(10px); }
     to { opacity:1; transform:translateY(0); }
-}
 }
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
@@ -116,7 +117,7 @@ html {
     position:fixed;
     top:20px;
     left:20px;
-    padding:16px 28px;
+    padding:16px 26px; /* même taille que les autres */
     border-radius:12px;
     background:black;
     color:white;
@@ -124,7 +125,8 @@ html {
     font-size:20px;
     cursor:pointer;
     transition:0.2s;
-    z-index:1000;
+    z-index:2000; /* ↑ plus élevé pour éviter tout conflit */
+    transform:translateZ(0); /* 🔥 évite le glitch d’apparition */
 }
 
 #backContainer {
@@ -148,8 +150,8 @@ html {
 
 .full-text {
     width:100%;
-    margin-top:80px;   /* ← AJOUT IMPORTANT */
-    padding:0;
+    margin-top:80px;
+    padding:0 10px; /* léger espace pour lisibilité */
     line-height:2.2;
     font-size:20px;
     white-space:pre-wrap;
