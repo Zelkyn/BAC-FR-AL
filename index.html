@@ -153,7 +153,6 @@ html {
     margin-top:80px;
     padding:0 10px; /* léger espace pour lisibilité */
     line-height:2.2;
-    font-size:20px;
     white-space:pre-wrap;
 }
 
@@ -161,6 +160,8 @@ html {
     cursor:pointer;
     display:block;
     margin:2px 0;
+    font-size:20px;
+    line-height:1.8;
 }
 
 .line:hover {
@@ -308,9 +309,7 @@ html {
 
 <!-- VIEWER -->
 <div id="viewer">
-    <div id="backContainer">
-        <button class="top-btn" onclick="back()">← Retour</button>
-    </div>
+    <button class="back-btn" onclick="back()">← Retour</button>
     <div id="content"></div>
 </div>
 
@@ -377,6 +376,7 @@ const oeuvresHTML = `
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
     document.getElementById("topbar").style.display="none";
 
     let content = "";
@@ -844,6 +844,7 @@ Cette scène montre que même avec des témoins extérieurs, le conflit ne peut 
 function openAuthor(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
 
     let content = "";
 
@@ -1148,6 +1149,10 @@ function back(){
     const topbar = document.getElementById("topbar");
     topbar.style.display = "flex";
     topbar.style.flexDirection = "column";
+    document.getElementById("home").style.display="block";
+    document.getElementById("viewer").style.display="none";
+
+    document.getElementById("topbar").style.display = "flex";
 }
 
 function toggleAnalysis(element){
@@ -1169,6 +1174,7 @@ function openWork(id){
     document.getElementById("topbar").style.display="none";
 
     document.getElementById("content").innerHTML = "<h2>Œuvre en cours...</h2>";
+    document.getElementById("topbar").style.display="none";
 }
 
 function goTo(page, btn){
