@@ -127,6 +127,16 @@ html {
     z-index:1000;
 }
 
+#backContainer {
+    position:fixed;
+    top:20px;
+    left:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    z-index:1000;
+}
+
 .back-btn:hover {
     background:#333;
     transform:scale(1.05);
@@ -195,8 +205,9 @@ html {
 
 <!-- BOUTON SWITCH -->
 <div id="topbar">
-    <button id="btn1" class="top-btn" onclick="goTo('auteurs')">Auteurs</button>
-    <button id="btn2" class="top-btn" onclick="goTo('oeuvres')">Œuvres</button>
+    <button id="btnTextes" class="top-btn active" onclick="goTo('textes', this)">Textes</button>
+    <button id="btnAuteurs" class="top-btn" onclick="goTo('auteurs', this)">Auteurs</button>
+    <button id="btnOeuvres" class="top-btn" onclick="goTo('oeuvres', this)">Œuvres</button>
 </div>
 
 <!-- TITRE DROITE -->
@@ -295,7 +306,9 @@ html {
 
 <!-- VIEWER -->
 <div id="viewer">
-    <button class="back-btn" onclick="back()">← Retour</button>
+    <div id="backContainer">
+        <button class="top-btn" onclick="back()">← Retour</button>
+    </div>
     <div id="content"></div>
 </div>
 
@@ -1128,7 +1141,11 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
-    document.getElementById("topbar").style.display="flex";
+
+    // réaffiche les boutons correctement en colonne
+    const topbar = document.getElementById("topbar");
+    topbar.style.display = "flex";
+    topbar.style.flexDirection = "column";
 }
 
 function toggleAnalysis(element){
