@@ -117,16 +117,21 @@ html {
     position:fixed;
     top:20px;
     left:20px;
-    padding:16px 26px; /* même taille que les autres */
+
+    padding:16px 26px;
     border-radius:12px;
     background:black;
     color:white;
     border:none;
     font-size:20px;
     cursor:pointer;
-    transition:0.2s;
-    z-index:2000; /* ↑ plus élevé pour éviter tout conflit */
-    transform:translateZ(0); /* 🔥 évite le glitch d’apparition */
+
+    z-index:3000;
+
+    /* 🔥 FIX ANTI GLITCH */
+    opacity:1;
+    transform:none;
+    will-change:transform;
 }
 
 #backContainer {
@@ -378,6 +383,7 @@ function openText(id){
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
     document.getElementById("topbar").style.display="none";
+    window.scrollTo(0, 0);
 
     let content = "";
 
@@ -845,6 +851,7 @@ function openAuthor(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
+    window.scrollTo(0, 0);
 
     let content = "";
 
@@ -1151,8 +1158,8 @@ function back(){
     topbar.style.flexDirection = "column";
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
-
     document.getElementById("topbar").style.display = "flex";
+    window.scrollTo(0, 0);
 }
 
 function toggleAnalysis(element){
@@ -1172,9 +1179,9 @@ function openWork(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
-
     document.getElementById("content").innerHTML = "<h2>Œuvre en cours...</h2>";
     document.getElementById("topbar").style.display="none";
+    window.scrollTo(0, 0);
 }
 
 function goTo(page, btn){
