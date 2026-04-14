@@ -19,7 +19,9 @@ body {
     left:20px;
     display:flex;
     flex-direction:column;
+    align-items:flex-start;
     gap:12px;
+    z-index:1000;
 }
 
 /* boutons */
@@ -111,16 +113,18 @@ html {
 
 /* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
 .back-btn {
-    display:inline-block;
-    margin-bottom:30px;
-    padding:18px 34px;
-    border-radius:30px;
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:16px 28px;
+    border-radius:12px;
     background:black;
     color:white;
     border:none;
-    font-size:22px;
+    font-size:20px;
     cursor:pointer;
     transition:0.2s;
+    z-index:1000;
 }
 
 .back-btn:hover {
@@ -354,45 +358,6 @@ const oeuvresHTML = `
     <div class="card-sub">Étienne de La Boétie, 1577</div>
 </div>
 `;
-
-function goTo(page){
-
-    const content = document.getElementById("contentList");
-    currentPage = page;
-
-    if(page === "textes"){
-        content.innerHTML = textesHTML;
-        document.getElementById("page-title").innerText = "Textes";
-
-        document.getElementById("btn1").innerText = "Auteurs";
-        document.getElementById("btn1").onclick = () => goTo("auteurs");
-
-        document.getElementById("btn2").innerText = "Œuvres";
-        document.getElementById("btn2").onclick = () => goTo("oeuvres");
-    }
-
-    if(page === "auteurs"){
-        content.innerHTML = auteursHTML;
-        document.getElementById("page-title").innerText = "Auteurs";
-
-        document.getElementById("btn1").innerText = "Textes";
-        document.getElementById("btn1").onclick = () => goTo("textes");
-
-        document.getElementById("btn2").innerText = "Œuvres";
-        document.getElementById("btn2").onclick = () => goTo("oeuvres");
-    }
-
-    if(page === "oeuvres"){
-        content.innerHTML = oeuvresHTML;
-        document.getElementById("page-title").innerText = "Œuvres";
-
-        document.getElementById("btn1").innerText = "Textes";
-        document.getElementById("btn1").onclick = () => goTo("textes");
-
-        document.getElementById("btn2").innerText = "Auteurs";
-        document.getElementById("btn2").onclick = () => goTo("auteurs");
-    }
-}
 
 function openText(id){
     document.getElementById("home").style.display="none";
@@ -1163,7 +1128,7 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
-    document.getElementById("topbar").style.display="block";
+    document.getElementById("topbar").style.display="flex";
 }
 
 function toggleAnalysis(element){
@@ -1185,6 +1150,40 @@ function openWork(id){
     document.getElementById("topbar").style.display="none";
 
     document.getElementById("content").innerHTML = "<h2>Œuvre en cours...</h2>";
+}
+
+function goTo(page, btn){
+
+    if(currentPage === page) return;
+
+    currentPage = page;
+
+    // reset boutons
+    document.querySelectorAll(".top-btn").forEach(b => {
+        b.classList.remove("active");
+        b.disabled = false;
+    });
+
+    // bouton actif
+    btn.classList.add("active");
+    btn.disabled = true;
+
+    const content = document.getElementById("contentList");
+
+    if(page === "textes"){
+        content.innerHTML = textesHTML;
+        document.getElementById("page-title").innerText = "Textes";
+    }
+
+    if(page === "auteurs"){
+        content.innerHTML = auteursHTML;
+        document.getElementById("page-title").innerText = "Auteurs";
+    }
+
+    if(page === "oeuvres"){
+        content.innerHTML = oeuvresHTML;
+        document.getElementById("page-title").innerText = "Œuvres";
+    }
 }
 
 </script>
