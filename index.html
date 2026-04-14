@@ -33,12 +33,15 @@ body {
     border-radius:12px;
     cursor:pointer;
     font-size:20px;
-    transition:0.2s;
+
+    min-width:140px; /* 🔥 largeur fixe */
+    text-align:left;
 }
 
 /* animation */
 .top-btn:active {
     transform:scale(0.92);
+    background:#444;
 }
 
 /* bouton actif */
@@ -381,7 +384,6 @@ const oeuvresHTML = `
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
     document.getElementById("topbar").style.display="none";
     window.scrollTo(0, 0);
 
@@ -1193,12 +1195,10 @@ function goTo(page, btn){
     // reset boutons
     document.querySelectorAll(".top-btn").forEach(b => {
         b.classList.remove("active");
-        b.disabled = false;
     });
 
     // bouton actif
     btn.classList.add("active");
-    btn.disabled = true;
 
     const content = document.getElementById("contentList");
 
