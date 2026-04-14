@@ -159,6 +159,10 @@ html {
     transform:scale(0.9);
 }
 
+.back-btn {
+    display: none;
+}
+
 .full-text {
     width:100%;
     margin-top:80px;
@@ -388,6 +392,7 @@ function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
+    document.querySelector(".back-btn").style.display = "block";
     window.scrollTo(0, 0);
 
     let content = "";
@@ -1154,9 +1159,11 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 }
 
 function back(){
-    document.getElementById("home").style.display = "block";
     document.getElementById("viewer").style.display = "none";
+    document.getElementById("home").style.display = "block";
     document.getElementById("topbar").style.display = "flex";
+
+    document.querySelector(".back-btn").style.display = "none";
 
     window.scrollTo(0, 0);
 }
