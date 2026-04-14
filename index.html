@@ -15,19 +15,35 @@ body {
 /* HEADER */
 #topbar {
     position:fixed;
-    top:10px;
-    left:10px;
+    top:20px;
+    left:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-/* 🔥 BOUTON AUTEURS / TEXTES (AGRANDI ENCORE PLUS) */
+/* boutons */
 .top-btn {
     background:black;
     color:white;
-    padding:20px 32px;      /* ↑ augmenté */
+    padding:16px 26px;
     border:none;
     border-radius:12px;
     cursor:pointer;
-    font-size:24px;         /* ↑ augmenté */
+    font-size:20px;
+    transition:0.2s;
+}
+
+/* animation */
+.top-btn:active {
+    transform:scale(0.92);
+}
+
+/* bouton actif */
+.top-btn.active {
+    background:#444;
+    cursor:default;
+    transform:none;
 }
 
 /* TITRE EN HAUT À DROITE (AGRANDI ENCORE PLUS) */
@@ -97,19 +113,23 @@ html {
 .back-btn {
     display:inline-block;
     margin-bottom:30px;
-    padding:20px 36px;      /* ↑ augmenté */
-    border-radius:35px;
-    background:#111;
+    padding:18px 34px;
+    border-radius:30px;
+    background:black;
     color:white;
     border:none;
-    font-size:24px;         /* ↑ augmenté */
+    font-size:22px;
     cursor:pointer;
     transition:0.2s;
 }
 
 .back-btn:hover {
-    background:#444;
+    background:#333;
     transform:scale(1.05);
+}
+
+.back-btn:active {
+    transform:scale(0.9);
 }
 
 .full-text {
@@ -314,24 +334,24 @@ const auteursHTML = `
 `;
 
 const oeuvresHTML = `
-<div class="card">
+<div class="card" onclick="openWork('sarraute')">
     <div class="card-title"><strong>Pour un oui ou pour un non</strong></div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openWork('colette')">
+    <div class="card-title"><strong>Les vrilles de la vigne</strong></div>
+    <div class="card-sub">Colette, 1908</div>
+</div>
+
+<div class="card" onclick="openWork('rimbaud')">
     <div class="card-title"><strong>Cahier de Douai</strong></div>
     <div class="card-sub">Arthur Rimbaud, 1893</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openWork('laboetie')">
     <div class="card-title"><strong>Discours de la servitude volontaire</strong></div>
     <div class="card-sub">Étienne de La Boétie, 1577</div>
-</div>
-
-<div class="card">
-    <div class="card-title"><strong>Les vrilles de la vigne</strong></div>
-    <div class="card-sub">Colette, 1908</div>
 </div>
 `;
 
@@ -377,12 +397,9 @@ function goTo(page){
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
 
     let content = "";
-
-if(analysis){
-    analysis.style.display = "block";
-}
 
     if(id === "texte1"){
 content = `
@@ -1146,14 +1163,28 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 function back(){
     document.getElementById("home").style.display="block";
     document.getElementById("viewer").style.display="none";
+    document.getElementById("topbar").style.display="block";
 }
 
 function toggleAnalysis(element){
-    document.querySelectorAll(".analysis").forEach(a => {
-        a.style.display = "none";
-    });
-
     const analysis = element.querySelector(".analysis");
+
+    if(analysis.style.display === "block"){
+        analysis.style.display = "none";
+    } else {
+        document.querySelectorAll(".analysis").forEach(a => {
+            a.style.display = "none";
+        });
+        analysis.style.display = "block";
+    }
+}
+
+function openWork(id){
+    document.getElementById("home").style.display="none";
+    document.getElementById("viewer").style.display="block";
+    document.getElementById("topbar").style.display="none";
+
+    document.getElementById("content").innerHTML = "<h2>Œuvre en cours...</h2>";
 }
 
 </script>
