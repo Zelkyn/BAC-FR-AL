@@ -323,8 +323,9 @@ html {
 <!-- VIEWER -->
 <div id="viewer">
     <div id="backContainer">
-        <button class="back-btn" onclick="back()">← Retour</button>
-    </div>
+    <button class="back-btn" onclick="back()">← Retour</button>
+    <button class="back-btn" onclick="toggleMode()" id="modeBtn">Voir les mouvements</button>
+</div>
     <div id="content"></div>
 </div>
 
@@ -392,12 +393,20 @@ function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
-    document.querySelector(".back-btn").style.display = "block";
+    document.querySelectorAll(".back-btn").forEach(btn => {
+    btn.style.display = "block";
+});
     window.scrollTo(0, 0);
 
     let content = "";
 
     if(id === "texte1"){
+        
+    if(modeMouvements){
+    afficherMouvements();
+    return;
+}
+
 content = `
 <div>
 
@@ -1162,8 +1171,9 @@ function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display = "block";
     document.getElementById("topbar").style.display = "flex";
-
-    document.querySelector(".back-btn").style.display = "none";
+	document.querySelectorAll(".back-btn").forEach(btn => {
+    btn.style.display = "none";
+});
 
     window.scrollTo(0, 0);
 }
@@ -1220,6 +1230,61 @@ function goTo(page, btn){
         content.innerHTML = oeuvresHTML;
         document.getElementById("page-title").innerText = "Œuvres";
     }
+}
+
+function toggleMode(){
+    modeMouvements = !modeMouvements;
+
+    if(modeMouvements){
+        document.getElementById("modeBtn").innerText = "Voir ligne par ligne";
+        afficherMouvements();
+    } else {
+        document.getElementById("modeBtn").innerText = "Voir les mouvements";
+        openText("texte1"); // recharge version linéaire
+    }
+}
+
+function afficherMouvements(){
+
+document.getElementById("content").innerHTML = `
+
+<div class="full-text">
+
+<h2>Mouvement 1 – Une relation passée idéalisée mais déjà fragilisée</h2>
+
+<p>
+Le début du dialogue met en place une relation ancienne entre les deux personnages, marquée par l’anonymat (H.I / H.2), ce qui souligne que seule leur relation compte.  
+H.I ouvre avec hésitation (points de suspension) et un impératif paradoxal (« écoute »), révélant un malaise.  
+Le dialogue repose sur un champ lexical de l’interrogation (« demander », « savoir »), mais aussi sur des termes flous (« rien », « quelque chose »), ce qui montre l’impossibilité de cerner le problème.  
+Le vocabulaire de la distance (« tu t’éloignes ») et les souvenirs (« depuis tant d’années ») mettent en évidence une amitié ancienne mais en train de se dégrader.  
+Le passé est idéalisé (champ lexical de l’amitié : « ami », « parfait », « copain »), ce qui rend le conflit encore plus incompréhensible.
+</p>
+
+<h2>Mouvement 2 – Une communication bloquée et un conflit introuvable</h2>
+
+<p>
+H.I tente de comprendre l’origine du conflit en multipliant les questions (« pourquoi », « que », « de quoi »), mais H.2 refuse de répondre clairement.  
+Le dialogue est dominé par des mots vagues (« ça », « rien », « quelque chose »), ce qui empêche toute clarification.  
+La répétition du verbe « dire » montre que le problème devient celui du langage lui-même : dire ou ne pas dire.  
+Le mot « rien » devient central et paradoxal : il est à la fois absence de cause et origine du conflit.  
+Le dialogue tourne en rond, ce qui traduit une impossibilité de communication.
+</p>
+
+<h2>Mouvement 3 – Une révélation dérisoire mais une rupture définitive</h2>
+
+<p>
+H.I exerce une pression affective forte (« au nom de… »), ce qui montre l’intensité du lien et du conflit.  
+H.2 finit par révéler que le problème vient de « mots », sans précision, ce qui renforce la dimension implicite du conflit.  
+Le paradoxe atteint son sommet : la rupture est causée par « rien », qui prend en réalité une importance considérable.  
+La fin est marquée par une tonalité tragique (« tu ne comprendras jamais »), avec un futur qui exprime une certitude.  
+La communication échoue totalement : la rupture est définitive et aucune réconciliation n’est possible.
+</p>
+
+</div>
+
+`;
+
+let modeMouvements = false;
 }
 
 </script>
