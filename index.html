@@ -24,6 +24,7 @@ body {
     z-index:1000;
 }
 
+
 /* boutons */
 .top-btn {
     background:black;
@@ -144,9 +145,11 @@ html {
     top:20px;
     left:20px;
     display:flex;
-    flex-direction:column; /* 🔥 important */
+    flex-direction:column;
     gap:10px;
     z-index:2000;
+
+    transition:opacity 0.2s ease;
 }
 
 .back-btn:hover {
@@ -160,9 +163,9 @@ html {
 
 .full-text {
     width:100%;
-    margin-top:80px;
+    margin-top:40px;
     padding:0 10px; /* léger espace pour lisibilité */
-    line-height:0.6;
+    line-height:1.0;
     white-space:pre-wrap;
 }
 
@@ -171,7 +174,7 @@ html {
     display:block;
     margin:2px 0;
     font-size:20px;
-    line-height:0.6;
+    line-height:1.0;
     padding:5px;
     border-radius:5px;
 }
@@ -207,6 +210,12 @@ html {
 
 .mode-btn-active {
     background:#444;
+}
+
+.hidden {
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
 }
 
 </style>
@@ -338,7 +347,7 @@ html {
 
 <!-- VIEWER -->
 <div id="viewer">
-    <div id="backContainer">
+    <div id="backContainer" class="hidden">
     <button class="back-btn" onclick="back()">← Retour</button>
     <button id="toggleModeBtn" class="back-btn" style="display:none;">
         Voir les mouvements
@@ -410,7 +419,8 @@ const oeuvresHTML = `
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
+    document.getElementById("topbar").classList.add("hidden");
+	document.getElementById("backContainer").classList.remove("hidden");
     document.getElementById("toggleModeBtn").style.display = "inline-block";
     document.querySelector("#backContainer .back-btn").style.display = "block";
 mode = "lineaire";
@@ -1252,7 +1262,8 @@ Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œ
 function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display = "block";
-    document.getElementById("topbar").style.display = "flex";
+    document.getElementById("topbar").classList.remove("hidden");
+    document.getElementById("backContainer").classList.add("hidden");
 	document.getElementById("toggleModeBtn").style.display = "none";
     document.querySelector(".back-btn").style.display = "none";
 
