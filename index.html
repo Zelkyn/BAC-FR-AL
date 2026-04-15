@@ -140,12 +140,12 @@ html {
 }
 
 #backContainer {
-    width:100%;
-    padding:20px;
+    position:fixed;
+    top:20px;
+    left:20px;
     display:flex;
-    flex-direction:column;
-    gap:12px;
-    z-index:1000;
+    gap:10px;
+    z-index:2000;
 }
 
 .back-btn:hover {
@@ -191,6 +191,10 @@ html {
     margin:5px 0 8px 15px; /* ↓ plus compact */
     line-height:1.4;
     transition:0.2s;
+}
+
+.mode-btn-active {
+    background:#444;
 }
 
 </style>
@@ -323,9 +327,11 @@ html {
 <!-- VIEWER -->
 <div id="viewer">
     <div id="backContainer">
-    <button class="back-btn" onclick="back()">← Retour</button>
-    <button class="back-btn" onclick="toggleMode()" id="modeBtn">Voir les mouvements</button>
-</div>
+        <button class="back-btn" onclick="back()">← Retour</button>
+    </div>
+    <button id="toggleModeBtn" class="back-btn" style="display:none; margin-left:10px;">
+    Voir les mouvements
+</button>
     <div id="content"></div>
 </div>
 
@@ -393,20 +399,15 @@ function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
-    document.querySelectorAll(".back-btn").forEach(btn => {
-    btn.style.display = "block";
-});
+    document.querySelector(".back-btn").style.display = "block";
+    document.getElementById("toggleModeBtn").style.display = "block";
+mode = "lineaire";
+document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
     window.scrollTo(0, 0);
 
     let content = "";
 
     if(id === "texte1"){
-        
-    if(modeMouvements){
-    afficherMouvements();
-    return;
-}
-
 content = `
 <div>
 
@@ -1171,9 +1172,8 @@ function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display = "block";
     document.getElementById("topbar").style.display = "flex";
-	document.querySelectorAll(".back-btn").forEach(btn => {
-    btn.style.display = "none";
-});
+
+    document.querySelector(".back-btn").style.display = "none";
 
     window.scrollTo(0, 0);
 }
@@ -1232,60 +1232,64 @@ function goTo(page, btn){
     }
 }
 
-function toggleMode(){
-    modeMouvements = !modeMouvements;
+function buildMouvements(){
 
-    if(modeMouvements){
-        document.getElementById("modeBtn").innerText = "Voir ligne par ligne";
-        afficherMouvements();
+    const content = `
+    <div class="full-text">
+
+    <div class="line" onclick="toggleMove(this)">
+    <strong>Mouvement 1</strong> : Mise en place du conflit et incompréhension initiale
+    <div class="analysis">
+    Le début du dialogue installe une situation de malaise : H.I cherche à comprendre une distance qu’il perçoit sans pouvoir en identifier la cause. Le dialogue est marqué par l’hésitation, les silences et l’usage de mots vagues comme « rien » ou « quelque chose ». Les personnages évoquent une amitié ancienne et forte, ce qui rend la situation encore plus incompréhensible. Ce mouvement met donc en place un conflit fondé sur une rupture invisible et inexpliquée.
+    </div>
+    </div>
+
+    <div class="line" onclick="toggleMove(this)">
+    <strong>Mouvement 2</strong> : Une enquête impossible sur un conflit sans cause claire
+    <div class="analysis">
+    H.I insiste pour obtenir des explications, mais se heurte à l’impossibilité de formuler clairement l’origine du problème. Le dialogue tourne en rond autour de termes vagues et du mot « rien », qui devient paradoxalement central. La répétition des questions et du verbe « dire » montre que le véritable enjeu est le langage lui-même : le conflit repose sur quelque chose d’indicible.
+    </div>
+    </div>
+
+    <div class="line" onclick="toggleMove(this)">
+    <strong>Mouvement 3</strong> : Révélation d’un conflit fondé sur le langage et rupture finale
+    <div class="analysis">
+    Sous la pression de H.I, H.2 finit par révéler que le conflit vient de « mots », sans parvenir à les définir précisément. Le paradoxe du « rien » devient central : ce sont des éléments insignifiants en apparence qui ont provoqué la rupture. Le dialogue prend une dimension tragique avec l’idée d’une incompréhension définitive (« tu ne comprendras jamais »). Ce mouvement montre l’échec total de la communication et l’impossibilité de réconciliation.
+    </div>
+    </div>
+
+    </div>
+    `;
+
+    document.getElementById("content").innerHTML = content;
+}
+
+function toggleMove(element){
+    const analysis = element.querySelector(".analysis");
+
+    if(analysis.style.display === "block"){
+        analysis.style.display = "none";
     } else {
-        document.getElementById("modeBtn").innerText = "Voir les mouvements";
-        openText("texte1"); // recharge version linéaire
+        document.querySelectorAll(".analysis").forEach(a => {
+            a.style.display = "none";
+        });
+        analysis.style.display = "block";
     }
 }
 
-function afficherMouvements(){
+let mode = "lineaire"; // ou "mouvements"
 
-document.getElementById("content").innerHTML = `
-
-<div class="full-text">
-
-<h2>Mouvement 1 – Une relation passée idéalisée mais déjà fragilisée</h2>
-
-<p>
-Le début du dialogue met en place une relation ancienne entre les deux personnages, marquée par l’anonymat (H.I / H.2), ce qui souligne que seule leur relation compte.  
-H.I ouvre avec hésitation (points de suspension) et un impératif paradoxal (« écoute »), révélant un malaise.  
-Le dialogue repose sur un champ lexical de l’interrogation (« demander », « savoir »), mais aussi sur des termes flous (« rien », « quelque chose »), ce qui montre l’impossibilité de cerner le problème.  
-Le vocabulaire de la distance (« tu t’éloignes ») et les souvenirs (« depuis tant d’années ») mettent en évidence une amitié ancienne mais en train de se dégrader.  
-Le passé est idéalisé (champ lexical de l’amitié : « ami », « parfait », « copain »), ce qui rend le conflit encore plus incompréhensible.
-</p>
-
-<h2>Mouvement 2 – Une communication bloquée et un conflit introuvable</h2>
-
-<p>
-H.I tente de comprendre l’origine du conflit en multipliant les questions (« pourquoi », « que », « de quoi »), mais H.2 refuse de répondre clairement.  
-Le dialogue est dominé par des mots vagues (« ça », « rien », « quelque chose »), ce qui empêche toute clarification.  
-La répétition du verbe « dire » montre que le problème devient celui du langage lui-même : dire ou ne pas dire.  
-Le mot « rien » devient central et paradoxal : il est à la fois absence de cause et origine du conflit.  
-Le dialogue tourne en rond, ce qui traduit une impossibilité de communication.
-</p>
-
-<h2>Mouvement 3 – Une révélation dérisoire mais une rupture définitive</h2>
-
-<p>
-H.I exerce une pression affective forte (« au nom de… »), ce qui montre l’intensité du lien et du conflit.  
-H.2 finit par révéler que le problème vient de « mots », sans précision, ce qui renforce la dimension implicite du conflit.  
-Le paradoxe atteint son sommet : la rupture est causée par « rien », qui prend en réalité une importance considérable.  
-La fin est marquée par une tonalité tragique (« tu ne comprendras jamais »), avec un futur qui exprime une certitude.  
-La communication échoue totalement : la rupture est définitive et aucune réconciliation n’est possible.
-</p>
-
-</div>
-
-`;
-
-let modeMouvements = false;
-}
+document.getElementById("toggleModeBtn").onclick = function(){
+    if(mode === "lineaire"){
+        mode = "mouvements";
+        this.innerText = "Voir l’analyse linéaire";
+        buildMouvements();
+    } else {
+        mode = "lineaire";
+        this.innerText = "Voir les mouvements";
+        openText("texte1");
+    }
+};
 
 </script>
 
