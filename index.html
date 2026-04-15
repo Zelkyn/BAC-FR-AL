@@ -144,6 +144,7 @@ html {
     top:20px;
     left:20px;
     display:flex;
+    flex-direction:column; /* 🔥 important */
     gap:10px;
     z-index:2000;
 }
@@ -157,15 +158,11 @@ html {
     transform:scale(0.9);
 }
 
-.back-btn {
-    display: none;
-}
-
 .full-text {
     width:100%;
     margin-top:80px;
     padding:0 10px; /* léger espace pour lisibilité */
-    line-height:1.4;
+    line-height:1.0;
     white-space:pre-wrap;
 }
 
@@ -174,7 +171,7 @@ html {
     display:block;
     margin:2px 0;
     font-size:20px;
-    line-height:1.4;
+    line-height:1.0;
     padding:5px;
     border-radius:5px;
 }
@@ -341,11 +338,11 @@ html {
 <!-- VIEWER -->
 <div id="viewer">
     <div id="backContainer">
-        <button class="back-btn" onclick="back()">← Retour</button>
-    </div>
-    <button id="toggleModeBtn" class="back-btn" style="display:none; margin-left:10px;">
-    Voir les mouvements
-</button>
+    <button class="back-btn" onclick="back()">← Retour</button>
+    <button id="toggleModeBtn" class="back-btn" style="display:none;">
+        Voir les mouvements
+    </button>
+</div>
     <div id="content"></div>
 </div>
 
@@ -414,7 +411,7 @@ function openText(id){
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
     document.getElementById("toggleModeBtn").style.display = "inline-block";
-    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector("#backContainer .back-btn").style.display = "block";
 mode = "lineaire";
 document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
     window.scrollTo(0, 0);
@@ -427,29 +424,29 @@ content = `
 
 <div class="full-text">
 
-<div class="line" data-id="T1l1"><strong>H.I :</strong> Écoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?</div>
+<div class="line" data-id="l1"><strong>H.I :</strong> Écoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?</div>
 
-<div class="line" data-id="T1l2"><strong>H.2 :</strong> Mais rien… Pourquoi ?</div>
+<div class="line" data-id="l2"><strong>H.2 :</strong> Mais rien… Pourquoi ?</div>
 
-<div class="line" data-id="T1l3"><strong>H.I :</strong> Oh, je ne sais pas… Il me semble que tu t’éloignes… tu ne fais plus jamais signe… il faut toujours que ce soit moi…</div>
+<div class="line" data-id="l3"><strong>H.I :</strong> Oh, je ne sais pas… Il me semble que tu t’éloignes… tu ne fais plus jamais signe… il faut toujours que ce soit moi…</div>
 
-<div class="line" data-id="T1l4"><strong>H.2 :</strong> Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.</div>
+<div class="line" data-id="l4"><strong>H.2 :</strong> Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.</div>
 
-<div class="line" data-id="T1l5"><strong>H.I :</strong> Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…</div>
+<div class="line" data-id="l5"><strong>H.I :</strong> Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…</div>
 
-<div class="line" data-id="T1l6"><strong>H.2 :</strong> Mais que veux-tu qu’il y ait ?</div>
+<div class="line" data-id="l6"><strong>H.2 :</strong> Mais que veux-tu qu’il y ait ?</div>
 
-<div class="line" data-id="T1l7"><strong>H.I :</strong> C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…</div>
+<div class="line" data-id="l7"><strong>H.I :</strong> C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…</div>
 
-<div class="line" data-id="T1l8"><strong>H.2 :</strong> Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…</div>
+<div class="line" data-id="l8"><strong>H.2 :</strong> Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…</div>
 
-<div class="line" data-id="T1l9"><strong>H.I :</strong> Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…</div>
+<div class="line" data-id="l9"><strong>H.I :</strong> Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…</div>
 
-<div class="line" data-id="T1l10"><strong>H.2 :</strong> Oui, pauvre maman… Elle t’aimait bien… elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.</div>
+<div class="line" data-id="l10"><strong>H.2 :</strong> Oui, pauvre maman… Elle t’aimait bien… elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.</div>
 
-<div class="line" data-id="T1l11"><strong>H.I :</strong> Alors ?</div>
+<div class="line" data-id="l11"><strong>H.I :</strong> Alors ?</div>
 
-<div class="line" data-id="T1l12"><strong>H.2</strong>, <em>hausse les épaules</em> : … Alors… que veux-tu que je te dise !</div>
+<div class="line" data-id="l12"><strong>H.2</strong>, <em>hausse les épaules</em> : … Alors… que veux-tu que je te dise !</div>
 
 <div class="line" data-id="l13"><strong>H.I :</strong> Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…</div>
 
@@ -951,7 +948,7 @@ function openAuthor(id){
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
 
-    document.querySelector(".back-btn").style.display = "block";
+    document.querySelector("#backContainer .back-btn").style.display = "block";
     document.getElementById("toggleModeBtn").style.display = "none";
 
     window.scrollTo(0, 0);
