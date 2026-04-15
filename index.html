@@ -399,8 +399,8 @@ function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
+    document.getElementById("toggleModeBtn").style.display = "inline-block";
     document.querySelector(".back-btn").style.display = "block";
-    document.getElementById("toggleModeBtn").style.display = "block";
 mode = "lineaire";
 document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
     window.scrollTo(0, 0);
@@ -868,6 +868,7 @@ Cette scène montre que même avec des témoins extérieurs, le conflit ne peut 
 }
 
 function openAuthor(id){
+    document.getElementById("toggleModeBtn").style.display = "none";
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").style.display="none";
@@ -1172,7 +1173,7 @@ function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display = "block";
     document.getElementById("topbar").style.display = "flex";
-
+	document.getElementById("toggleModeBtn").style.display = "none";
     document.querySelector(".back-btn").style.display = "none";
 
     window.scrollTo(0, 0);
