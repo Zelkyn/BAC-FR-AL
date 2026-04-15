@@ -165,7 +165,7 @@ html {
     width:100%;
     margin-top:80px;
     padding:0 10px; /* léger espace pour lisibilité */
-    line-height:2.2;
+    line-height:1.4;
     white-space:pre-wrap;
 }
 
@@ -174,7 +174,7 @@ html {
     display:block;
     margin:2px 0;
     font-size:20px;
-    line-height:1.8;
+    line-height:1.4;
     padding:5px;
     border-radius:5px;
 }
@@ -196,6 +196,15 @@ html {
     padding:10px;
     border-left:3px solid #333;
     transition:0.2s;
+}
+
+.analysis-line {
+    display:none;
+    color:red;
+    margin:5px 0 8px 15px;
+    background:#fafafa;
+    padding:10px;
+    border-left:3px solid #333;
 }
 
 .mode-btn-active {
@@ -1253,12 +1262,19 @@ function back(){
 }
 
 function toggleAnalysis(element){
-    const analysis = element.querySelector(".analysis");
+
+    const id = element.getAttribute("data-id");
+
+    const analysis = document.querySelector(
+        `.analysis-line[data-id="${id}"]`
+    );
+
+    if(!analysis) return;
 
     if(analysis.style.display === "block"){
         analysis.style.display = "none";
     } else {
-        document.querySelectorAll(".analysis").forEach(a => {
+        document.querySelectorAll(".analysis-line").forEach(a => {
             a.style.display = "none";
         });
         analysis.style.display = "block";
