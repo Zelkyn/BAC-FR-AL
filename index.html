@@ -453,7 +453,7 @@ function openText(id){
 </div>
 </div>
 `;
-    }
+}
 
     /* ===================== TEXTE 2 ===================== */
     if(id === "texte2"){
@@ -534,7 +534,259 @@ function openText(id){
 </div>
 </div>
 `;
-    }
+}
+
+/* ===================== TEXTE 3 ===================== */
+if(id === "texte3"){
+    content = `
+<div>
+<div class="full-text">
+
+<div class="line" data-id="T3l1" onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
+<div class="line" data-id="T3l2" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> À quoi bon s'acharner ?</div>
+<div class="line" data-id="T3l3" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Ce serait tellement plus sain...</div>
+<div class="line" data-id="T3l4" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Pour chacun de nous... plus salutaire...</div>
+<div class="line" data-id="T3l5" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> La meilleure solution...</div>
+<div class="line" data-id="T3l6" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Mais tu sais bien comment nous sommes. Même toi, tu n'as pas osé le prendre sur toi.</div>
+<div class="line" data-id="T3l7" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non. J'ai besoin qu'on m'autorise.</div>
+<div class="line" data-id="T3l8" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Et moi donc, tu me connais...</div>
+<div class="line" data-id="T3l9" onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
+<div class="line" data-id="T3l10" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Qu'est-ce que tu crois... si on introduisait une demande... à nous deux, cette fois... on pourrait peut-être mieux expliquer... on aurait peut-être plus de chances...</div>
+<div class="line" data-id="T3l11" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non... à quoi bon ? Je peux tout te dire d'avance... Je vois leur air... « Eh bien, de quoi s'agit-il encore ? De quoi ? Qu'est-ce qu'ils racontent ? Quelles taupes ? Quelles pelouses ? Quels sables mouvants ? Quels camps ennemis ? Voyons un peu leurs dossiers... on a beau chercher... examiner les points d’ordinaire les plus chauds... rien d’autre nulle part que les signes d'une amitié parfaite... »</div>
+<div class="line" data-id="T3l12" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> C'est vrai.</div>
+<div class="line" data-id="T3l13" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> « Et ils demandent à rompre. Ils ne veulent plus se revoir de leur vie... quelle honte... »</div>
+<div class="line" data-id="T3l14" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Oui, aucun doute possible, aucune hésitation : déboutés tous les deux.</div>
+<div class="line" data-id="T3l15" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> « Et même, qu'ils y prennent garde... qu'ils fassent très attention. On sait quelles peines encourent ceux qui ont l'outrecuidance de se permettre ainsi, sans raison... ils seront signalés... on ne s'en approchera qu'avec prudence, avec la plus extrême méfiance... Chacun saura de quoi ils sont capables, de quoi ils peuvent se rendre coupables : ils peuvent rompre pour un oui ou pour un non. »</div>
+<div class="line" data-id="T3l16" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Pour un oui... ou pour un non ?</div>
+<div class="line" data-id="T3l17" onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
+<div class="line" data-id="T3l18" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Oui ou non ?...</div>
+<div class="line" data-id="T3l19" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Ce n'est pourtant pas la même chose...</div>
+<div class="line" data-id="T3l20" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> En effet : Oui. Ou non.</div>
+<div class="line" data-id="T3l21" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Oui.</div>
+<div class="line" data-id="T3l22" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non !</div>
+
+</div>
+
+<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
+<div id="analysis-data" style="display:none;">
+
+<div class="analysis-line" data-id="T3l1">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l2">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l3">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l4">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l5">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l6">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l7">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l8">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l9">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l10">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l11">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l12">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l13">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l14">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l15">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l16">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l17">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l18">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l19">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l20">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l21">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T3l22">Indisponible pour le moment...</div>
+
+</div>
+</div>
+`;
+}
+
+/* ===================== TEXTE 4 ===================== */
+if(id === "texte4"){
+    content = `
+<div>
+<div class="full-text">
+
+<div class="line" data-id="T4l1" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> (...) cet habit me donne de l'esprit, et je me sens en humeur de disputer contre vous. Vous savez bien que vous me permettez les disputes, et que vous ne me défendez que les remontrances.</div>
+<div class="line" data-id="T4l2" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh bien !</div>
+<div class="line" data-id="T4l3" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux savoir un peu vos pensées à fond. Est-il possible que vous ne croyiez point du tout au</div>
+<div class="line" data-id="T4l4" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Laissons cela.</div>
+<div class="line" data-id="T4l5" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> C'est-à-dire que non. Et à l'Enfer ?</div>
+<div class="line" data-id="T4l6" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh.</div>
+<div class="line" data-id="T4l7" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Tout de même. Et au diable, s'il vous plaît ?</div>
+<div class="line" data-id="T4l8" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Oui, oui.</div>
+<div class="line" data-id="T4l9" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Aussi peu. Ne croyez-vous point l'autre vie ?</div>
+<div class="line" data-id="T4l10" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Ah, ah, ah.</div>
+<div class="line" data-id="T4l11" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Voilà un homme que j'aurai bien de la peine à convertir. Et dites-moi un peu, le Moine-Bourru, qu'en croyez-vous, eh ?</div>
+<div class="line" data-id="T4l12" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> La peste soit du fat !</div>
+<div class="line" data-id="T4l13" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Et voilà ce que je ne puis souffrir, car il n'y a rien de plus vrai que le Moine-Bourru, et je me ferais pendre pour celui-là. Mais encore faut-il croire quelque chose. Qu'est-ce que vous croyez ?</div>
+<div class="line" data-id="T4l14" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Ce que je crois ?</div>
+<div class="line" data-id="T4l15" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Oui.</div>
+<div class="line" data-id="T4l16" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Je crois que deux et deux sont quatre, Sganarelle, et que quatre et quatre sont huit.</div>
+<div class="line" data-id="T4l17" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> La belle croyance, que voilà ! Votre religion, à ce que je vois, est donc l'arithmétique ? Il faut avouer qu'il se met d'étranges folies dans la tête des hommes, et que pour avoir bien étudié, on en est bien moins sage le plus souvent.</div>
+<div class="line" data-id="T4l18" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Pour moi, Monsieur, je n'ai point étudié comme vous, Dieu merci, et personne ne saurait se vanter de m'avoir jamais rien appris ; mais avec mon petit sens, mon petit jugement, je vois les choses mieux que tous les livres, et je comprends fort bien que ce monde que nous voyons, n'est pas un champignon qui soit venu tout seul en une nuit.</div>
+<div class="line" data-id="T4l19" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je voudrais bien vous demander qui a fait ces arbres-là, ces rochers, cette terre, et ce ciel que voilà là-haut, et si tout cela s'est bâti de lui-même ?</div>
+<div class="line" data-id="T4l20" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Vous voilà vous, par exemple, vous êtes là ; est-ce que vous vous êtes fait tout seul, et n'a-t-il pas fallu que votre père ait engrossé votre mère pour vous faire ?</div>
+<div class="line" data-id="T4l21" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Pouvez-vous voir toutes les inventions dont la machine de l'homme est composée, sans admirer de quelle façon cela est agencé l'un dans l'autre, ces nerfs, ces os, ces veines, ces artères, ces... ce poumon, ce cœur, ce foie, et tous ces autres ingrédients qui sont là et qui...</div>
+<div class="line" data-id="T4l22" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Oh dame, interrompez-moi donc si vous voulez, je ne saurais disputer si l'on ne m'interrompt, vous vous taisez exprès, et me laissez parler par belle malice.</div>
+<div class="line" data-id="T4l23" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> J'attends que ton raisonnement soit fini.</div>
+<div class="line" data-id="T4l24" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Mon raisonnement est qu'il y a quelque chose d'admirable dans l'homme, quoi que vous puissiez dire, que tous les savants ne sauraient expliquer.</div>
+<div class="line" data-id="T4l25" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Cela n'est-il pas merveilleux que me voilà ici, et que j'aie quelque chose dans la tête qui pense cent choses différentes en un moment, et fait de mon corps tout ce qu'elle veut ?</div>
+<div class="line" data-id="T4l26" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux frapper des mains, hausser le bras, lever les yeux au ciel, baisser la tête, remuer les pieds, aller à droit, à gauche, en avant, en arrière, tourner...</div>
+<div class="line" data-id="T4l27" onclick="toggleAnalysis(this)"><em>Il se laisse tomber en tournant.</em></div>
+<div class="line" data-id="T4l28" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Bon, voilà ton raisonnement qui a le nez cassé.</div>
+
+</div>
+
+<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
+<div id="analysis-data" style="display:none;">
+
+<div class="analysis-line" data-id="T4l1">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l2">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l3">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l4">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l5">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l6">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l7">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l8">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l9">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l10">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l11">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l12">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l13">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l14">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l15">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l16">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l17">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l18">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l19">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l20">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l21">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l22">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l23">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l24">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l25">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l26">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l27">Indisponible pour le moment...</div>
+<div class="analysis-line" data-id="T4l28">Indisponible pour le moment...</div>
+
+</div>
+</div>
+`;
+}
+
+/* ===================== TEXTE 5 ===================== */
+if(id === "texte5"){
+    content = `
+<div>
+<div class="full-text">
+
+<div class="ligne" id="T5L1" onclick="toggleAnalyse('T5L1')">Il y avait dans ce temps-là de grands hivers, de brûlants étés. J’ai connu, depuis des</div>
+<div class="ligne" id="T5L2" onclick="toggleAnalyse('T5L2')">étés dont la couleur, si je ferme les yeux, est celle de la terre ocreuse, fendillée entre les tiges</div>
+<div class="ligne" id="T5L3" onclick="toggleAnalyse('T5L3')">du blé et sous la géante ombelle du panais sauvage, celle de la mer grise ou bleue. Mais</div>
+<div class="ligne" id="T5L4" onclick="toggleAnalyse('T5L4')">aucun été, sauf ceux de mon enfance, ne commémore le géranium écarlate et la hampe</div>
+<div class="ligne" id="T5L5" onclick="toggleAnalyse('T5L5')">enflammée des digitales. Aucun hiver n’est plus d’un blanc pur à la base d’un ciel bourré de</div>
+<div class="ligne" id="T5L6" onclick="toggleAnalyse('T5L6')">nues ardoisées, qui présageaient une tempête de flocons plus épais, puis un dégel illuminé de</div>
+<div class="ligne" id="T5L7" onclick="toggleAnalyse('T5L7')">mille gouttes d’eau et de bourgeons lancéolés… Ce ciel pesait sur le toit chargé de neige des</div>
+<div class="ligne" id="T5L8" onclick="toggleAnalyse('T5L8')">greniers à fourrages, le noyer nu, la girouette, et pliait les oreilles des chattes… La calme et</div>
+<div class="ligne" id="T5L9" onclick="toggleAnalyse('T5L9')">verticale chute de neige devenait oblique, un faible ronflement de mer lointaine se levait sur</div>
+<div class="ligne" id="T5L10" onclick="toggleAnalyse('T5L10')">ma tête encapuchonnée, tandis que j’arpentais le jardin, happant la neige volante… Avertie par</div>
+<div class="ligne" id="T5L11" onclick="toggleAnalyse('T5L11')">ses antennes, ma mère s’avançait sur la terrasse, goûtait le temps, me jetait un cri :</div>
+<div class="ligne" id="T5L12" onclick="toggleAnalyse('T5L12')">– La bourrasque d’Ouest ! Cours ! Ferme les lucarnes du grenier !… La porte de la</div>
+<div class="ligne" id="T5L13" onclick="toggleAnalyse('T5L13')">remise aux voitures !… Et la fenêtre de la chambre du fond !</div>
+<div class="ligne" id="T5L14" onclick="toggleAnalyse('T5L14')">Mousse exalté du navire natal, je m’élançais, claquant des sabots, enthousiasmée si du</div>
+<div class="ligne" id="T5L15" onclick="toggleAnalyse('T5L15')">fond de la mêlée blanche et bleu noir, sifflante, un vif éclair, un bref roulement de foudre,</div>
+<div class="ligne" id="T5L16" onclick="toggleAnalyse('T5L16')">enfants d’Ouest et de Février, comblaient tous deux un des abîmes du ciel… Je tâchais de</div>
+<div class="ligne" id="T5L17" onclick="toggleAnalyse('T5L17')">trembler, de croire à la fin du monde.</div>
+<div class="ligne" id="T5L18" onclick="toggleAnalyse('T5L18')">Mais dans le pire du fracas ma mère, l’œil sur une grosse loupe cerclée de cuivre,</div>
+<div class="ligne" id="T5L19" onclick="toggleAnalyse('T5L19')">s’émerveillait, comptant les cristaux ramifiés d’une poignée de neige qu’elle venait de cueillir</div>
+<div class="ligne" id="T5L20" onclick="toggleAnalyse('T5L20')">aux mains mêmes de l’Ouest rué sur notre jardin…</div>
+
+</div>
+
+<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
+<div id="analysis-data" style="display:none;">
+
+<div class="analyse" id="analyse-T5L1">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L2">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L3">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L4">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L5">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L6">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L7">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L8">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L9">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L10">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L11">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L12">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L13">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L14">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L15">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L16">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L17">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L18">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L19">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T5L20">Indisponible pour le moment...</div>
+
+</div>
+</div>
+`;
+}
+
+/* ===================== TEXTE 6 ===================== */
+if(id === "texte6"){
+    content = `
+<div>
+<div class="full-text">
+
+<div class="ligne" id="T6L1" onclick="toggleAnalyse('T6L1')">Je gis sans mouvement, la tête sur ta douce épaule. Je vais sûrement, jusqu'à demain,</div>
+<div class="ligne" id="T6L2" onclick="toggleAnalyse('T6L2')">descendre au fond d'un noir sommeil, un sommeil si têtu, si fermé, que les ailes des rêves le</div>
+<div class="ligne" id="T6L3" onclick="toggleAnalyse('T6L3')">viendront battre en vain. Je vais dormir... Attends seulement que je cherche, pour la plante de</div>
+<div class="ligne" id="T6L4" onclick="toggleAnalyse('T6L4')">mes pieds qui fourmille et brûle, une place toute fraîche... Tu n'as pas bougé. Tu respires à</div>
+<div class="ligne" id="T6L5" onclick="toggleAnalyse('T6L5')">longs traits, mais je sens ton épaule encore éveillée, attentive à se creuser sous ma joue...</div>
+<div class="ligne" id="T6L6" onclick="toggleAnalyse('T6L6')">Dormons. Les nuits de mai sont si courtes. Malgré l'obscurité bleue qui nous baigne, mes</div>
+<div class="ligne" id="T6L7" onclick="toggleAnalyse('T6L7')">paupières sont encore pleines de soleil, de flammes roses, d'ombres qui bougent, balancées,</div>
+<div class="ligne" id="T6L8" onclick="toggleAnalyse('T6L8')">et je contemple ma journée les yeux clos, comme on se penche, derrière l'abri d'une</div>
+<div class="ligne" id="T6L9" onclick="toggleAnalyse('T6L9')">persienne, sur un jardin d'été éblouissant...</div>
+<div class="ligne" id="T6L10" onclick="toggleAnalyse('T6L10')">Comme mon cœur bat ! J'entends aussi le tien sous mon oreille. Tu ne dors pas ? Je lève un peu la tête, je devine la pâleur de ton visage renversé, l'ombre fauve de tes courts cheveux.</div>
+<div class="ligne" id="T6L11" onclick="toggleAnalyse('T6L11')">Tes genoux sont frais comme deux oranges... Tourne-toi de mon côté, pour que les</div>
+<div class="ligne" id="T6L12" onclick="toggleAnalyse('T6L12')">miens leur volent cette lisse fraîcheur...</div>
+<div class="ligne" id="T6L13" onclick="toggleAnalyse('T6L13')">Ah ! dormons !... Mille fois mille fourmis courent avec mon sang sous ma peau. Les</div>
+<div class="ligne" id="T6L14" onclick="toggleAnalyse('T6L14')">muscles de mes mollets battent, mes oreilles tressaillent, et notre doux lit, ce soir, est-il</div>
+<div class="ligne" id="T6L15" onclick="toggleAnalyse('T6L15')">jonché d'aiguilles de pin ? Dormons ! je le veux !</div>
+<div class="ligne" id="T6L16" onclick="toggleAnalyse('T6L16')">Je ne puis dormir. Mon insomnie heureuse palpite, allègre, et je devine, en ton</div>
+<div class="ligne" id="T6L17" onclick="toggleAnalyse('T6L17')">immobilité, le même accablement frémissant... Tu ne bouges pas. Tu espères que je dors.</div>
+<div class="ligne" id="T6L18" onclick="toggleAnalyse('T6L18')">Ton bras se resserre parfois autour de moi, par tendre habitude, et tes pieds charmants s'enlacent aux miens...</div>
+<div class="ligne" id="T6L19" onclick="toggleAnalyse('T6L19')">Le sommeil s'approche, me frôle et me fuit... Je le vois ! Il est pareil à ce</div>
+<div class="ligne" id="T6L20" onclick="toggleAnalyse('T6L20')">papillon de lourd velours que je poursuivais, dans le jardin enflammé d'iris... Tu te souviens ?</div>
+
+</div>
+
+<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
+<div id="analysis-data" style="display:none;">
+
+<div class="analyse" id="analyse-T6L1">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L2">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L3">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L4">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L5">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L6">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L7">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L8">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L9">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L10">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L11">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L12">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L13">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L14">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L15">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L16">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L17">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L18">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L19">Indisponible pour le moment...</div>
+<div class="analyse" id="analyse-T6L20">Indisponible pour le moment...</div>
+
+</div>
+</div>
+`;
+}
 
     document.getElementById("content").innerHTML = content;
 }
