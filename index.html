@@ -4,208 +4,103 @@
 <head>
 <meta charset="UTF-8">
 <title>Révisions Bac Français</title>
-
 <style>
+body { margin:0; font-family:Georgia,serif; background:#f4f4f4; }
 
-body {
-    margin:0;
-    font-family: Georgia, serif;
-    background:#f4f4f4;
-}
-
-/* HEADER */
 #topbar {
-    position:fixed;
-    top:20px;
-    left:20px;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:12px;
-    z-index:1000;
+position:fixed; top:20px; left:20px;
+display:flex; flex-direction:column; align-items:flex-start;
+gap:12px; z-index:1000;
 }
-
-/* boutons nav */
 .top-btn {
-    background:black;
-    color:white;
-    padding:16px 26px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:20px;
-    min-width:140px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+background:black; color:white; padding:16px 26px;
+border:none; border-radius:12px; cursor:pointer; font-size:20px;
+min-width:140px; display:flex; justify-content:center; align-items:center;
 }
 .top-btn:active { transform:scale(0.92); background:#444; }
 .top-btn.active { background:#444; cursor:default; transform:none; }
 
-/* TITRE EN HAUT À DROITE */
-#page-title {
-    position:fixed;
-    top:15px;
-    right:20px;
-    font-size:30px;
-    color:#333;
-    font-weight:600;
-}
+#page-title { position:fixed; top:15px; right:20px; font-size:30px; color:#333; font-weight:600; }
 
-/* CONTENU PRINCIPAL */
 #home { padding:60px 30px 30px 30px; }
 h1 { text-align:center; }
 
 .card {
-    background:white;
-    padding:20px;
-    margin:20px auto;
-    max-width:600px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-    cursor:pointer;
+background:white; padding:20px; margin:20px auto; max-width:600px;
+border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); cursor:pointer;
 }
 .card-title { font-size:18px; }
 .card-sub { font-size:14px; color:#666; margin-top:5px; }
 .card:hover { transform:scale(1.02); transition:0.2s; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior:smooth; }
 
-/* VIEWER */
 #viewer {
-    display:none;
-    padding:20px;
-    max-width:none;
-    margin:0;
-    width:100%;
-    min-height:100vh;
-    animation: fadeIn 0.3s ease;
-    box-sizing:border-box;
+display:none; padding:20px; max-width:none; margin:0;
+width:100%; min-height:100vh; animation:fadeIn 0.3s ease; box-sizing:border-box;
 }
 @keyframes fadeIn {
-    from { opacity:0; transform:translateY(10px); }
-    to   { opacity:1; transform:translateY(0); }
+from { opacity:0; transform:translateY(10px); }
+to   { opacity:1; transform:translateY(0); }
 }
 
-/* ===== BOUTON RETOUR — taille unique pour tous les contextes ===== */
 #backContainer {
-    position:fixed;
-    top:20px;
-    left:20px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    z-index:2000;
-    transition:opacity 0.2s ease;
-    visibility:hidden;
-    opacity:0;
-    pointer-events:none;
+position:fixed; top:20px; left:20px; display:flex; flex-direction:column;
+gap:10px; z-index:2000; transition:opacity 0.2s ease;
+visibility:hidden; opacity:0; pointer-events:none;
 }
-#backContainer.visible {
-    visibility:visible;
-    opacity:1;
-    pointer-events:auto;
-}
+#backContainer.visible { visibility:visible; opacity:1; pointer-events:auto; }
+
 .back-btn {
-    background:black;
-    color:white;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:16px;
-    padding:12px 20px;
-    min-width:120px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    will-change:transform;
+background:black; color:white; border:none; border-radius:12px;
+cursor:pointer; font-size:16px; padding:12px 20px; min-width:120px;
+display:flex; justify-content:center; align-items:center; will-change:transform;
 }
 .back-btn:hover  { background:#333; transform:scale(1.05); }
 .back-btn:active { transform:scale(0.9); }
 
-/* ===== TEXTE PLEIN ===== */
-.full-text {
-    width:100%;
-    margin-top:80px;
-    padding:0 10px;
-    box-sizing:border-box;
-}
+.full-text { width:100%; margin-top:80px; padding:0 10px; box-sizing:border-box; }
 
-/* Réplique — espacement uniforme texte 1 et texte 2 */
 .line {
-    cursor:pointer;
-    display:block;
-    margin:8px 0;
-    font-size:18px;
-    line-height:1.6;
-    padding:6px 8px;
-    border-radius:5px;
+cursor:pointer; display:block; margin:8px 0;
+font-size:18px; line-height:1.6; padding:6px 8px; border-radius:5px;
 }
 .line:hover  { background:#f0f0f0; }
 .line:active { background:#ddd; }
 
-/* Analyse inline (mouvements) */
 .analysis {
-    display:none;
-    color:#c0392b;
-    margin:4px 0 10px 15px;
-    line-height:1.5;
-    background:#fafafa;
-    padding:10px;
-    border-left:3px solid #333;
+display:none; color:#c0392b; margin:4px 0 10px 15px;
+line-height:1.5; background:#fafafa; padding:10px; border-left:3px solid #333;
 }
-
-/* Analyse linéaire (texte 1 et texte 2) */
 .analysis-line {
-    display:none;
-    color:#c0392b;
-    margin:4px 0 10px 15px;
-    background:#fafafa;
-    padding:10px;
-    border-left:3px solid #333;
-    line-height:1.5;
+display:none; color:#c0392b; margin:4px 0 10px 15px;
+background:#fafafa; padding:10px; border-left:3px solid #333; line-height:1.5;
 }
-
-.hidden {
-    visibility:hidden;
-    opacity:0;
-    pointer-events:none;
-}
-
+.hidden { visibility:hidden; opacity:0; pointer-events:none; }
 </style>
 
 </head>
 <body>
 
-<!-- backContainer HORS du viewer, directement dans body -->
-
 <div id="backContainer">
     <button class="back-btn" onclick="back()">← Retour</button>
-    <button id="toggleModeBtn" class="back-btn" style="display:none;">
-        Voir les mouvements
-    </button>
+    <button id="toggleModeBtn" class="back-btn" style="display:none;">Voir les mouvements</button>
 </div>
 
-<div style="text-align:center; margin-top:20px; margin-bottom:10px; font-family:Georgia, serif;">
+<div style="text-align:center; margin-top:20px; margin-bottom:10px; font-family:Georgia,serif;">
     <div style="font-size:22px;">Grâce au travail de Aurélien et Aline</div>
     <div style="font-size:14px; color:#666; margin-top:5px;">avec l'aide de ChatGPT</div>
     <div style="font-size:14px; color:#666; margin-top:5px;">merci à Alban d'avoir mis son nom</div>
     <div style="font-size:26px; font-weight:bold; margin-top:8px;">Votez pour nous l'année prochaine !</div>
 </div>
 
-<!-- BOUTON SWITCH -->
-
 <div id="topbar">
-    <button id="btnTextes" class="top-btn active" onclick="goTo('textes', this)">Textes</button>
-    <button id="btnAuteurs" class="top-btn" onclick="goTo('auteurs', this)">Auteurs</button>
-    <button id="btnOeuvres" class="top-btn" onclick="goTo('oeuvres', this)">Œuvres</button>
+    <button id="btnTextes" class="top-btn active" onclick="goTo('textes',this)">Textes</button>
+    <button id="btnAuteurs" class="top-btn" onclick="goTo('auteurs',this)">Auteurs</button>
+    <button id="btnOeuvres" class="top-btn" onclick="goTo('oeuvres',this)">Œuvres</button>
 </div>
 
-<!-- TITRE DROITE -->
-
 <div id="page-title">Textes</div>
-
-<!-- CONTENU ACCUEIL -->
 
 <div id="home">
 <h1>Révisions Bac Français</h1>
@@ -279,94 +174,66 @@ html { scroll-behavior: smooth; }
 </div>
 </div>
 
-<!-- VIEWER -->
-
-<div id="viewer">
-    <div id="content"></div>
-</div>
+<div id="viewer"><div id="content"></div></div>
 
 <script>
 
 let currentPage = "textes";
+let currentTextId = "";  /* ← retient le texte ouvert pour les mouvements */
+
 const textesHTML = document.getElementById("contentList").innerHTML;
 
 const auteursHTML = `
-<div class="card" onclick="openAuthor('rimbaud')">
-    <div class="card-title"><strong>Arthur Rimbaud</strong></div>
-    <div class="card-sub">1854 – 1891</div>
-</div>
-<div class="card" onclick="openAuthor('sarraute')">
-    <div class="card-title"><strong>Nathalie Sarraute</strong></div>
-    <div class="card-sub">1900 – 1999</div>
-</div>
-<div class="card" onclick="openAuthor('moliere')">
-    <div class="card-title"><strong>Molière</strong></div>
-    <div class="card-sub">1622 – 1673</div>
-</div>
-<div class="card" onclick="openAuthor('colette')">
-    <div class="card-title"><strong>Colette</strong></div>
-    <div class="card-sub">1873 – 1954</div>
-</div>
-<div class="card" onclick="openAuthor('rousseau')">
-    <div class="card-title"><strong>Jean-Jacques Rousseau</strong></div>
-    <div class="card-sub">1712 – 1778</div>
-</div>
-<div class="card" onclick="openAuthor('ponge')">
-    <div class="card-title"><strong>Francis Ponge</strong></div>
-    <div class="card-sub">1899 – 1988</div>
-</div>
-<div class="card" onclick="openAuthor('laboétie')">
-    <div class="card-title"><strong>Étienne de La Boétie</strong></div>
-    <div class="card-sub">1530 – 1563</div>
-</div>
+<div class="card" onclick="openAuthor('rimbaud')"><div class="card-title"><strong>Arthur Rimbaud</strong></div><div class="card-sub">1854 – 1891</div></div>
+<div class="card" onclick="openAuthor('sarraute')"><div class="card-title"><strong>Nathalie Sarraute</strong></div><div class="card-sub">1900 – 1999</div></div>
+<div class="card" onclick="openAuthor('moliere')"><div class="card-title"><strong>Molière</strong></div><div class="card-sub">1622 – 1673</div></div>
+<div class="card" onclick="openAuthor('colette')"><div class="card-title"><strong>Colette</strong></div><div class="card-sub">1873 – 1954</div></div>
+<div class="card" onclick="openAuthor('rousseau')"><div class="card-title"><strong>Jean-Jacques Rousseau</strong></div><div class="card-sub">1712 – 1778</div></div>
+<div class="card" onclick="openAuthor('ponge')"><div class="card-title"><strong>Francis Ponge</strong></div><div class="card-sub">1899 – 1988</div></div>
+<div class="card" onclick="openAuthor('laboetie')"><div class="card-title"><strong>Étienne de La Boétie</strong></div><div class="card-sub">1530 – 1563</div></div>
 `;
 
 const oeuvresHTML = `
-<div class="card" onclick="openWork('sarraute')">
-    <div class="card-title"><strong>Pour un oui ou pour un non</strong></div>
-    <div class="card-sub">Nathalie Sarraute, 1981</div>
-</div>
-<div class="card" onclick="openWork('colette')">
-    <div class="card-title"><strong>Les vrilles de la vigne</strong></div>
-    <div class="card-sub">Colette, 1908</div>
-</div>
-<div class="card" onclick="openWork('rimbaud')">
-    <div class="card-title"><strong>Cahier de Douai</strong></div>
-    <div class="card-sub">Arthur Rimbaud, 1893</div>
-</div>
-<div class="card" onclick="openWork('laboetie')">
-    <div class="card-title"><strong>Discours de la servitude volontaire</strong></div>
-    <div class="card-sub">Étienne de La Boétie, 1577</div>
-</div>
+<div class="card" onclick="openWork('sarraute')"><div class="card-title"><strong>Pour un oui ou pour un non</strong></div><div class="card-sub">Nathalie Sarraute, 1981</div></div>
+<div class="card" onclick="openWork('colette')"><div class="card-title"><strong>Les vrilles de la vigne</strong></div><div class="card-sub">Colette, 1908</div></div>
+<div class="card" onclick="openWork('rimbaud')"><div class="card-title"><strong>Cahier de Douai</strong></div><div class="card-sub">Arthur Rimbaud, 1893</div></div>
+<div class="card" onclick="openWork('laboetie')"><div class="card-title"><strong>Discours de la servitude volontaire</strong></div><div class="card-sub">Étienne de La Boétie, 1577</div></div>
 `;
 
-/* -------- utilitaires backContainer -------- */
-function showBackContainer(withToggleBtn) {
+/* ---- utilitaires backContainer ---- */
+function showBackContainer(withToggleBtn){
     document.getElementById("backContainer").classList.add("visible");
     document.getElementById("toggleModeBtn").style.display = withToggleBtn ? "inline-block" : "none";
 }
-function hideBackContainer() {
+function hideBackContainer(){
     document.getElementById("backContainer").classList.remove("visible");
     document.getElementById("toggleModeBtn").style.display = "none";
 }
 
-/* -------- ouverture d'un texte -------- */
+/* ---- helper : génère N lignes "Indisponible" ---- */
+function blankAnalyses(prefix, n){
+    let s = "";
+    for(let i = 1; i <= n; i++)
+        s += `<div class="analysis-line" data-id="${prefix}l${i}">Indisponible pour le moment…</div>\n`;
+    return s;
+}
+
+/* ---- openText ---- */
 function openText(id){
+    currentTextId = id;   /* mémorise le texte courant */
     document.getElementById("home").style.display   = "none";
     document.getElementById("viewer").style.display = "block";
     document.getElementById("topbar").classList.add("hidden");
     showBackContainer(true);
     mode = "lineaire";
     document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 
     let content = "";
 
-    /* ===================== TEXTE 1 ===================== */
+    /* ===== TEXTE 1 ===== */
     if(id === "texte1"){
-        content = `
-<div>
-<div class="full-text">
+        content = `<div><div class="full-text">
 <div class="line" data-id="T1l1"  onclick="toggleAnalysis(this)"><strong>H.I :</strong> Écoute, je voulais te demander… C'est un peu pour ça que je suis venu… je voudrais savoir… que s'est-il passé ? Qu'est-ce que tu as contre moi ?</div>
 <div class="line" data-id="T1l2"  onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais rien… Pourquoi ?</div>
 <div class="line" data-id="T1l3"  onclick="toggleAnalysis(this)"><strong>H.I :</strong> Oh, je ne sais pas… Il me semble que tu t'éloignes… tu ne fais plus jamais signe… il faut toujours que ce soit moi…</div>
@@ -406,8 +273,6 @@ function openText(id){
 <div class="line" data-id="T1l37" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Ah on y arrive… C'est à cause de ce rien que tu t'es éloigné ? Que tu as voulu rompre avec moi ?</div>
 <div class="line" data-id="T1l38" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>soupire</em> : Oui… C'est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…</div>
 </div>
-
-<!-- BLOC ANALYSES — caché, inséré dynamiquement sous chaque ligne -->
 <div id="analysis-data" style="display:none;">
 <div class="analysis-line" data-id="T1l1">Impératif « Écoute » : paradoxe → H.I demande d'écouter alors qu'il vient chercher des réponses. Hésitation (points de suspension) : difficulté à formuler → malaise.</div>
 <div class="analysis-line" data-id="T1l2">Réponse minimale « rien » + question « pourquoi ? » : incompréhension + refus d'expliciter.</div>
@@ -448,23 +313,17 @@ function openText(id){
 <div class="analysis-line" data-id="T1l37">Compréhension partielle → tentative d'explication.</div>
 <div class="analysis-line" data-id="T1l38">Dimension tragique (« tu ne comprendras jamais ») → impossibilité de réconciliation.</div>
 </div>
-
-<div style="margin-top:40px; border-top:2px solid #ccc; padding-top:20px;">
+<div style="margin-top:40px;border-top:2px solid #ccc;padding-top:20px;">
 <h3>Proposition de plan</h3>
-<p><strong>Problématique :</strong><br>Ceci sera bientôt une problématique</p>
-<p><strong>Introduction :</strong><br>Dans <em>Pour un oui ou pour un non</em>, Nathalie Sarraute met en scène un conflit entre deux amis sans en révéler immédiatement la cause. Dans cette scène d'ouverture, le dialogue semble banal mais laisse apparaître un malaise profond. Nous pouvons donc nous demander comment cette scène d'exposition met en place un conflit fondé sur un "rien" en apparence, mais en réalité essentiel.</p>
-<p><strong>Plan :</strong><br>I. Un dialogue marqué par l'incompréhension et l'hésitation<br>II. Une montée progressive de la tension entre les personnages<br>III. La révélation d'un conflit fondé sur le langage et le non-dit</p>
-<p><strong>Conclusion :</strong><br>Cette scène d'ouverture installe un conflit original, fondé non sur des faits mais sur des mots et des impressions. Sarraute montre ainsi que le langage peut être source de malentendus profonds.</p>
-</div>
-</div>
-`;
-}
+<p><strong>Introduction :</strong><br>Dans <em>Pour un oui ou pour un non</em>, Nathalie Sarraute met en scène un conflit entre deux amis sans en révéler immédiatement la cause. Nous pouvons nous demander comment cette scène d'exposition met en place un conflit fondé sur un "rien" en apparence, mais en réalité essentiel.</p>
+<p><strong>Plan :</strong><br>I. Un dialogue marqué par l'incompréhension et l'hésitation<br>II. Une montée progressive de la tension<br>III. La révélation d'un conflit fondé sur le langage et le non-dit</p>
+<p><strong>Conclusion :</strong><br>Cette scène d'ouverture installe un conflit original, fondé non sur des faits mais sur des mots et des impressions.</p>
+</div></div>`;
+    }
 
-    /* ===================== TEXTE 2 ===================== */
+    /* ===== TEXTE 2 ===== */
     if(id === "texte2"){
-        content = `
-<div>
-<div class="full-text">
+        content = `<div><div class="full-text">
 <div class="line" data-id="T2l1"  onclick="toggleAnalysis(this)"><strong>H. 2</strong>, <em>revient avec un couple</em> : Voilà… Je vous présente… Je vous en prie… cela ne vous prendra pas longtemps… il y a entre nous un différend…</div>
 <div class="line" data-id="T2l2"  onclick="toggleAnalysis(this)"><strong>Eux</strong> : Oh, mais nous, vous savez, nous n'avons aucune compétence.</div>
 <div class="line" data-id="T2l3"  onclick="toggleAnalysis(this)"><strong>H. 2</strong> : Si, si, vous en avez… Plus qu'il n'en faut. Voilà de quoi il s'agit. Mon ami, là, un ami de toujours…</div>
@@ -496,10 +355,8 @@ function openText(id){
 <div class="line" data-id="T2l29" onclick="toggleAnalysis(this)"><strong>F.</strong> <em>rit</em> : Une souricière d'occasion ?</div>
 <div class="line" data-id="T2l30" onclick="toggleAnalysis(this)"><strong>H. I</strong> : Non, ne riez pas. Il parle sérieusement, je vous assure… Quelle souricière, dis-nous…</div>
 </div>
-
-<!-- BLOC ANALYSES SÉPARÉ — même système que texte 1 -->
 <div id="analysis-data" style="display:none;">
-<div class="analysis-line" data-id="T2l1">Entrée théâtrale : H.2 met en scène le conflit en introduisant des témoins. Les hésitations (points de suspension) montrent une gêne et une difficulté à formuler clairement le problème.</div>
+<div class="analysis-line" data-id="T2l1">Entrée théâtrale : H.2 met en scène le conflit en introduisant des témoins. Les hésitations montrent une gêne et une difficulté à formuler clairement le problème.</div>
 <div class="analysis-line" data-id="T2l2">Refus initial → effet comique. Ils se présentent comme incompétents, ce qui contraste avec le rôle d'arbitres que H.2 veut leur donner.</div>
 <div class="analysis-line" data-id="T2l3">Insistance de H.2. Il dramatise la situation et insiste sur la durée de l'amitié pour renforcer l'importance du conflit.</div>
 <div class="analysis-line" data-id="T2l4">Rappel du passé → souligne la profondeur du lien. Cela accentue le contraste avec le conflit actuel.</div>
@@ -530,34 +387,28 @@ function openText(id){
 <div class="analysis-line" data-id="T2l29">Ironie → décalage entre gravité ressentie par H.2 et perception extérieure.</div>
 <div class="analysis-line" data-id="T2l30">Retour au sérieux → annonce de la révélation à venir.</div>
 </div>
-
-<div style="margin-top:40px; border-top:2px solid #ccc; padding-top:20px;">
+<div style="margin-top:40px;border-top:2px solid #ccc;padding-top:20px;">
 <h3>Proposition de plan</h3>
-<p><strong>Introduction :</strong><br>Dans cette scène de <em>Pour un oui ou pour un non</em>, Nathalie Sarraute introduit de nouveaux personnages pour tenter de clarifier le conflit entre les deux amis. Le dialogue prend la forme d'une sorte de procès où chacun cherche à expliquer la situation. Nous pouvons alors nous demander comment cette scène met en évidence l'impossibilité de résoudre un conflit fondé sur des impressions subjectives.</p>
+<p><strong>Introduction :</strong><br>Dans cette scène de <em>Pour un oui ou pour un non</em>, Nathalie Sarraute introduit de nouveaux personnages pour tenter de clarifier le conflit. Nous pouvons nous demander comment cette scène met en évidence l'impossibilité de résoudre un conflit fondé sur des impressions subjectives.</p>
 <p><strong>Plan :</strong><br>I. Une tentative de médiation avec l'arrivée de nouveaux personnages<br>II. Une explication du conflit qui repose sur un détail en apparence insignifiant<br>III. L'échec de la communication face à un conflit fondé sur le ressenti</p>
-<p><strong>Conclusion :</strong><br>Cette scène montre que même avec des témoins extérieurs, le conflit ne peut être résolu. Sarraute souligne ainsi les limites du langage et la complexité des relations humaines.</p>
-</div>
-</div>
-`;
-}
+<p><strong>Conclusion :</strong><br>Même avec des témoins extérieurs, le conflit ne peut être résolu. Sarraute souligne les limites du langage et la complexité des relations humaines.</p>
+</div></div>`;
+    }
 
-/* ===================== TEXTE 3 ===================== */
-if(id === "texte3"){
-    content = `
-<div>
-<div class="full-text">
-
-<div class="line" data-id="T3l1" onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
-<div class="line" data-id="T3l2" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> À quoi bon s'acharner ?</div>
-<div class="line" data-id="T3l3" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Ce serait tellement plus sain...</div>
-<div class="line" data-id="T3l4" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Pour chacun de nous... plus salutaire...</div>
-<div class="line" data-id="T3l5" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> La meilleure solution...</div>
-<div class="line" data-id="T3l6" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Mais tu sais bien comment nous sommes. Même toi, tu n'as pas osé le prendre sur toi.</div>
-<div class="line" data-id="T3l7" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non. J'ai besoin qu'on m'autorise.</div>
-<div class="line" data-id="T3l8" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Et moi donc, tu me connais...</div>
-<div class="line" data-id="T3l9" onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
+    /* ===== TEXTE 3 ===== */
+    if(id === "texte3"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T3l1"  onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
+<div class="line" data-id="T3l2"  onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> À quoi bon s'acharner ?</div>
+<div class="line" data-id="T3l3"  onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Ce serait tellement plus sain...</div>
+<div class="line" data-id="T3l4"  onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Pour chacun de nous... plus salutaire...</div>
+<div class="line" data-id="T3l5"  onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> La meilleure solution...</div>
+<div class="line" data-id="T3l6"  onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Mais tu sais bien comment nous sommes. Même toi, tu n'as pas osé le prendre sur toi.</div>
+<div class="line" data-id="T3l7"  onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non. J'ai besoin qu'on m'autorise.</div>
+<div class="line" data-id="T3l8"  onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Et moi donc, tu me connais...</div>
+<div class="line" data-id="T3l9"  onclick="toggleAnalysis(this)"><em>Un silence.</em></div>
 <div class="line" data-id="T3l10" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Qu'est-ce que tu crois... si on introduisait une demande... à nous deux, cette fois... on pourrait peut-être mieux expliquer... on aurait peut-être plus de chances...</div>
-<div class="line" data-id="T3l11" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non... à quoi bon ? Je peux tout te dire d'avance... Je vois leur air... « Eh bien, de quoi s'agit-il encore ? De quoi ? Qu'est-ce qu'ils racontent ? Quelles taupes ? Quelles pelouses ? Quels sables mouvants ? Quels camps ennemis ? Voyons un peu leurs dossiers... on a beau chercher... examiner les points d’ordinaire les plus chauds... rien d’autre nulle part que les signes d'une amitié parfaite... »</div>
+<div class="line" data-id="T3l11" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non... à quoi bon ? Je peux tout te dire d'avance... Je vois leur air... « Eh bien, de quoi s'agit-il encore ? De quoi ? Qu'est-ce qu'ils racontent ? Quelles taupes ? Quelles pelouses ? Quels sables mouvants ? Quels camps ennemis ? Voyons un peu leurs dossiers... on a beau chercher... examiner les points d'ordinaire les plus chauds... rien d'autre nulle part que les signes d'une amitié parfaite... »</div>
 <div class="line" data-id="T3l12" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> C'est vrai.</div>
 <div class="line" data-id="T3l13" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> « Et ils demandent à rompre. Ils ne veulent plus se revoir de leur vie... quelle honte... »</div>
 <div class="line" data-id="T3l14" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Oui, aucun doute possible, aucune hésitation : déboutés tous les deux.</div>
@@ -569,55 +420,22 @@ if(id === "texte3"){
 <div class="line" data-id="T3l20" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> En effet : Oui. Ou non.</div>
 <div class="line" data-id="T3l21" onclick="toggleAnalysis(this)"><strong>H. 1 :</strong> Oui.</div>
 <div class="line" data-id="T3l22" onclick="toggleAnalysis(this)"><strong>H. 2 :</strong> Non !</div>
-
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T3",22)}</div></div>`;
+    }
 
-<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
-<div id="analysis-data" style="display:none;">
-
-<div class="analysis-line" data-id="T3l1">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l2">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l3">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l4">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l5">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l6">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l7">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l8">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l9">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l10">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l11">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l12">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l13">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l14">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l15">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l16">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l17">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l18">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l19">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l20">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l21">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T3l22">Indisponible pour le moment...</div>
-
-</div>
-</div>
-`;
-}
-
-/* ===================== TEXTE 4 ===================== */
-if(id === "texte4"){
-    content = `
-<div>
-<div class="full-text">
-
-<div class="line" data-id="T4l1" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> (...) cet habit me donne de l'esprit, et je me sens en humeur de disputer contre vous. Vous savez bien que vous me permettez les disputes, et que vous ne me défendez que les remontrances.</div>
-<div class="line" data-id="T4l2" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh bien !</div>
-<div class="line" data-id="T4l3" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux savoir un peu vos pensées à fond. Est-il possible que vous ne croyiez point du tout au</div>
-<div class="line" data-id="T4l4" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Laissons cela.</div>
-<div class="line" data-id="T4l5" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> C'est-à-dire que non. Et à l'Enfer ?</div>
-<div class="line" data-id="T4l6" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh.</div>
-<div class="line" data-id="T4l7" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Tout de même. Et au diable, s'il vous plaît ?</div>
-<div class="line" data-id="T4l8" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Oui, oui.</div>
-<div class="line" data-id="T4l9" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Aussi peu. Ne croyez-vous point l'autre vie ?</div>
+    /* ===== TEXTE 4 ===== */
+    if(id === "texte4"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T4l1"  onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> (...) cet habit me donne de l'esprit, et je me sens en humeur de disputer contre vous. Vous savez bien que vous me permettez les disputes, et que vous ne me défendez que les remontrances.</div>
+<div class="line" data-id="T4l2"  onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh bien !</div>
+<div class="line" data-id="T4l3"  onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux savoir un peu vos pensées à fond. Est-il possible que vous ne croyiez point du tout au Ciel ?</div>
+<div class="line" data-id="T4l4"  onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Laissons cela.</div>
+<div class="line" data-id="T4l5"  onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> C'est-à-dire que non. Et à l'Enfer ?</div>
+<div class="line" data-id="T4l6"  onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Eh.</div>
+<div class="line" data-id="T4l7"  onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Tout de même. Et au diable, s'il vous plaît ?</div>
+<div class="line" data-id="T4l8"  onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Oui, oui.</div>
+<div class="line" data-id="T4l9"  onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Aussi peu. Ne croyez-vous point l'autre vie ?</div>
 <div class="line" data-id="T4l10" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Ah, ah, ah.</div>
 <div class="line" data-id="T4l11" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Voilà un homme que j'aurai bien de la peine à convertir. Et dites-moi un peu, le Moine-Bourru, qu'en croyez-vous, eh ?</div>
 <div class="line" data-id="T4l12" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> La peste soit du fat !</div>
@@ -634,263 +452,323 @@ if(id === "texte4"){
 <div class="line" data-id="T4l23" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> J'attends que ton raisonnement soit fini.</div>
 <div class="line" data-id="T4l24" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Mon raisonnement est qu'il y a quelque chose d'admirable dans l'homme, quoi que vous puissiez dire, que tous les savants ne sauraient expliquer.</div>
 <div class="line" data-id="T4l25" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Cela n'est-il pas merveilleux que me voilà ici, et que j'aie quelque chose dans la tête qui pense cent choses différentes en un moment, et fait de mon corps tout ce qu'elle veut ?</div>
-<div class="line" data-id="T4l26" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux frapper des mains, hausser le bras, lever les yeux au ciel, baisser la tête, remuer les pieds, aller à droit, à gauche, en avant, en arrière, tourner...</div>
+<div class="line" data-id="T4l26" onclick="toggleAnalysis(this)"><strong>SGANARELLE :</strong> Je veux frapper des mains, hausser le bras, lever les yeux au ciel, baisser la tête, remuer les pieds, aller à droit, à gauche, en avant, en arrière, tourner…</div>
 <div class="line" data-id="T4l27" onclick="toggleAnalysis(this)"><em>Il se laisse tomber en tournant.</em></div>
 <div class="line" data-id="T4l28" onclick="toggleAnalysis(this)"><strong>DOM JUAN :</strong> Bon, voilà ton raisonnement qui a le nez cassé.</div>
-
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T4",28)}</div></div>`;
+    }
 
-<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
-<div id="analysis-data" style="display:none;">
-
-<div class="analysis-line" data-id="T4l1">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l2">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l3">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l4">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l5">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l6">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l7">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l8">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l9">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l10">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l11">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l12">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l13">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l14">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l15">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l16">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l17">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l18">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l19">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l20">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l21">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l22">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l23">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l24">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l25">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l26">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l27">Indisponible pour le moment...</div>
-<div class="analysis-line" data-id="T4l28">Indisponible pour le moment...</div>
-
+    /* ===== TEXTE 5 ===== (FIX : migré vers le système .line / data-id / analysis-line) */
+    if(id === "texte5"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T5l1"  onclick="toggleAnalysis(this)">Il y avait dans ce temps-là de grands hivers, de brûlants étés. J'ai connu, depuis des</div>
+<div class="line" data-id="T5l2"  onclick="toggleAnalysis(this)">étés dont la couleur, si je ferme les yeux, est celle de la terre ocreuse, fendillée entre les tiges</div>
+<div class="line" data-id="T5l3"  onclick="toggleAnalysis(this)">du blé et sous la géante ombelle du panais sauvage, celle de la mer grise ou bleue. Mais</div>
+<div class="line" data-id="T5l4"  onclick="toggleAnalysis(this)">aucun été, sauf ceux de mon enfance, ne commémore le géranium écarlate et la hampe</div>
+<div class="line" data-id="T5l5"  onclick="toggleAnalysis(this)">enflammée des digitales. Aucun hiver n'est plus d'un blanc pur à la base d'un ciel bourré de</div>
+<div class="line" data-id="T5l6"  onclick="toggleAnalysis(this)">nues ardoisées, qui présageaient une tempête de flocons plus épais, puis un dégel illuminé de</div>
+<div class="line" data-id="T5l7"  onclick="toggleAnalysis(this)">mille gouttes d'eau et de bourgeons lancéolés… Ce ciel pesait sur le toit chargé de neige des</div>
+<div class="line" data-id="T5l8"  onclick="toggleAnalysis(this)">greniers à fourrages, le noyer nu, la girouette, et pliait les oreilles des chattes… La calme et</div>
+<div class="line" data-id="T5l9"  onclick="toggleAnalysis(this)">verticale chute de neige devenait oblique, un faible ronflement de mer lointaine se levait sur</div>
+<div class="line" data-id="T5l10" onclick="toggleAnalysis(this)">ma tête encapuchonnée, tandis que j'arpentais le jardin, happant la neige volante… Avertie par</div>
+<div class="line" data-id="T5l11" onclick="toggleAnalysis(this)">ses antennes, ma mère s'avançait sur la terrasse, goûtait le temps, me jetait un cri :</div>
+<div class="line" data-id="T5l12" onclick="toggleAnalysis(this)">– La bourrasque d'Ouest ! Cours ! Ferme les lucarnes du grenier !… La porte de la</div>
+<div class="line" data-id="T5l13" onclick="toggleAnalysis(this)">remise aux voitures !… Et la fenêtre de la chambre du fond !</div>
+<div class="line" data-id="T5l14" onclick="toggleAnalysis(this)">Mousse exalté du navire natal, je m'élançais, claquant des sabots, enthousiasmée si du</div>
+<div class="line" data-id="T5l15" onclick="toggleAnalysis(this)">fond de la mêlée blanche et bleu noir, sifflante, un vif éclair, un bref roulement de foudre,</div>
+<div class="line" data-id="T5l16" onclick="toggleAnalysis(this)">enfants d'Ouest et de Février, comblaient tous deux un des abîmes du ciel… Je tâchais de</div>
+<div class="line" data-id="T5l17" onclick="toggleAnalysis(this)">trembler, de croire à la fin du monde.</div>
+<div class="line" data-id="T5l18" onclick="toggleAnalysis(this)">Mais dans le pire du fracas ma mère, l'œil sur une grosse loupe cerclée de cuivre,</div>
+<div class="line" data-id="T5l19" onclick="toggleAnalysis(this)">s'émerveillait, comptant les cristaux ramifiés d'une poignée de neige qu'elle venait de cueillir</div>
+<div class="line" data-id="T5l20" onclick="toggleAnalysis(this)">aux mains mêmes de l'Ouest rué sur notre jardin…</div>
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T5",20)}</div></div>`;
+    }
+
+    /* ===== TEXTE 6 ===== (FIX : migré vers le système .line / data-id / analysis-line) */
+    if(id === "texte6"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T6l1"  onclick="toggleAnalysis(this)">Je gis sans mouvement, la tête sur ta douce épaule. Je vais sûrement, jusqu'à demain,</div>
+<div class="line" data-id="T6l2"  onclick="toggleAnalysis(this)">descendre au fond d'un noir sommeil, un sommeil si têtu, si fermé, que les ailes des rêves le</div>
+<div class="line" data-id="T6l3"  onclick="toggleAnalysis(this)">viendront battre en vain. Je vais dormir... Attends seulement que je cherche, pour la plante de</div>
+<div class="line" data-id="T6l4"  onclick="toggleAnalysis(this)">mes pieds qui fourmille et brûle, une place toute fraîche... Tu n'as pas bougé. Tu respires à</div>
+<div class="line" data-id="T6l5"  onclick="toggleAnalysis(this)">longs traits, mais je sens ton épaule encore éveillée, attentive à se creuser sous ma joue...</div>
+<div class="line" data-id="T6l6"  onclick="toggleAnalysis(this)">Dormons. Les nuits de mai sont si courtes. Malgré l'obscurité bleue qui nous baigne, mes</div>
+<div class="line" data-id="T6l7"  onclick="toggleAnalysis(this)">paupières sont encore pleines de soleil, de flammes roses, d'ombres qui bougent, balancées,</div>
+<div class="line" data-id="T6l8"  onclick="toggleAnalysis(this)">et je contemple ma journée les yeux clos, comme on se penche, derrière l'abri d'une</div>
+<div class="line" data-id="T6l9"  onclick="toggleAnalysis(this)">persienne, sur un jardin d'été éblouissant...</div>
+<div class="line" data-id="T6l10" onclick="toggleAnalysis(this)">Comme mon cœur bat ! J'entends aussi le tien sous mon oreille. Tu ne dors pas ?</div>
+<div class="line" data-id="T6l11" onclick="toggleAnalysis(this)">Je lève un peu la tête, je devine la pâleur de ton visage renversé, l'ombre fauve de tes courts cheveux.</div>
+<div class="line" data-id="T6l12" onclick="toggleAnalysis(this)">Tes genoux sont frais comme deux oranges... Tourne-toi de mon côté, pour que les</div>
+<div class="line" data-id="T6l13" onclick="toggleAnalysis(this)">miens leur volent cette lisse fraîcheur...</div>
+<div class="line" data-id="T6l14" onclick="toggleAnalysis(this)">Ah ! dormons !... Mille fois mille fourmis courent avec mon sang sous ma peau. Les</div>
+<div class="line" data-id="T6l15" onclick="toggleAnalysis(this)">muscles de mes mollets battent, mes oreilles tressaillent, et notre doux lit, ce soir, est-il</div>
+<div class="line" data-id="T6l16" onclick="toggleAnalysis(this)">jonché d'aiguilles de pin ? Dormons ! je le veux !</div>
+<div class="line" data-id="T6l17" onclick="toggleAnalysis(this)">Je ne puis dormir. Mon insomnie heureuse palpite, allègre, et je devine, en ton</div>
+<div class="line" data-id="T6l18" onclick="toggleAnalysis(this)">immobilité, le même accablement frémissant... Tu ne bouges pas. Tu espères que je dors.</div>
+<div class="line" data-id="T6l19" onclick="toggleAnalysis(this)">Ton bras se resserre parfois autour de moi, par tendre habitude, et tes pieds charmants s'enlacent aux miens...</div>
+<div class="line" data-id="T6l20" onclick="toggleAnalysis(this)">Le sommeil s'approche, me frôle et me fuit... Je le vois ! Il est pareil à ce</div>
+<div class="line" data-id="T6l21" onclick="toggleAnalysis(this)">papillon de lourd velours que je poursuivais, dans le jardin enflammé d'iris... Tu te souviens ?</div>
 </div>
-`;
-}
+<div id="analysis-data" style="display:none;">${blankAnalyses("T6",21)}</div></div>`;
+    }
 
-/* ===================== TEXTE 5 ===================== */
-if(id === "texte5"){
-    content = `
-<div>
-<div class="full-text">
-
-<div class="ligne" id="T5L1" onclick="toggleAnalyse('T5L1')">Il y avait dans ce temps-là de grands hivers, de brûlants étés. J’ai connu, depuis des</div>
-<div class="ligne" id="T5L2" onclick="toggleAnalyse('T5L2')">étés dont la couleur, si je ferme les yeux, est celle de la terre ocreuse, fendillée entre les tiges</div>
-<div class="ligne" id="T5L3" onclick="toggleAnalyse('T5L3')">du blé et sous la géante ombelle du panais sauvage, celle de la mer grise ou bleue. Mais</div>
-<div class="ligne" id="T5L4" onclick="toggleAnalyse('T5L4')">aucun été, sauf ceux de mon enfance, ne commémore le géranium écarlate et la hampe</div>
-<div class="ligne" id="T5L5" onclick="toggleAnalyse('T5L5')">enflammée des digitales. Aucun hiver n’est plus d’un blanc pur à la base d’un ciel bourré de</div>
-<div class="ligne" id="T5L6" onclick="toggleAnalyse('T5L6')">nues ardoisées, qui présageaient une tempête de flocons plus épais, puis un dégel illuminé de</div>
-<div class="ligne" id="T5L7" onclick="toggleAnalyse('T5L7')">mille gouttes d’eau et de bourgeons lancéolés… Ce ciel pesait sur le toit chargé de neige des</div>
-<div class="ligne" id="T5L8" onclick="toggleAnalyse('T5L8')">greniers à fourrages, le noyer nu, la girouette, et pliait les oreilles des chattes… La calme et</div>
-<div class="ligne" id="T5L9" onclick="toggleAnalyse('T5L9')">verticale chute de neige devenait oblique, un faible ronflement de mer lointaine se levait sur</div>
-<div class="ligne" id="T5L10" onclick="toggleAnalyse('T5L10')">ma tête encapuchonnée, tandis que j’arpentais le jardin, happant la neige volante… Avertie par</div>
-<div class="ligne" id="T5L11" onclick="toggleAnalyse('T5L11')">ses antennes, ma mère s’avançait sur la terrasse, goûtait le temps, me jetait un cri :</div>
-<div class="ligne" id="T5L12" onclick="toggleAnalyse('T5L12')">– La bourrasque d’Ouest ! Cours ! Ferme les lucarnes du grenier !… La porte de la</div>
-<div class="ligne" id="T5L13" onclick="toggleAnalyse('T5L13')">remise aux voitures !… Et la fenêtre de la chambre du fond !</div>
-<div class="ligne" id="T5L14" onclick="toggleAnalyse('T5L14')">Mousse exalté du navire natal, je m’élançais, claquant des sabots, enthousiasmée si du</div>
-<div class="ligne" id="T5L15" onclick="toggleAnalyse('T5L15')">fond de la mêlée blanche et bleu noir, sifflante, un vif éclair, un bref roulement de foudre,</div>
-<div class="ligne" id="T5L16" onclick="toggleAnalyse('T5L16')">enfants d’Ouest et de Février, comblaient tous deux un des abîmes du ciel… Je tâchais de</div>
-<div class="ligne" id="T5L17" onclick="toggleAnalyse('T5L17')">trembler, de croire à la fin du monde.</div>
-<div class="ligne" id="T5L18" onclick="toggleAnalyse('T5L18')">Mais dans le pire du fracas ma mère, l’œil sur une grosse loupe cerclée de cuivre,</div>
-<div class="ligne" id="T5L19" onclick="toggleAnalyse('T5L19')">s’émerveillait, comptant les cristaux ramifiés d’une poignée de neige qu’elle venait de cueillir</div>
-<div class="ligne" id="T5L20" onclick="toggleAnalyse('T5L20')">aux mains mêmes de l’Ouest rué sur notre jardin…</div>
-
+    /* ===== TEXTE 7 ===== */
+    if(id === "texte7"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T7l1"  onclick="toggleAnalysis(this)"><strong>TOBY-CHIEN :</strong> (...) Je haletais autant qu'Elle, ému de sa violence. Elle entendit ma respiration et se jeta à quatre pattes, sa tête sous le tapis de la table contre la mienne...</div>
+<div class="line" data-id="T7l2"  onclick="toggleAnalysis(this)">« Oui, inutile ! je maintiens le mot. Ce n'est pas un sale petit bull bringé qui me fera changer d'avis, encore ! Inutile s'Il n'aime pas assez ou s'Il méconnaît l'amour véritable !</div>
+<div class="line" data-id="T7l3"  onclick="toggleAnalysis(this)">Quoi ?... ma vie aussi est inutile ? Non, Toby-Chien. Moi, j'aime ! J'aime tant tout ce que j'aime !</div>
+<div class="line" data-id="T7l4"  onclick="toggleAnalysis(this)">Si tu savais comme j'embellis tout ce que j'aime, et quel plaisir je me donne en aimant !</div>
+<div class="line" data-id="T7l5"  onclick="toggleAnalysis(this)">Si tu pouvais comprendre de quelle force et de quelle défaillance m'emplit ce que j'aime !...</div>
+<div class="line" data-id="T7l6"  onclick="toggleAnalysis(this)">C'est cela que je nomme le frôlement du bonheur. Le frôlement du bonheur... caresse impalpable qui creuse le long de mon dos un sillon velouté, comme le bout d'une aile creuse l'onde...</div>
+<div class="line" data-id="T7l7"  onclick="toggleAnalysis(this)">Frisson mystérieux prêt à se fondre en larmes, angoisse légère que je cherche et qui m'atteint devant un cher paysage argenté de brouillard, devant un ciel où fleurit l'aube, sous le bois où l'automne souffle une haleine mûre et musquée...</div>
+<div class="line" data-id="T7l8"  onclick="toggleAnalysis(this)">Tristesse voluptueuse des fins de jour, bondissement sans cause d'un cœur plus mobile que celui du chevreuil, tu es le frôlement même du bonheur, toi qui gis au sein des heures les plus pleines... et jusqu'au fond du regard de ma sûre amie...</div>
+<div class="line" data-id="T7l9"  onclick="toggleAnalysis(this)">Tu oserais dire ma vie inutile ?... Tu n'auras pas de pâtée, ce soir ! »</div>
+<div class="line" data-id="T7l10" onclick="toggleAnalysis(this)">Je voyais la brume de ses cheveux danser autour de sa tête qu'Elle hochait furieusement. Elle était comme moi à quatre pattes, aplatie, comme un chien qui va s'élancer, et j'espérais un peu qu'Elle aboierait...</div>
+<div class="line" data-id="T7l11" onclick="toggleAnalysis(this)"><strong>KIKI-LA-DOUCETTE</strong>, <em>révolté</em> : Aboyer, Elle ! Elle a ses défauts, mais tout de même aboyer !... Si Elle devait parler en quatre-pattes, elle miaulerait.</div>
+<div class="line" data-id="T7l12" onclick="toggleAnalysis(this)"><strong>TOBY-CHIEN</strong>, <em>poursuivant</em> : Elle n'aboya point, en effet. Elle se redressa d'un bond, rejeta en arrière les cheveux qui lui balayaient le visage...</div>
+<div class="line" data-id="T7l13" onclick="toggleAnalysis(this)"><strong>KIKI-LA-DOUCETTE :</strong> Oui. Elle a la tête angora. La tête seulement.</div>
+<div class="line" data-id="T7l14" onclick="toggleAnalysis(this)"><strong>TOBY-CHIEN :</strong> ... Et Elle se remit à parler, incohérente : « Alors, voilà ! Je veux faire ce que je veux. »</div>
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T7",14)}</div></div>`;
+    }
 
-<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
-<div id="analysis-data" style="display:none;">
-
-<div class="analyse" id="analyse-T5L1">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L2">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L3">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L4">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L5">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L6">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L7">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L8">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L9">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L10">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L11">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L12">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L13">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L14">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L15">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L16">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L17">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L18">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L19">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T5L20">Indisponible pour le moment...</div>
-
+    /* ===== TEXTE 8 ===== */
+    if(id === "texte8"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T8l1"  onclick="toggleAnalysis(this)">Quand le lac agité ne me permettait pas la navigation je passais mon après-midi à parcourir l'île en herborisant à droite et à gauche, m'asseyant tantôt dans les réduits les plus riants et les plus solitaires pour y rêver à mon aise,</div>
+<div class="line" data-id="T8l2"  onclick="toggleAnalysis(this)">tantôt sur les terrasses et les tertres, pour parcourir des yeux le superbe et ravissant coup d'œil du lac et de ses rivages couronnés d'un côté par des montagnes prochaines,</div>
+<div class="line" data-id="T8l3"  onclick="toggleAnalysis(this)">et de l'autre élargis en riches et fertiles plaines dans lesquelles la vue s'étendait jusqu'aux montagnes bleuâtres plus éloignées qui la bornaient.</div>
+<div class="line" data-id="T8l4"  onclick="toggleAnalysis(this)">Quand le soir approchait je descendais des cimes de l'île et j'allais volontiers m'asseoir au bord du lac, sur la grève, dans quelque asile caché ;</div>
+<div class="line" data-id="T8l5"  onclick="toggleAnalysis(this)">là le bruit des vagues et l'agitation de l'eau fixant mes sens et chassant de mon âme toute autre agitation la plongeaient dans une rêverie délicieuse où la nuit me surprenait souvent sans que je m'en fusse aperçu.</div>
+<div class="line" data-id="T8l6"  onclick="toggleAnalysis(this)">Le flux et reflux de cette eau, son bruit continu mais renflé par intervalles frappant sans relâche mon oreille et mes yeux, suppléaient aux mouvements internes que la rêverie éteignait en moi</div>
+<div class="line" data-id="T8l7"  onclick="toggleAnalysis(this)">et suffisaient pour me faire sentir avec plaisir mon existence, sans prendre la peine de penser.</div>
+<div class="line" data-id="T8l8"  onclick="toggleAnalysis(this)">De temps à autre naissait quelque faible et courte réflexion sur l'instabilité des choses de ce monde dont la surface des eaux m'offrait l'image :</div>
+<div class="line" data-id="T8l9"  onclick="toggleAnalysis(this)">mais bientôt ces impressions légères s'effaçaient dans l'uniformité du mouvement continu qui me berçait, et qui sans aucun concours actif de mon âme ne laissait pas de m'attacher au point qu'appelé par l'heure et par le signal convenu je ne pouvais m'arracher de là sans effort.</div>
+<div class="line" data-id="T8l10" onclick="toggleAnalysis(this)">Après le souper, quand la soirée était belle, nous allions encore tous ensemble faire quelque tour de promenade sur la terrasse pour y respirer l'air du lac et la fraîcheur.</div>
+<div class="line" data-id="T8l11" onclick="toggleAnalysis(this)">On se reposait dans le pavillon, on riait, on causait, on chantait quelque vieille chanson qui valait bien le tortillage moderne,</div>
+<div class="line" data-id="T8l12" onclick="toggleAnalysis(this)">et enfin l'on s'allait coucher content de sa journée et n'en désirant qu'une semblable pour le lendemain.</div>
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T8",12)}</div></div>`;
+    }
+
+    /* ===== TEXTE 9 ===== */
+    if(id === "texte9"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T9l1"  onclick="toggleAnalysis(this)">Comme d'un cercueil vert en fer blanc, une tête</div>
+<div class="line" data-id="T9l2"  onclick="toggleAnalysis(this)">De femme à cheveux bruns fortement pommadés</div>
+<div class="line" data-id="T9l3"  onclick="toggleAnalysis(this)">D'une vieille baignoire émerge, lente et bête,</div>
+<div class="line" data-id="T9l4"  onclick="toggleAnalysis(this)">Avec des déficits assez mal ravaudés ;</div>
+<div class="line" data-id="T9l5"  onclick="toggleAnalysis(this)">Puis le col gras et gris, les larges omoplates</div>
+<div class="line" data-id="T9l6"  onclick="toggleAnalysis(this)">Qui saillent ; le dos court qui rentre et qui ressort ;</div>
+<div class="line" data-id="T9l7"  onclick="toggleAnalysis(this)">Puis les rondeurs des reins semblent prendre l'essor ;</div>
+<div class="line" data-id="T9l8"  onclick="toggleAnalysis(this)">La graisse sous la peau paraît en feuilles plates ;</div>
+<div class="line" data-id="T9l9"  onclick="toggleAnalysis(this)">L'échine est un peu rouge, et le tout sent un goût</div>
+<div class="line" data-id="T9l10" onclick="toggleAnalysis(this)">Horrible étrangement ; on remarque surtout</div>
+<div class="line" data-id="T9l11" onclick="toggleAnalysis(this)">Des singularités qu'il faut voir à la loupe…</div>
+<div class="line" data-id="T9l12" onclick="toggleAnalysis(this)">Les reins portent deux mots gravés : Clara Venus ;</div>
+<div class="line" data-id="T9l13" onclick="toggleAnalysis(this)">– Et tout ce corps remue et tend sa large croupe</div>
+<div class="line" data-id="T9l14" onclick="toggleAnalysis(this)">Belle hideusement d'un ulcère à l'anus.</div>
 </div>
-`;
-}
+<div id="analysis-data" style="display:none;">${blankAnalyses("T9",14)}</div></div>`;
+    }
 
-/* ===================== TEXTE 6 ===================== */
-if(id === "texte6"){
-    content = `
-<div>
-<div class="full-text">
-
-<div class="ligne" id="T6L1" onclick="toggleAnalyse('T6L1')">Je gis sans mouvement, la tête sur ta douce épaule. Je vais sûrement, jusqu'à demain,</div>
-<div class="ligne" id="T6L2" onclick="toggleAnalyse('T6L2')">descendre au fond d'un noir sommeil, un sommeil si têtu, si fermé, que les ailes des rêves le</div>
-<div class="ligne" id="T6L3" onclick="toggleAnalyse('T6L3')">viendront battre en vain. Je vais dormir... Attends seulement que je cherche, pour la plante de</div>
-<div class="ligne" id="T6L4" onclick="toggleAnalyse('T6L4')">mes pieds qui fourmille et brûle, une place toute fraîche... Tu n'as pas bougé. Tu respires à</div>
-<div class="ligne" id="T6L5" onclick="toggleAnalyse('T6L5')">longs traits, mais je sens ton épaule encore éveillée, attentive à se creuser sous ma joue...</div>
-<div class="ligne" id="T6L6" onclick="toggleAnalyse('T6L6')">Dormons. Les nuits de mai sont si courtes. Malgré l'obscurité bleue qui nous baigne, mes</div>
-<div class="ligne" id="T6L7" onclick="toggleAnalyse('T6L7')">paupières sont encore pleines de soleil, de flammes roses, d'ombres qui bougent, balancées,</div>
-<div class="ligne" id="T6L8" onclick="toggleAnalyse('T6L8')">et je contemple ma journée les yeux clos, comme on se penche, derrière l'abri d'une</div>
-<div class="ligne" id="T6L9" onclick="toggleAnalyse('T6L9')">persienne, sur un jardin d'été éblouissant...</div>
-<div class="ligne" id="T6L10" onclick="toggleAnalyse('T6L10')">Comme mon cœur bat ! J'entends aussi le tien sous mon oreille. Tu ne dors pas ?</div>
-<div class="ligne" id="T6L11" onclick="toggleAnalyse('T6L11')">Je lève un peu la tête, je devine la pâleur de ton visage renversé, l'ombre fauve de tes courts cheveux.</div>
-<div class="ligne" id="T6L12" onclick="toggleAnalyse('T6L12')">Tes genoux sont frais comme deux oranges... Tourne-toi de mon côté, pour que les</div>
-<div class="ligne" id="T6L13" onclick="toggleAnalyse('T6L13')">miens leur volent cette lisse fraîcheur...</div>
-<div class="ligne" id="T6L14" onclick="toggleAnalyse('T6L14')">Ah ! dormons !... Mille fois mille fourmis courent avec mon sang sous ma peau. Les</div>
-<div class="ligne" id="T6L15" onclick="toggleAnalyse('T6L15')">muscles de mes mollets battent, mes oreilles tressaillent, et notre doux lit, ce soir, est-il</div>
-<div class="ligne" id="T6L16" onclick="toggleAnalyse('T6L16')">jonché d'aiguilles de pin ? Dormons ! je le veux !</div>
-<div class="ligne" id="T6L17" onclick="toggleAnalyse('T6L17')">Je ne puis dormir. Mon insomnie heureuse palpite, allègre, et je devine, en ton</div>
-<div class="ligne" id="T6L18" onclick="toggleAnalyse('T6L18')">immobilité, le même accablement frémissant... Tu ne bouges pas. Tu espères que je dors.</div>
-<div class="ligne" id="T6L19" onclick="toggleAnalyse('T6L19')">Ton bras se resserre parfois autour de moi, par tendre habitude, et tes pieds charmants s'enlacent aux miens...</div>
-<div class="ligne" id="T6L20" onclick="toggleAnalyse('T6L20')">Le sommeil s'approche, me frôle et me fuit... Je le vois ! Il est pareil à ce</div>
-<div class="ligne" id="T6L21" onclick="toggleAnalyse('T6L21')">papillon de lourd velours que je poursuivais, dans le jardin enflammé d'iris... Tu te souviens ?</div>
-
+    /* ===== TEXTE 10 ===== */
+    if(id === "texte10"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T10l1"  onclick="toggleAnalysis(this)">Tandis que les crachats rouges de la mitraille</div>
+<div class="line" data-id="T10l2"  onclick="toggleAnalysis(this)">Sifflent tout le jour par l'infini du ciel bleu ;</div>
+<div class="line" data-id="T10l3"  onclick="toggleAnalysis(this)">Qu'écarlates ou verts, près du Roi qui les raille,</div>
+<div class="line" data-id="T10l4"  onclick="toggleAnalysis(this)">Croulent les bataillons en masse dans le feu ;</div>
+<div class="line" data-id="T10l5"  onclick="toggleAnalysis(this)">Tandis qu'une folie épouvantable broie</div>
+<div class="line" data-id="T10l6"  onclick="toggleAnalysis(this)">Et fait de cent milliers d'hommes un tas fumant ;</div>
+<div class="line" data-id="T10l7"  onclick="toggleAnalysis(this)">– Pauvres morts ! dans l'été, dans l'herbe, dans ta joie,</div>
+<div class="line" data-id="T10l8"  onclick="toggleAnalysis(this)">Nature ! ô toi qui fis ces hommes saintement !…</div>
+<div class="line" data-id="T10l9"  onclick="toggleAnalysis(this)">– Il est un Dieu, qui rit aux nappes damassées</div>
+<div class="line" data-id="T10l10" onclick="toggleAnalysis(this)">Des autels, à l'encens, aux grands calices d'or ;</div>
+<div class="line" data-id="T10l11" onclick="toggleAnalysis(this)">Qui dans le bercement des hosannah s'endort,</div>
+<div class="line" data-id="T10l12" onclick="toggleAnalysis(this)">Et se réveille, quand des mères, ramassées</div>
+<div class="line" data-id="T10l13" onclick="toggleAnalysis(this)">Dans l'angoisse, et pleurant sous leur vieux bonnet noir,</div>
+<div class="line" data-id="T10l14" onclick="toggleAnalysis(this)">Lui donnent un gros sou lié dans leur mouchoir !</div>
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T10",14)}</div></div>`;
+    }
 
-<!-- BLOC ANALYSES VIDE PRÊT POUR AJOUT -->
-<div id="analysis-data" style="display:none;">
-
-<div class="analyse" id="analyse-T6L1">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L2">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L3">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L4">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L5">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L6">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L7">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L8">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L9">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L10">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L11">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L12">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L13">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L14">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L15">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L16">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L17">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L18">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L19">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L20">Indisponible pour le moment...</div>
-<div class="analyse" id="analyse-T6L21">Indisponible pour le moment...</div>
-
+    /* ===== TEXTE 11 ===== */
+    if(id === "texte11"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T11l1"  onclick="toggleAnalysis(this)">Je m'en allais, les poings dans mes poches crevées ;</div>
+<div class="line" data-id="T11l2"  onclick="toggleAnalysis(this)">Mon paletot aussi devenait idéal ;</div>
+<div class="line" data-id="T11l3"  onclick="toggleAnalysis(this)">J'allais sous le ciel, Muse ! et j'étais ton féal ;</div>
+<div class="line" data-id="T11l4"  onclick="toggleAnalysis(this)">Oh ! là ! là ! que d'amours splendides j'ai rêvées !</div>
+<div class="line" data-id="T11l5"  onclick="toggleAnalysis(this)">Mon unique culotte avait un large trou.</div>
+<div class="line" data-id="T11l6"  onclick="toggleAnalysis(this)">– Petit-Poucet rêveur, j'égrenais dans ma course</div>
+<div class="line" data-id="T11l7"  onclick="toggleAnalysis(this)">Des rimes. Mon auberge était à la Grande-Ourse.</div>
+<div class="line" data-id="T11l8"  onclick="toggleAnalysis(this)">– Mes étoiles au ciel avaient un doux frou-frou</div>
+<div class="line" data-id="T11l9"  onclick="toggleAnalysis(this)">Et je les écoutais, assis au bord des routes,</div>
+<div class="line" data-id="T11l10" onclick="toggleAnalysis(this)">Ces bons soirs de septembre où je sentais des gouttes</div>
+<div class="line" data-id="T11l11" onclick="toggleAnalysis(this)">De rosée à mon front, comme un vin de vigueur ;</div>
+<div class="line" data-id="T11l12" onclick="toggleAnalysis(this)">Où, rimant au milieu des ombres fantastiques,</div>
+<div class="line" data-id="T11l13" onclick="toggleAnalysis(this)">Comme des lyres, je tirais les élastiques</div>
+<div class="line" data-id="T11l14" onclick="toggleAnalysis(this)">De mes souliers blessés, un pied près de mon cœur !</div>
 </div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T11",14)}</div></div>`;
+    }
+
+    /* ===== TEXTE 12 ===== */
+    if(id === "texte12"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T12l1"  onclick="toggleAnalysis(this)">La surface du pain est merveilleuse d'abord à cause de cette impression quasi panoramique qu'elle donne : comme si l'on avait à sa disposition sous la main les Alpes, le Taurus ou la Cordillère des Andes.</div>
+<div class="line" data-id="T12l2"  onclick="toggleAnalysis(this)">Ainsi donc une masse amorphe en train d'éructer fut glissée pour nous dans le four stellaire, où durcissant elle s'est façonnée en vallées, crêtes, ondulations, crevasses...</div>
+<div class="line" data-id="T12l3"  onclick="toggleAnalysis(this)">Et tous ces plans dès lors si nettement articulés, ces dalles minces où la lumière avec application couche ses feux, – sans un regard pour la mollesse ignoble sous-jacente.</div>
+<div class="line" data-id="T12l4"  onclick="toggleAnalysis(this)">Ce lâche et froid sous-sol que l'on nomme la mie a son tissu pareil à celui des éponges : feuilles ou fleurs y sont comme des sœurs siamoises soudées par tous les coudes à la fois.</div>
+<div class="line" data-id="T12l5"  onclick="toggleAnalysis(this)">Lorsque le pain rassit ces fleurs fanent et se rétrécissent : elles se détachent alors les unes des autres, et la masse en devient friable...</div>
+<div class="line" data-id="T12l6"  onclick="toggleAnalysis(this)">Mais brisons-la : car le pain doit être dans notre bouche moins objet de respect que de consommation.</div>
 </div>
-`;
-}
+<div id="analysis-data" style="display:none;">${blankAnalyses("T12",6)}</div></div>`;
+    }
+
+    /* ===== TEXTE 13 ===== */
+    if(id === "texte13"){
+        content = `<div><div class="full-text">
+<div class="line" data-id="T13l1" onclick="toggleAnalysis(this)"><em>Texte 13 – Discours de la servitude volontaire, Critique du peuple — La Boétie, 1577</em></div>
+<div class="line" data-id="T13l2" onclick="toggleAnalysis(this)"><em>Le texte complet sera ajouté prochainement.</em></div>
+</div>
+<div id="analysis-data" style="display:none;">${blankAnalyses("T13",2)}</div></div>`;
+    }
 
     document.getElementById("content").innerHTML = content;
 }
 
-/* -------- auteurs -------- */
+/* ---- auteurs ---- */
 function openAuthor(id){
     document.getElementById("home").style.display   = "none";
     document.getElementById("viewer").style.display = "block";
     document.getElementById("topbar").classList.add("hidden");
     showBackContainer(false);
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 
-    const wrap = (html) => `<div style="line-height:1.6; font-size:18px; font-family:Georgia, serif; margin-top:70px;">${html}</div>`;
-    let content = "";
-
-    if(id === "ponge") content = wrap(`<h2>Francis Ponge</h2><p><strong>Naissance :</strong> 27 mars 1899 — <strong>Mort :</strong> 6 août 1988 — <strong>Mouvement :</strong> Poésie du XXe siècle</p><p><strong>Biographie :</strong><br>Francis Ponge est un poète français du XXe siècle. Il cherche à renouveler la poésie en se concentrant sur les objets du quotidien. Il refuse la poésie traditionnelle et choisit une approche descriptive et objective.</p><p><strong>Œuvres principales :</strong><br>- Le Parti pris des choses (1942)<br>- La Rage de l'expression (1952)<br>- Le Savon (1967)</p><p><strong>Caractéristiques :</strong><br>Poésie des objets, refus de la subjectivité, écriture descriptive et précise, travail sur le langage.</p><p><strong>À retenir pour le bac :</strong><br>Ponge renouvelle la poésie en se concentrant sur les objets et en adoptant une écriture objective.</p>`);
-
-    if(id === "rousseau") content = wrap(`<h2>Jean-Jacques Rousseau</h2><p><strong>Naissance :</strong> 28 juin 1712 — <strong>Mort :</strong> 2 juillet 1778 — <strong>Mouvement :</strong> Lumières</p><p><strong>Biographie :</strong><br>Écrivain et philosophe du XVIIIe siècle, né à Genève. Il participe aux Lumières tout en développant une pensée critique envers la société et le progrès.</p><p><strong>Œuvres principales :</strong><br>- Les Confessions (1782)<br>- Les Rêveries du promeneur solitaire (1782)<br>- Du contrat social (1762)</p><p><strong>Caractéristiques :</strong><br>Autobiographie sincère, lien avec la nature, critique de la société, écriture sensible.</p><p><strong>À retenir pour le bac :</strong><br>Rousseau valorise la nature et l'expression sincère des émotions dans ses œuvres autobiographiques.</p>`);
-
-    if(id === "moliere") content = wrap(`<h2>Molière</h2><p><strong>Nom complet :</strong> Jean-Baptiste Poquelin — <strong>Naissance :</strong> 15 janvier 1622 — <strong>Mort :</strong> 17 février 1673 — <strong>Mouvement :</strong> Classicisme</p><p><strong>Biographie :</strong><br>Dramaturge et comédien du XVIIe siècle, protégé de Louis XIV. Il meurt peu après une représentation du Malade imaginaire.</p><p><strong>Œuvres principales :</strong><br>- Dom Juan (1665)<br>- Le Tartuffe (1664)<br>- Le Misanthrope (1666)<br>- Le Malade imaginaire (1673)</p><p><strong>Caractéristiques :</strong><br>Comédie critique, personnages types, mélange des registres, dialogues vivants.</p><p><strong>À retenir pour le bac :</strong><br>Derrière le rire, ses pièces ont une dimension sérieuse et morale.</p>`);
-
-    if(id === "colette") content = wrap(`<h2>Colette</h2><p><strong>Nom complet :</strong> Sidonie-Gabrielle Colette — <strong>Naissance :</strong> 28 janvier 1873 — <strong>Mort :</strong> 3 août 1954 — <strong>Mouvement :</strong> Littérature du XXe siècle</p><p><strong>Biographie :</strong><br>Écrivaine française majeure du XXe siècle. Elle s'émancipe progressivement et est l'une des premières femmes à recevoir des funérailles nationales.</p><p><strong>Œuvres principales :</strong><br>- Claudine à l'école (1900)<br>- Sido (1930)<br>- La Naissance du jour (1928)</p><p><strong>Caractéristiques :</strong><br>Écriture sensorielle, lien avec la nature, autobiographie, attention au quotidien.</p><p><strong>À retenir pour le bac :</strong><br>Colette développe une écriture très sensorielle et autobiographique.</p>`);
-
-    if(id === "sarraute") content = wrap(`<h2>Nathalie Sarraute</h2><p><strong>Naissance :</strong> 18 juillet 1900 — <strong>Mort :</strong> 19 octobre 1999 — <strong>Mouvement :</strong> Nouveau Roman</p><p><strong>Biographie :</strong><br>Écrivaine française du XXe siècle, avocate de formation. Elle participe au Nouveau Roman et s'intéresse aux mouvements intérieurs invisibles qui traversent les individus.</p><p><strong>Œuvres principales :</strong><br>- Tropismes (1939)<br>- Le Planétarium (1959)<br>- Pour un oui ou pour un non (1981)</p><p><strong>Caractéristiques :</strong><br>Refus du roman traditionnel, « tropismes », importance du langage, écriture du non-dit.</p><p><strong>À retenir pour le bac :</strong><br>Sarraute montre que les conflits naissent souvent de détails invisibles dans la manière de parler.</p>`);
-
-    if(id === "rimbaud") content = wrap(`<h2>Arthur Rimbaud</h2><p><strong>Naissance :</strong> 20 octobre 1854, Charleville — <strong>Mort :</strong> 10 novembre 1891, Marseille — <strong>Mouvement :</strong> Poète inclassable, proche du symbolisme</p><p><strong>Biographie :</strong><br>Poète extrêmement précoce, il abandonne la poésie vers 20 ans et mène une vie d'aventurier en Afrique.</p><p><strong>Œuvres principales :</strong><br>- Poésies (Le Dormeur du val, Ma Bohème, Le Mal, Vénus anadyomène)<br>- Une Saison en enfer (1873)<br>- Illuminations (posthume)</p><p><strong>Caractéristiques :</strong><br>Poésie de rupture, « le poète voyant », importance des sensations, poésie engagée.</p><p><strong>À retenir pour le bac :</strong><br>Rimbaud est un poète révolutionnaire qui transforme la poésie et abandonne l'écriture très tôt.</p>`);
-
-    document.getElementById("content").innerHTML = content;
+    const wrap = html => `<div style="line-height:1.6;font-size:18px;font-family:Georgia,serif;margin-top:70px;">${html}</div>`;
+    const authors = {
+        ponge:    wrap(`<h2>Francis Ponge</h2><p><strong>Naissance :</strong> 27 mars 1899 — <strong>Mort :</strong> 6 août 1988 — <strong>Mouvement :</strong> Poésie du XXe siècle</p><p><strong>Biographie :</strong><br>Francis Ponge renouvelle la poésie en se concentrant sur les objets du quotidien. Il refuse la poésie traditionnelle et choisit une approche descriptive et objective.</p><p><strong>Œuvres principales :</strong><br>- Le Parti pris des choses (1942)<br>- La Rage de l'expression (1952)<br>- Le Savon (1967)</p><p><strong>À retenir :</strong> Ponge adopte une écriture objective tournée vers les objets, refusant la subjectivité lyrique.</p>`),
+        rousseau: wrap(`<h2>Jean-Jacques Rousseau</h2><p><strong>Naissance :</strong> 28 juin 1712 — <strong>Mort :</strong> 2 juillet 1778 — <strong>Mouvement :</strong> Lumières</p><p><strong>Biographie :</strong><br>Écrivain et philosophe du XVIIIe siècle, né à Genève. Il participe aux Lumières tout en développant une pensée critique envers la société et le progrès.</p><p><strong>Œuvres principales :</strong><br>- Les Confessions (1782)<br>- Les Rêveries du promeneur solitaire (1782)<br>- Du contrat social (1762)</p><p><strong>À retenir :</strong> Rousseau valorise la nature, la sensibilité et l'expression sincère des émotions.</p>`),
+        moliere:  wrap(`<h2>Molière</h2><p><strong>Nom complet :</strong> Jean-Baptiste Poquelin — <strong>Naissance :</strong> 15 janvier 1622 — <strong>Mort :</strong> 17 février 1673 — <strong>Mouvement :</strong> Classicisme</p><p><strong>Biographie :</strong><br>Dramaturge et comédien du XVIIe siècle, protégé de Louis XIV. Il meurt peu après une représentation du Malade imaginaire.</p><p><strong>Œuvres principales :</strong><br>- Dom Juan (1665) — Le Tartuffe (1664) — Le Misanthrope (1666) — Le Malade imaginaire (1673)</p><p><strong>À retenir :</strong> Derrière le rire, ses pièces ont une dimension sérieuse et morale.</p>`),
+        colette:  wrap(`<h2>Colette</h2><p><strong>Nom complet :</strong> Sidonie-Gabrielle Colette — <strong>Naissance :</strong> 28 janvier 1873 — <strong>Mort :</strong> 3 août 1954 — <strong>Mouvement :</strong> Littérature du XXe siècle</p><p><strong>Biographie :</strong><br>Écrivaine française majeure, elle s'émancipe progressivement et est l'une des premières femmes à recevoir des funérailles nationales.</p><p><strong>Œuvres principales :</strong><br>- Claudine à l'école (1900) — Sido (1930) — La Naissance du jour (1928)</p><p><strong>À retenir :</strong> Colette développe une écriture très sensorielle et autobiographique.</p>`),
+        sarraute: wrap(`<h2>Nathalie Sarraute</h2><p><strong>Naissance :</strong> 18 juillet 1900 — <strong>Mort :</strong> 19 octobre 1999 — <strong>Mouvement :</strong> Nouveau Roman</p><p><strong>Biographie :</strong><br>Avocate de formation, elle participe au Nouveau Roman et s'intéresse aux mouvements intérieurs invisibles qui traversent les individus.</p><p><strong>Œuvres principales :</strong><br>- Tropismes (1939) — Le Planétarium (1959) — Pour un oui ou pour un non (1981)</p><p><strong>À retenir :</strong> Sarraute montre que les conflits naissent souvent de détails invisibles dans la manière de parler.</p>`),
+        rimbaud:  wrap(`<h2>Arthur Rimbaud</h2><p><strong>Naissance :</strong> 20 octobre 1854, Charleville — <strong>Mort :</strong> 10 novembre 1891, Marseille — <strong>Mouvement :</strong> Symbolisme</p><p><strong>Biographie :</strong><br>Poète extrêmement précoce, il abandonne la poésie vers 20 ans et mène une vie d'aventurier en Afrique.</p><p><strong>Œuvres principales :</strong><br>- Poésies (Le Dormeur du val, Ma Bohème, Le Mal, Vénus anadyomène)<br>- Une Saison en enfer (1873) — Illuminations (posthume)</p><p><strong>À retenir :</strong> Rimbaud est un poète révolutionnaire qui transforme la poésie et abandonne l'écriture très tôt.</p>`),
+        laboetie: wrap(`<h2>Étienne de La Boétie</h2><p><strong>Naissance :</strong> 1er novembre 1530, Sarlat — <strong>Mort :</strong> 18 août 1563 — <strong>Mouvement :</strong> Humanisme de la Renaissance</p><p><strong>Biographie :</strong><br>Écrivain, poète et magistrat français de la Renaissance. Ami intime de Montaigne, il est surtout connu pour son essai politique sur la tyrannie, rédigé alors qu'il n'avait qu'une vingtaine d'années.</p><p><strong>Œuvres principales :</strong><br>- Discours de la servitude volontaire (vers 1548, publié en 1577)<br>- Sonnets</p><p><strong>À retenir :</strong> La Boétie interroge pourquoi les peuples acceptent d'obéir à un tyran, introduisant la notion de consentement à l'oppression.</p>`)
+    };
+    document.getElementById("content").innerHTML = authors[id] || `<h2 style='margin-top:70px;'>Auteur indisponible.</h2>`;
 }
 
-/* -------- retour -------- */
+/* ---- retour ---- */
 function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display   = "block";
     document.getElementById("topbar").classList.remove("hidden");
     hideBackContainer();
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 }
 
-/* -------- toggle analyse — les analyses sont INDÉPENDANTES (plusieurs peuvent rester ouvertes) -------- */
+/* ---- toggleAnalysis — indépendantes ---- */
 function toggleAnalysis(element){
     const id = element.getAttribute("data-id");
     if(!id) return;
-
     const analysis = document.querySelector(`.analysis-line[data-id="${id}"]`);
     if(!analysis) return;
-
-    /* Si déjà affichée → fermer uniquement celle-ci */
     if(analysis.classList.contains("active")){
         analysis.classList.remove("active");
         analysis.style.display = "none";
         return;
     }
-
-    /* Déplacer juste sous la ligne et afficher — sans toucher aux autres */
     element.insertAdjacentElement("afterend", analysis);
     analysis.style.display = "block";
     analysis.classList.add("active");
 }
 
-/* -------- œuvres -------- */
+/* ---- œuvres ---- */
 function openWork(id){
     document.getElementById("home").style.display   = "none";
     document.getElementById("viewer").style.display = "block";
     document.getElementById("topbar").classList.add("hidden");
     showBackContainer(false);
     document.getElementById("content").innerHTML = "<h2 style='margin-top:70px;'>Indisponible pour le moment...</h2>";
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 }
 
-/* -------- navigation tabs -------- */
+/* ---- navigation tabs ---- */
 function goTo(page, btn){
     if(currentPage === page) return;
     currentPage = page;
     document.querySelectorAll(".top-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    const content = document.getElementById("contentList");
-    if(page === "textes"){  content.innerHTML = textesHTML;  document.getElementById("page-title").innerText = "Textes";  }
-    if(page === "auteurs"){ content.innerHTML = auteursHTML; document.getElementById("page-title").innerText = "Auteurs"; }
-    if(page === "oeuvres"){ content.innerHTML = oeuvresHTML; document.getElementById("page-title").innerText = "Œuvres"; }
+    const c = document.getElementById("contentList");
+    if(page==="textes"){  c.innerHTML=textesHTML;  document.getElementById("page-title").innerText="Textes";  }
+    if(page==="auteurs"){ c.innerHTML=auteursHTML; document.getElementById("page-title").innerText="Auteurs"; }
+    if(page==="oeuvres"){ c.innerHTML=oeuvresHTML; document.getElementById("page-title").innerText="Œuvres"; }
 }
 
-/* -------- mouvements (texte 1 uniquement) -------- */
-function buildMouvements(){
-    const content = `
-<div class="full-text">
-<div class="line" onclick="toggleMove(this)"><strong>Mouvement 1</strong><br><strong>H. 1</strong> : Écoute, je voulais te demander... que s'est-il passé ? Qu'est-ce que tu as contre moi ?<br><strong>H. 2</strong> : Mais rien... Pourquoi ?<br><strong>H. 1</strong> : Il me semble que tu t'éloignes... il faut toujours que ce soit moi...<br><strong>H. 2</strong> : Tu sais bien : je prends rarement l'initiative, j'ai peur de déranger.<br><strong>H. 1</strong> : Non, je sens qu'il y a quelque chose...<br><strong>H. 2</strong> : Mais que veux-tu qu'il y ait ?<br><strong>H. 1</strong> : J'ai beau chercher… il n'y a jamais rien eu entre nous… rien dont je me souvienne…<br><strong>H. 2</strong> : Moi, par contre, il y a des choses que je n'oublie pas. Tu as toujours été très chic…<br><strong>H. 1</strong> : Toi aussi, tu as toujours été parfait… un ami sûr…<br><strong>H. 2</strong> : Oui, pauvre maman… Elle t'aimait bien…<br><strong>H. 1</strong> : Alors ?<br><strong>H. 2</strong>, <i>hausse les épaules</i> : … Alors… que veux-tu que je te dise !<br><strong>H. 1</strong> : Si, dis-moi… il y a quelque chose de changé… ça me fait de la peine, tu sais…
+/* ---- mouvements : maintenant liés au texte courant ---- */
+const mouvementsData = {
+    texte1: `<div class="full-text">
+<div class="line" onclick="toggleMove(this)"><strong>Mouvement 1 — Mise en place du conflit</strong><br>
+<strong>H. 1</strong> : Écoute, je voulais te demander... que s'est-il passé ? Qu'est-ce que tu as contre moi ?<br>
+<strong>H. 2</strong> : Mais rien... Pourquoi ?<br>
+<strong>H. 1</strong> : Il me semble que tu t'éloignes... il faut toujours que ce soit moi...<br>
+<strong>H. 2</strong> : Tu sais bien : je prends rarement l'initiative, j'ai peur de déranger.<br>
+<strong>H. 1</strong> : Non, je sens qu'il y a quelque chose...<br>
+<strong>H. 1</strong> : J'ai beau chercher… il n'y a jamais rien eu entre nous…<br>
+<strong>H. 2</strong> : Moi, par contre, il y a des choses que je n'oublie pas. Tu as toujours été très chic…<br>
+<strong>H. 2</strong> : Oui, pauvre maman… Elle t'aimait bien…<br>
+<strong>H. 2</strong>, <i>hausse les épaules</i> : Alors… que veux-tu que je te dise !<br>
+<strong>H. 1</strong> : Si, dis-moi… il y a quelque chose de changé… ça me fait de la peine, tu sais…
 <div class="analysis">Le début du dialogue installe une situation de malaise : H.I cherche à comprendre une distance qu'il perçoit sans pouvoir en identifier la cause. Le dialogue est marqué par l'hésitation et des mots vagues comme « rien ». L'évocation d'une amitié ancienne rend la situation incompréhensible et pose un conflit invisible.</div></div>
-
-<div class="line" onclick="toggleMove(this)"><strong>Mouvement 2</strong><br><strong>H. 1</strong> : Ah tu vois, j'ai donc raison...<br><strong>H. 2</strong> : je t'aime tout autant, tu sais… mais c'est plus fort que moi…<br><strong>H. 1</strong> : Qu'est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ?<br><strong>H. 2</strong> : Non… vraiment rien… Rien qu'on puisse dire…<br><strong>H. 1</strong> : Essaie quand même…<br><strong>H. 2</strong> : Oh non… je ne veux pas…<br><strong>H. 1</strong> : Pourquoi ? Dis-moi pourquoi ?<br><strong>H. 2</strong> : Non, ne me force pas…<br><strong>H. 2</strong> : C'est… c'est plutôt que ce n'est rien… ce qui s'appelle rien…<br><strong>H. 1</strong> : je t'adjure solennellement… Qu'est-ce qu'il y a eu ? tu me dois ça…
+<div class="line" onclick="toggleMove(this)"><strong>Mouvement 2 — Tentative d'explication et blocage</strong><br>
+<strong>H. 2</strong> : je t'aime tout autant, tu sais… mais c'est plus fort que moi…<br>
+<strong>H. 1</strong> : Qu'est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ?<br>
+<strong>H. 2</strong> : Non… vraiment rien… Rien qu'on puisse dire…<br>
+<strong>H. 1</strong> : Essaie quand même…<br>
+<strong>H. 2</strong> : Oh non… je ne veux pas…<br>
+<strong>H. 2</strong> : C'est… c'est plutôt que ce n'est rien… ce qui s'appelle rien…<br>
+<strong>H. 1</strong> : je t'adjure solennellement… Qu'est-ce qu'il y a eu ? tu me dois ça…
 <div class="analysis">Le dialogue devient une enquête impossible : H.I insiste mais H.2 reste vague. Le mot « rien » devient central et paradoxal. La communication tourne en rond et montre que le conflit repose sur quelque chose d'indicible.</div></div>
-
-<div class="line" onclick="toggleMove(this)"><strong>Mouvement 3</strong><br><strong>H. 2</strong>, <i>piteusement</i> : ce n'est rien qu'on puisse dire…<br><strong>H. 1</strong> : Allons, vas-y…<br><strong>H. 2</strong> : Eh bien, c'est juste des mots…<br><strong>H. 1</strong> : Des mots ? Entre nous ?<br><strong>H. 2</strong> : Non, pas des mots comme ça… Des mots qu'on n'a pas « eus »… On ne sait pas comment ils vous viennent…<br><strong>H. 1</strong> : Lesquels ? Quels mots ?<br><strong>H. 2</strong> : ce n'est rien… Et c'est à cause de ce rien…<br><strong>H. 1</strong> : C'est à cause de ce rien que tu as voulu rompre avec moi ?<br><strong>H. 2</strong>, <i>soupire</i> : Oui… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…
+<div class="line" onclick="toggleMove(this)"><strong>Mouvement 3 — Révélation et dimension tragique</strong><br>
+<strong>H. 2</strong>, <i>piteusement</i> : ce n'est rien qu'on puisse dire…<br>
+<strong>H. 1</strong> : Allons, vas-y…<br>
+<strong>H. 2</strong> : Eh bien, c'est juste des mots…<br>
+<strong>H. 2</strong> : Non, pas des mots comme ça… Des mots qu'on n'a pas « eus »…<br>
+<strong>H. 2</strong> : ce n'est rien… Et c'est à cause de ce rien…<br>
+<strong>H. 1</strong> : C'est à cause de ce rien que tu as voulu rompre avec moi ?<br>
+<strong>H. 2</strong>, <i>soupire</i> : Oui… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…
 <div class="analysis">La cause du conflit est révélée : des « mots » indéfinissables. Le paradoxe du « rien » devient central. La scène se termine sur une incompréhension définitive, qui empêche toute réconciliation.</div></div>
-</div>`;
-    document.getElementById("content").innerHTML = content;
-}
+</div>`
+};
+/* Tous les autres textes n'ont pas de mouvements pour l'instant */
+
+let mode = "lineaire";
+
+document.getElementById("toggleModeBtn").onclick = function(){
+    if(mode === "lineaire"){
+        const mv = mouvementsData[currentTextId];
+        if(mv){
+            mode = "mouvements";
+            this.innerText = "Voir l'analyse linéaire";
+            document.getElementById("content").innerHTML = mv;
+        } else {
+            document.getElementById("content").innerHTML =
+                `<div style="margin-top:80px;padding:20px;font-size:18px;">
+                    Les mouvements de ce texte sont indisponibles pour le moment.
+                </div>`;
+            /* On ne change pas le mode pour ne pas casser le retour */
+        }
+    } else {
+        mode = "lineaire";
+        this.innerText = "Voir les mouvements";
+        openText(currentTextId);
+    }
+};
 
 function toggleMove(element){
     const analysis = element.querySelector(".analysis");
@@ -898,24 +776,10 @@ function toggleMove(element){
     if(analysis.style.display === "block"){
         analysis.style.display = "none";
     } else {
-        document.querySelectorAll(".analysis").forEach(a => { a.style.display = "none"; });
+        document.querySelectorAll(".analysis").forEach(a => { a.style.display="none"; });
         analysis.style.display = "block";
     }
 }
-
-let mode = "lineaire";
-
-document.getElementById("toggleModeBtn").onclick = function(){
-    if(mode === "lineaire"){
-        mode = "mouvements";
-        this.innerText = "Voir l'analyse linéaire";
-        buildMouvements();
-    } else {
-        mode = "lineaire";
-        this.innerText = "Voir les mouvements";
-        openText("texte1");
-    }
-};
 
 </script>
 
