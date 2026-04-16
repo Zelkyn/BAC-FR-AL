@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -37,9 +38,9 @@ body {
 
     min-width:140px;
 
-    display:flex;              /* 🔥 */
-    justify-content:center;    /* centre horizontal */
-    align-items:center;        /* centre vertical */
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 /* animation */
@@ -55,12 +56,12 @@ body {
     transform:none;
 }
 
-/* TITRE EN HAUT À DROITE (AGRANDI ENCORE PLUS) */
+/* TITRE EN HAUT À DROITE */
 #page-title {
     position:fixed;
     top:15px;
     right:20px;
-    font-size:30px;         /* ↑ augmenté */
+    font-size:30px;
     color:#333;
     font-weight:600;
 }
@@ -106,10 +107,10 @@ html {
 /* VIEWER */
 #viewer {
     display:none;
-    padding:20px; /* réduit */
-    max-width:none; /* 🔥 supprime la limite */
-    margin:0; /* centre plus */
-    width:100%; /* prend toute la largeur */
+    padding:20px;
+    max-width:none;
+    margin:0;
+    width:100%;
     min-height:100vh;
     animation: fadeIn 0.3s ease;
 }
@@ -119,11 +120,8 @@ html {
     to { opacity:1; transform:translateY(0); }
 }
 
-/* 🔥 BOUTON RETOUR (AGRANDI ENCORE PLUS) */
+/* BOUTON RETOUR */
 .back-btn {
-    position:relative;
-    margin-bottom:20px;
-
     padding:16px 26px;
     border-radius:12px;
     background:black;
@@ -131,15 +129,13 @@ html {
     border:none;
     font-size:20px;
     cursor:pointer;
-
-    z-index:3000;
-
-    /* 🔥 FIX ANTI GLITCH */
     opacity:1;
     transform:none;
     will-change:transform;
 }
 
+/* FIX GLITCH : backContainer en fixed dès le départ,
+   caché via visibility/opacity plutôt que via le flux */
 #backContainer {
     position:fixed;
     top:20px;
@@ -148,8 +144,18 @@ html {
     flex-direction:column;
     gap:10px;
     z-index:2000;
-
     transition:opacity 0.2s ease;
+    /* Caché par défaut sans passer par le flux */
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Quand visible */
+#backContainer.visible {
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
 }
 
 .back-btn:hover {
@@ -164,7 +170,7 @@ html {
 .full-text {
     width:100%;
     margin-top:40px;
-    padding:0 10px; /* léger espace pour lisibilité */
+    padding:0 10px;
     line-height:1.4;
     white-space:pre-wrap;
 }
@@ -224,27 +230,39 @@ html {
 
 <body>
 
+<!-- backContainer HORS du viewer, directement dans body -->
+
+<div id="backContainer">
+    <button class="back-btn" onclick="back()">← Retour</button>
+    <button id="toggleModeBtn" class="back-btn" style="display:none;">
+        Voir les mouvements
+    </button>
+</div>
+
 <div style="text-align:center; margin-top:20px; margin-bottom:10px; font-family:Georgia, serif;">
 
-    <div style="font-size:22px;">
-        Grâce au travail de Aurélien et Aline
-    </div>
+```
+<div style="font-size:22px;">
+    Grâce au travail de Aurélien et Aline
+</div>
 
-    <div style="font-size:14px; color:#666; margin-top:5px;">
-        avec l’aide de ChatGPT
-    </div>
-    
-    <div style="font-size:14px; color:#666; margin-top:5px;">
-        merci à Alban d'avoir mis son nom
-    </div>
+<div style="font-size:14px; color:#666; margin-top:5px;">
+    avec l'aide de ChatGPT
+</div>
 
-    <div style="font-size:26px; font-weight:bold; margin-top:8px;">
-        Votez pour nous l’année prochaine !
-    </div>
+<div style="font-size:14px; color:#666; margin-top:5px;">
+    merci à Alban d'avoir mis son nom
+</div>
+
+<div style="font-size:26px; font-weight:bold; margin-top:8px;">
+    Votez pour nous l'année prochaine !
+</div>
+```
 
 </div>
 
 <!-- BOUTON SWITCH -->
+
 <div id="topbar">
     <button id="btnTextes" class="top-btn active" onclick="goTo('textes', this)">Textes</button>
     <button id="btnAuteurs" class="top-btn" onclick="goTo('auteurs', this)">Auteurs</button>
@@ -252,9 +270,11 @@ html {
 </div>
 
 <!-- TITRE DROITE -->
+
 <div id="page-title">Textes</div>
 
 <!-- CONTENU -->
+
 <div id="home">
 <h1>Révisions Bac Français</h1>
 
@@ -263,7 +283,7 @@ html {
 <!-- TEXTES -->
 
 <div class="card" onclick="openText('texte1')">
-    <div class="card-title"><strong>Texte 1</strong> – Pour un oui ou pour un non, scène d’ouverture</div>
+    <div class="card-title"><strong>Texte 1</strong> – Pour un oui ou pour un non, scène d'ouverture</div>
     <div class="card-sub">Nathalie Sarraute, 1981</div>
 </div>
 
@@ -278,12 +298,12 @@ html {
 </div>
 
 <div class="card" onclick="openText('texte4')">
-    <div class="card-title"><strong>Texte 4</strong> – Dom Juan, scène de l’athéisme</div>
+    <div class="card-title"><strong>Texte 4</strong> – Dom Juan, scène de l'athéisme</div>
     <div class="card-sub">Molière, 1665</div>
 </div>
 
 <div class="card" onclick="openText('texte5')">
-    <div class="card-title"><strong>Texte 5</strong> – Sido, souvenir d’enfance</div>
+    <div class="card-title"><strong>Texte 5</strong> – Sido, souvenir d'enfance</div>
     <div class="card-sub">Colette, 1930</div>
 </div>
 
@@ -346,13 +366,8 @@ html {
 </div>
 
 <!-- VIEWER -->
+
 <div id="viewer">
-    <div id="backContainer" class="hidden">
-    <button class="back-btn" onclick="back()">← Retour</button>
-    <button id="toggleModeBtn" class="back-btn" style="display:none;">
-        Voir les mouvements
-    </button>
-</div>
     <div id="content"></div>
 </div>
 
@@ -416,15 +431,27 @@ const oeuvresHTML = `
 </div>
 `;
 
+// Fonction utilitaire pour afficher/cacher le backContainer
+function showBackContainer(withToggleBtn) {
+    const bc = document.getElementById("backContainer");
+    bc.classList.add("visible");
+    document.getElementById("toggleModeBtn").style.display = withToggleBtn ? "inline-block" : "none";
+}
+
+function hideBackContainer() {
+    const bc = document.getElementById("backContainer");
+    bc.classList.remove("visible");
+    document.getElementById("toggleModeBtn").style.display = "none";
+}
+
 function openText(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
     document.getElementById("topbar").classList.add("hidden");
-	document.getElementById("backContainer").classList.remove("hidden");
-    document.getElementById("toggleModeBtn").style.display = "inline-block";
-    document.querySelector("#backContainer .back-btn").style.display = "block";
-mode = "lineaire";
-document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
+    showBackContainer(true);
+
+    mode = "lineaire";
+    document.getElementById("toggleModeBtn").innerText = "Voir les mouvements";
     window.scrollTo(0, 0);
 
     let content = "";
@@ -435,41 +462,41 @@ content = `
 
 <div class="full-text">
 
-<div class="line" data-id="T1l1" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Écoute, je voulais te demander… C’est un peu pour ça que je suis venu… je voudrais savoir… que s’est-il passé ? Qu’est-ce que tu as contre moi ?</div>
+<div class="line" data-id="T1l1" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Écoute, je voulais te demander… C'est un peu pour ça que je suis venu… je voudrais savoir… que s'est-il passé ? Qu'est-ce que tu as contre moi ?</div>
 
 <div class="line" data-id="T1l2" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais rien… Pourquoi ?</div>
 
-<div class="line" data-id="T1l3" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Oh, je ne sais pas… Il me semble que tu t’éloignes… tu ne fais plus jamais signe… il faut toujours que ce soit moi…</div>
+<div class="line" data-id="T1l3" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Oh, je ne sais pas… Il me semble que tu t'éloignes… tu ne fais plus jamais signe… il faut toujours que ce soit moi…</div>
 
-<div class="line" data-id="T1l4" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Tu sais bien : je prends rarement l’initiative, j’ai peur de déranger.</div>
+<div class="line" data-id="T1l4" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Tu sais bien : je prends rarement l'initiative, j'ai peur de déranger.</div>
 
-<div class="line" data-id="T1l5" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Mais pas avec moi ? Tu sais que je te dirais… Nous n’en sommes tout de même pas là… Non, je sens qu’il y a quelque chose…</div>
+<div class="line" data-id="T1l5" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Mais pas avec moi ? Tu sais que je te dirais… Nous n'en sommes tout de même pas là… Non, je sens qu'il y a quelque chose…</div>
 
-<div class="line" data-id="T1l6" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais que veux-tu qu’il y ait ?</div>
+<div class="line" data-id="T1l6" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais que veux-tu qu'il y ait ?</div>
 
-<div class="line" data-id="T1l7" onclick="toggleAnalysis(this)"><strong>H.I :</strong> C’est justement ce que je me demande. J’ai beau chercher… jamais… depuis tant d’années… il n’y a jamais rien eu entre nous… rien dont je me souvienne…</div>
+<div class="line" data-id="T1l7" onclick="toggleAnalysis(this)"><strong>H.I :</strong> C'est justement ce que je me demande. J'ai beau chercher… jamais… depuis tant d'années… il n'y a jamais rien eu entre nous… rien dont je me souvienne…</div>
 
-<div class="line" data-id="T1l8" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Moi, par contre, il y a des choses que je n’oublie pas. Tu as toujours été très chic… il y a eu des circonstances…</div>
+<div class="line" data-id="T1l8" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Moi, par contre, il y a des choses que je n'oublie pas. Tu as toujours été très chic… il y a eu des circonstances…</div>
 
-<div class="line" data-id="T1l9" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Oh qu’est-ce que c’est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…</div>
+<div class="line" data-id="T1l9" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Oh qu'est-ce que c'est ? Toi aussi, tu as toujours été parfait… un ami sûr… Tu te souviens comme on attendrissait ta mère ?…</div>
 
-<div class="line" data-id="T1l10" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Oui, pauvre maman… Elle t’aimait bien… elle me disait : « Ah lui, au moins, c’est un vrai copain, tu pourras toujours compter sur lui. » C’est ce que j’ai fait d’ailleurs.</div>
+<div class="line" data-id="T1l10" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Oui, pauvre maman… Elle t'aimait bien… elle me disait : « Ah lui, au moins, c'est un vrai copain, tu pourras toujours compter sur lui. » C'est ce que j'ai fait d'ailleurs.</div>
 
 <div class="line" data-id="T1l11" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Alors ?</div>
 
 <div class="line" data-id="T1l12" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>hausse les épaules</em> : … Alors… que veux-tu que je te dise !</div>
 
-<div class="line" data-id="T1l13" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l’autre jour, au téléphone… tu étais à l’autre bout du monde… ça me fait de la peine, tu sais…</div>
+<div class="line" data-id="T1l13" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Si, dis-moi… je te connais trop bien : il y a quelque chose de changé… Tu étais toujours à une certaine distance… de tout le monde, du reste… mais maintenant avec moi… encore l'autre jour, au téléphone… tu étais à l'autre bout du monde… ça me fait de la peine, tu sais…</div>
 
 <div class="line" data-id="T1l14" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>dans un élan</em> : Mais moi aussi, figure-toi…</div>
 
-<div class="line" data-id="T1l15" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Ah tu vois, j’ai donc raison…</div>
+<div class="line" data-id="T1l15" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Ah tu vois, j'ai donc raison…</div>
 
-<div class="line" data-id="T1l16" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Que veux-tu… je t’aime tout autant, tu sais… ne crois pas ça… mais c’est plus fort que moi…</div>
+<div class="line" data-id="T1l16" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Que veux-tu… je t'aime tout autant, tu sais… ne crois pas ça… mais c'est plus fort que moi…</div>
 
-<div class="line" data-id="T1l17" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Qu’est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…</div>
+<div class="line" data-id="T1l17" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Qu'est-ce qui est plus fort ? Pourquoi ne veux-tu pas le dire ? Il y a donc eu quelque chose…</div>
 
-<div class="line" data-id="T1l18" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non… vraiment rien… Rien qu’on puisse dire…</div>
+<div class="line" data-id="T1l18" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non… vraiment rien… Rien qu'on puisse dire…</div>
 
 <div class="line" data-id="T1l19" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Essaie quand même…</div>
 
@@ -479,37 +506,37 @@ content = `
 
 <div class="line" data-id="T1l22" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non, ne me force pas…</div>
 
-<div class="line" data-id="T1l23" onclick="toggleAnalysis(this)"><strong>H.I :</strong> C’est donc si terrible ?</div>
+<div class="line" data-id="T1l23" onclick="toggleAnalysis(this)"><strong>H.I :</strong> C'est donc si terrible ?</div>
 
-<div class="line" data-id="T1l24" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non, pas terrible… ce n’est pas ça…</div>
+<div class="line" data-id="T1l24" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non, pas terrible… ce n'est pas ça…</div>
 
-<div class="line" data-id="T1l25" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Mais qu’est-ce que c’est, alors ?</div>
+<div class="line" data-id="T1l25" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Mais qu'est-ce que c'est, alors ?</div>
 
-<div class="line" data-id="T1l26" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> C’est… c’est plutôt que ce n’est rien… ce qui s’appelle rien… ce qu’on appelle ainsi… en parler seulement, évoquer ça… ça peut vous entraîner… de quoi on aurait l’air ? Personne, du reste… personne ne l’ose… on n’en entend jamais parler…</div>
+<div class="line" data-id="T1l26" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> C'est… c'est plutôt que ce n'est rien… ce qui s'appelle rien… ce qu'on appelle ainsi… en parler seulement, évoquer ça… ça peut vous entraîner… de quoi on aurait l'air ? Personne, du reste… personne ne l'ose… on n'en entend jamais parler…</div>
 
-<div class="line" data-id="T1l27" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Eh bien, je te demande au nom de tout ce que tu prétends que j’ai été pour toi… au nom de ta mère… de nos parents… je t’adjure solennellement, tu ne peux plus reculer… Qu’est-ce qu’il y a eu ? Dis-le… tu me dois ça…</div>
+<div class="line" data-id="T1l27" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Eh bien, je te demande au nom de tout ce que tu prétends que j'ai été pour toi… au nom de ta mère… de nos parents… je t'adjure solennellement, tu ne peux plus reculer… Qu'est-ce qu'il y a eu ? Dis-le… tu me dois ça…</div>
 
-<div class="line" data-id="T1l28" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>piteusement</em> : Je te dis : ce n’est rien qu’on puisse dire… rien dont il soit permis de parler…</div>
+<div class="line" data-id="T1l28" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>piteusement</em> : Je te dis : ce n'est rien qu'on puisse dire… rien dont il soit permis de parler…</div>
 
 <div class="line" data-id="T1l29" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Allons, vas-y…</div>
 
-<div class="line" data-id="T1l30" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Eh bien, c’est juste des mots…</div>
+<div class="line" data-id="T1l30" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Eh bien, c'est juste des mots…</div>
 
-<div class="line" data-id="T1l31" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Des mots ? Entre nous ? Ne me dis pas qu’on a eu des mots… ce n’est pas possible… et je m’en serais souvenu…</div>
+<div class="line" data-id="T1l31" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Des mots ? Entre nous ? Ne me dis pas qu'on a eu des mots… ce n'est pas possible… et je m'en serais souvenu…</div>
 
-<div class="line" data-id="T1l32" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non, pas des mots comme ça… d’autres mots… pas ceux dont on dit qu’on les a « eus »… Des mots qu’on n’a pas « eus », justement… On ne sait pas comment ils vous viennent…</div>
+<div class="line" data-id="T1l32" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Non, pas des mots comme ça… d'autres mots… pas ceux dont on dit qu'on les a « eus »… Des mots qu'on n'a pas « eus », justement… On ne sait pas comment ils vous viennent…</div>
 
 <div class="line" data-id="T1l33" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Lesquels ? Quels mots ? Tu me fais languir… tu me taquines…</div>
 
 <div class="line" data-id="T1l34" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais non, je ne te taquine pas… Mais si je te les dis…</div>
 
-<div class="line" data-id="T1l35" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Alors ? Qu’est-ce qui se passera ? Tu me dis que ce n’est rien…</div>
+<div class="line" data-id="T1l35" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Alors ? Qu'est-ce qui se passera ? Tu me dis que ce n'est rien…</div>
 
-<div class="line" data-id="T1l36" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais justement, ce n’est rien… Et c’est à cause de ce rien…</div>
+<div class="line" data-id="T1l36" onclick="toggleAnalysis(this)"><strong>H.2 :</strong> Mais justement, ce n'est rien… Et c'est à cause de ce rien…</div>
 
-<div class="line" data-id="T1l37" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Ah on y arrive… C’est à cause de ce rien que tu t’es éloigné ? Que tu as voulu rompre avec moi ?</div>
+<div class="line" data-id="T1l37" onclick="toggleAnalysis(this)"><strong>H.I :</strong> Ah on y arrive… C'est à cause de ce rien que tu t'es éloigné ? Que tu as voulu rompre avec moi ?</div>
 
-<div class="line" data-id="T1l38" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>soupire</em> : Oui… C’est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…</div>
+<div class="line" data-id="T1l38" onclick="toggleAnalysis(this)"><strong>H.2</strong>, <em>soupire</em> : Oui… C'est à cause de ça… Tu ne comprendras jamais… Personne, du reste, ne pourra comprendre…</div>
 
 </div>
 
@@ -520,19 +547,19 @@ content = `
 <h3>Mouvement 1 : Mise en place du conflit et incompréhension</h3>
 
 <div class="analysis-line" data-id="T1l1">
-Impératif « Écoute » : paradoxe → H.I demande d’écouter alors qu’il vient chercher des réponses. Hésitation (points de suspension) : difficulté à formuler → malaise.
+Impératif « Écoute » : paradoxe → H.I demande d'écouter alors qu'il vient chercher des réponses. Hésitation (points de suspension) : difficulté à formuler → malaise.
 </div>
 
 <div class="analysis-line" data-id="T1l2">
-Réponse minimale « rien » + question « pourquoi ? » : incompréhension + refus d’expliciter.
+Réponse minimale « rien » + question « pourquoi ? » : incompréhension + refus d'expliciter.
 </div>
 
 <div class="analysis-line" data-id="T1l3">
-Champ lexical de l’interrogation (« savoir », « demander »). Accumulation de points de suspension → hésitation, malaise, difficulté à nommer le problème.
+Champ lexical de l'interrogation (« savoir », « demander »). Accumulation de points de suspension → hésitation, malaise, difficulté à nommer le problème.
 </div>
 
 <div class="analysis-line" data-id="T1l4">
-Référence à l’habitude (« rarement », « toujours ») → souligne une relation installée mais déséquilibrée.
+Référence à l'habitude (« rarement », « toujours ») → souligne une relation installée mais déséquilibrée.
 </div>
 
 <div class="analysis-line" data-id="T1l5">
@@ -540,11 +567,11 @@ Insistance de H.I → il refuse le déni et pressent un problème (« je sens »
 </div>
 
 <div class="analysis-line" data-id="T1l6">
-Question de H.2 → esquive, refus d’entrer dans le conflit.
+Question de H.2 → esquive, refus d'entrer dans le conflit.
 </div>
 
 <div class="analysis-line" data-id="T1l7">
-Accumulation (« jamais », « rien ») → insiste sur l’absence de conflit passé → incompréhension actuelle.
+Accumulation (« jamais », « rien ») → insiste sur l'absence de conflit passé → incompréhension actuelle.
 </div>
 
 <div class="analysis-line" data-id="T1l8">
@@ -552,11 +579,11 @@ Opposition entre mémoire de H.2 et oubli de H.I → déséquilibre dans la perc
 </div>
 
 <div class="analysis-line" data-id="T1l9">
-Champ lexical de l’amitié (« parfait », « ami sûr ») → idéalisation du passé.
+Champ lexical de l'amitié (« parfait », « ami sûr ») → idéalisation du passé.
 </div>
 
 <div class="analysis-line" data-id="T1l10">
-Souvenir partagé → renforce l’idée d’une relation ancienne et forte.
+Souvenir partagé → renforce l'idée d'une relation ancienne et forte.
 </div>
 
 <div class="analysis-line" data-id="T1l11">
@@ -564,7 +591,7 @@ Question brève → attente insistante de réponse.
 </div>
 
 <div class="analysis-line" data-id="T1l12">
-Didascalie (*hausse les épaules*) → résignation, refus de s’engager.
+Didascalie (*hausse les épaules*) → résignation, refus de s'engager.
 </div>
 
 <div class="analysis-line" data-id="T1l13">
@@ -584,10 +611,10 @@ H.I pense avoir compris → illusion de résolution.
 
 <!-- ==================== MOUVEMENT 2 ==================== -->
 <div class="movement">
-<h3>Mouvement 2 : Tentative d’explication et blocage</h3>
+<h3>Mouvement 2 : Tentative d'explication et blocage</h3>
 
 <div class="analysis-line" data-id="T1l16">
-Ambivalence (« je t’aime » / « plus fort que moi ») → contradiction interne.
+Ambivalence (« je t'aime » / « plus fort que moi ») → contradiction interne.
 </div>
 
 <div class="analysis-line" data-id="T1l17">
@@ -678,7 +705,7 @@ Paradoxe : « rien » devient cause → enjeu de la pièce.
 </div>
 
 <div class="analysis-line" data-id="T1l37">
-Compréhension partielle → tentative d’explication.
+Compréhension partielle → tentative d'explication.
 </div>
 
 <div class="analysis-line" data-id="T1l38">
@@ -694,15 +721,15 @@ Dimension tragique (« tu ne comprendras jamais ») → impossibilité de récon
 <h3>Proposition de plan</h3>
 
 <p><strong>Introduction :</strong><br>
-Dans <em>Pour un oui ou pour un non</em>, Nathalie Sarraute met en scène un conflit entre deux amis sans en révéler immédiatement la cause. Dans cette scène d’ouverture, le dialogue semble banal mais laisse apparaître un malaise profond. Nous pouvons donc nous demander comment cette scène d’exposition met en place un conflit fondé sur un “rien” en apparence, mais en réalité essentiel.</p>
+Dans <em>Pour un oui ou pour un non</em>, Nathalie Sarraute met en scène un conflit entre deux amis sans en révéler immédiatement la cause. Dans cette scène d'ouverture, le dialogue semble banal mais laisse apparaître un malaise profond. Nous pouvons donc nous demander comment cette scène d'exposition met en place un conflit fondé sur un "rien" en apparence, mais en réalité essentiel.</p>
 
 <p><strong>Plan :</strong><br>
-I. Un dialogue marqué par l’incompréhension et l’hésitation<br>
+I. Un dialogue marqué par l'incompréhension et l'hésitation<br>
 II. Une montée progressive de la tension entre les personnages<br>
-III. La révélation d’un conflit fondé sur le langage et le non-dit</p>
+III. La révélation d'un conflit fondé sur le langage et le non-dit</p>
 
 <p><strong>Conclusion :</strong><br>
-Cette scène d’ouverture installe un conflit original, fondé non sur des faits mais sur des mots et des impressions. Sarraute montre ainsi que le langage peut être source de malentendus profonds. Cette scène illustre parfaitement son intérêt pour les mouvements intérieurs et les non-dits.</p>
+Cette scène d'ouverture installe un conflit original, fondé non sur des faits mais sur des mots et des impressions. Sarraute montre ainsi que le langage peut être source de malentendus profonds. Cette scène illustre parfaitement son intérêt pour les mouvements intérieurs et les non-dits.</p>
 
 </div>
 
@@ -724,21 +751,21 @@ Entrée théâtrale : H.2 met en scène le conflit en introduisant des témoins.
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>Eux</strong> : Oh, mais nous, vous savez, nous n’avons aucune compétence.
+<strong>Eux</strong> : Oh, mais nous, vous savez, nous n'avons aucune compétence.
 <div class="analysis">
-Refus initial → effet comique. Ils se présentent comme incompétents, ce qui contraste avec le rôle d’arbitres que H.2 veut leur donner.
+Refus initial → effet comique. Ils se présentent comme incompétents, ce qui contraste avec le rôle d'arbitres que H.2 veut leur donner.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Si, si, vous en avez… Plus qu’il n’en faut. Voilà de quoi il s’agit. Mon ami, là, un ami de toujours…
+<strong>H. 2</strong> : Si, si, vous en avez… Plus qu'il n'en faut. Voilà de quoi il s'agit. Mon ami, là, un ami de toujours…
 <div class="analysis">
-Insistance de H.2. Il dramatise la situation et insiste sur la durée de l’amitié pour renforcer l’importance du conflit.
+Insistance de H.2. Il dramatise la situation et insiste sur la durée de l'amitié pour renforcer l'importance du conflit.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>F.</strong> : C’est lui dont vous m’avez souvent parlé ? Je me rappelle… quand il a été
+<strong>F.</strong> : C'est lui dont vous m'avez souvent parlé ? Je me rappelle… quand il a été
 souffrant… vous étiez si inquiet…
 <div class="analysis">
 Rappel du passé → souligne la profondeur du lien. Cela accentue le contraste avec le conflit actuel.
@@ -746,14 +773,14 @@ Rappel du passé → souligne la profondeur du lien. Cela accentue le contraste 
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Oui, c’est lui… Et c’est pour ça justement que ça me fait tant de peine…
+<strong>H. 2</strong> : Oui, c'est lui… Et c'est pour ça justement que ça me fait tant de peine…
 <div class="analysis">
-Dimension affective : le conflit est d’autant plus douloureux qu’il concerne un ami proche.
+Dimension affective : le conflit est d'autant plus douloureux qu'il concerne un ami proche.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>F.</strong> : Ne me dites pas qu’entre vous… après tant d’amitié… vous m’avez toujours dit qu’il a été, à votre égard…
+<strong>F.</strong> : Ne me dites pas qu'entre vous… après tant d'amitié… vous m'avez toujours dit qu'il a été, à votre égard…
 <div class="analysis">
 Suspense → F. attend une explication logique à la rupture.
 </div>
@@ -769,7 +796,7 @@ Paradoxe : tout allait bien → rend le conflit incompréhensible.
 <div class="line" onclick="toggleAnalysis(this)">
 <strong>F.</strong> : Alors pourquoi ?
 <div class="analysis">
-Question centrale → met en évidence l’absurdité apparente du conflit.
+Question centrale → met en évidence l'absurdité apparente du conflit.
 </div>
 </div>
 
@@ -782,14 +809,14 @@ Réduction du conflit à un détail linguistique → thème majeur de la pièce 
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Pourquoi le dis-tu comme ça ? Avec cette ironie ? Tu ne veux plus faire l’essai ?
+<strong>H. 2</strong> : Pourquoi le dis-tu comme ça ? Avec cette ironie ? Tu ne veux plus faire l'essai ?
 <div class="analysis">
 H.2 reproche déjà le ton → mise en abyme du conflit : le problème se reproduit en direct.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. I</strong> : Mais si mais si… Je le dis sérieusement. Je l’ai vexé… il s’est senti diminué… alors, depuis, il m’évite…
+<strong>H. I</strong> : Mais si mais si… Je le dis sérieusement. Je l'ai vexé… il s'est senti diminué… alors, depuis, il m'évite…
 <div class="analysis">
 H.I tente de rationaliser → vocabulaire psychologique ("vexé", "diminué").
 </div>
@@ -819,47 +846,47 @@ Nuance → montre que le langage peut être blessant même sans intention.
 <div class="line" onclick="toggleAnalysis(this)">
 <strong>H. 2</strong> : Ah ? Vous comprenez ?
 <div class="analysis">
-H.2 cherche une validation → besoin d’être reconnu dans sa souffrance.
+H.2 cherche une validation → besoin d'être reconnu dans sa souffrance.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 3</strong> : Enfin… je n’irais pas jusqu’à dire ça…
+<strong>H. 3</strong> : Enfin… je n'irais pas jusqu'à dire ça…
 <div class="analysis">
 Hésitation → impossibilité de trancher clairement.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Si, si, vous irez, vous verrez… permettez-moi de vous exposer… Voilà… Il faut vous dire d’abord que jamais, mais vraiment jamais je n’ai accepté d’aller chez lui…
+<strong>H. 2</strong> : Si, si, vous irez, vous verrez… permettez-moi de vous exposer… Voilà… Il faut vous dire d'abord que jamais, mais vraiment jamais je n'ai accepté d'aller chez lui…
 <div class="analysis">
-Début d’un développement → H.2 élargit le conflit à une question de territoire symbolique.
+Début d'un développement → H.2 élargit le conflit à une question de territoire symbolique.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>F.</strong> : Vous n’allez jamais chez lui ?
+<strong>F.</strong> : Vous n'allez jamais chez lui ?
 <div class="analysis">
 Surprise → met en évidence une rupture des normes sociales.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. I</strong> : Mais si, voyons… qu’est-ce qu’il raconte ?
+<strong>H. I</strong> : Mais si, voyons… qu'est-ce qu'il raconte ?
 <div class="analysis">
 Contradiction → conflit de perception entre les personnages.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Ce n’est pas de ça que je parle. J’allais le voir. Le voir, c’est vrai. Mais jamais, jamais je ne cherchais à m’installer sur ses domaines… dans ces régions qu’il habite… je ne joue pas le jeu, vous comprenez.
+<strong>H. 2</strong> : Ce n'est pas de ça que je parle. J'allais le voir. Le voir, c'est vrai. Mais jamais, jamais je ne cherchais à m'installer sur ses domaines… dans ces régions qu'il habite… je ne joue pas le jeu, vous comprenez.
 <div class="analysis">
 Métaphore spatiale → "domaines", "régions" → symbolisent les univers intellectuels ou sociaux.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. I</strong> : Ah, c’est ça que tu veux dire… Oui, c’est vrai, tu t’es toujours tenu en marge…
+<strong>H. I</strong> : Ah, c'est ça que tu veux dire… Oui, c'est vrai, tu t'es toujours tenu en marge…
 <div class="analysis">
 Reconnaissance partielle → H.I reformule mais ne comprend pas totalement.
 </div>
@@ -873,28 +900,28 @@ Reconnaissance partielle → H.I reformule mais ne comprend pas totalement.
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. I</strong> : Oui, si on veut. Mais je dois dire qu’il a toujours gagné sa vie… il n’a jamais rien demandé à personne.
+<strong>H. I</strong> : Oui, si on veut. Mais je dois dire qu'il a toujours gagné sa vie… il n'a jamais rien demandé à personne.
 <div class="analysis">
 Défense de H.2 → dimension morale et sociale.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Merci, tu es gentil… Mais où en étions – nous ? Ah oui, c’est ça, il vous l’a dit : je me tiens à l’écart. Il est chez lui. Moi je suis chez moi.
+<strong>H. 2</strong> : Merci, tu es gentil… Mais où en étions – nous ? Ah oui, c'est ça, il vous l'a dit : je me tiens à l'écart. Il est chez lui. Moi je suis chez moi.
 <div class="analysis">
 Opposition nette → séparation des mondes.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>F.</strong> : C’est bien normal. Chacun sa vie, n’est-ce pas ?
+<strong>F.</strong> : C'est bien normal. Chacun sa vie, n'est-ce pas ?
 <div class="analysis">
 Vision rationnelle → contraste avec la complexité du conflit.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : Eh bien, figurez-vous qu’il ne le supporte pas. Il veut à toute force m’attirer… là-bas, chez lui… il faut que j’y sois avec lui, que je ne puisse pas en sortir… Alors il m’a tendu un piège… il a disposé une souricière.
+<strong>H. 2</strong> : Eh bien, figurez-vous qu'il ne le supporte pas. Il veut à toute force m'attirer… là-bas, chez lui… il faut que j'y sois avec lui, que je ne puisse pas en sortir… Alors il m'a tendu un piège… il a disposé une souricière.
 <div class="analysis">
 Métaphore dramatique → "piège", "souricière" → vision paranoïaque du conflit.
 </div>
@@ -908,14 +935,14 @@ Effet comique → exagération du conflit.
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>H. 2</strong> : il a profité d’une occasion…
+<strong>H. 2</strong> : il a profité d'une occasion…
 <div class="analysis">
 Suspense → montée de la tension.
 </div>
 </div>
 
 <div class="line" onclick="toggleAnalysis(this)">
-<strong>F.</strong> <em>rit</em> : Une souricière d’occasion ?
+<strong>F.</strong> <em>rit</em> : Une souricière d'occasion ?
 <div class="analysis">
 Ironie → décalage entre gravité ressentie par H.2 et perception extérieure.
 </div>
@@ -935,12 +962,12 @@ Retour au sérieux → annonce de la révélation à venir.
 <h3>Proposition de plan</h3>
 
 <p><strong>Introduction :</strong><br>
-Dans cette scène de <em>Pour un oui ou pour un non</em>, Nathalie Sarraute introduit de nouveaux personnages pour tenter de clarifier le conflit entre les deux amis. Le dialogue prend la forme d’une sorte de procès où chacun cherche à expliquer la situation. Nous pouvons alors nous demander comment cette scène met en évidence l’impossibilité de résoudre un conflit fondé sur des impressions subjectives.</p>
+Dans cette scène de <em>Pour un oui ou pour un non</em>, Nathalie Sarraute introduit de nouveaux personnages pour tenter de clarifier le conflit entre les deux amis. Le dialogue prend la forme d'une sorte de procès où chacun cherche à expliquer la situation. Nous pouvons alors nous demander comment cette scène met en évidence l'impossibilité de résoudre un conflit fondé sur des impressions subjectives.</p>
 
 <p><strong>Plan :</strong><br>
-I. Une tentative de médiation avec l’arrivée de nouveaux personnages<br>
+I. Une tentative de médiation avec l'arrivée de nouveaux personnages<br>
 II. Une explication du conflit qui repose sur un détail en apparence insignifiant<br>
-III. L’échec de la communication face à un conflit fondé sur le ressenti</p>
+III. L'échec de la communication face à un conflit fondé sur le ressenti</p>
 
 <p><strong>Conclusion :</strong><br>
 Cette scène montre que même avec des témoins extérieurs, le conflit ne peut être résolu. Il repose sur des éléments subjectifs et difficilement exprimables. Sarraute souligne ainsi les limites du langage et la complexité des relations humaines.</p>
@@ -957,10 +984,8 @@ Cette scène montre que même avec des témoins extérieurs, le conflit ne peut 
 function openAuthor(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
-
-    document.querySelector("#backContainer .back-btn").style.display = "block";
-    document.getElementById("toggleModeBtn").style.display = "none";
+    document.getElementById("topbar").classList.add("hidden");
+    showBackContainer(false);
 
     window.scrollTo(0, 0);
 
@@ -983,7 +1008,7 @@ Francis Ponge est un poète français du XXe siècle. Il cherche à renouveler l
 
 <p><strong>Œuvres principales :</strong><br>
 - Le Parti pris des choses (1942)<br>
-- La Rage de l’expression (1952)<br>
+- La Rage de l'expression (1952)<br>
 - Le Savon (1967)</p>
 
 <p><strong>Caractéristiques de son écriture :</strong></p>
@@ -995,7 +1020,7 @@ Ponge décrit des objets simples (pain, savon, huître) pour leur donner une imp
 Il cherche à effacer les sentiments personnels pour observer les choses de manière précise.</p>
 
 <p><strong>3. Un travail sur le langage :</strong><br>
-Il s’intéresse à la manière dont les mots décrivent les objets et jouent avec eux.</p>
+Il s'intéresse à la manière dont les mots décrivent les objets et jouent avec eux.</p>
 
 <p><strong>4. Une écriture descriptive et précise :</strong><br>
 Son style est très détaillé, presque scientifique.</p>
@@ -1004,7 +1029,7 @@ Son style est très détaillé, presque scientifique.</p>
 Les objets du quotidien, le langage, la description, la précision.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
-Ponge renouvelle la poésie en se concentrant sur les objets et en adoptant une écriture objective. Il cherche à observer le monde avec précision plutôt qu’à exprimer des émotions.</p>
+Ponge renouvelle la poésie en se concentrant sur les objets et en adoptant une écriture objective. Il cherche à observer le monde avec précision plutôt qu'à exprimer des émotions.</p>
 
 <p><strong>Résumé rapide (oral) :</strong><br>
 Francis Ponge est un poète du XXe siècle qui décrit les objets du quotidien avec précision. Il refuse la poésie traditionnelle et cherche à renouveler le langage poétique.</p>
@@ -1027,18 +1052,18 @@ if(id === "rousseau"){
 <strong>Mouvement :</strong> Lumières</p>
 
 <p><strong>Biographie :</strong><br>
-Rousseau est un écrivain et philosophe du XVIIIe siècle. Né à Genève, il mène une vie marquée par l’errance et les conflits avec la société. Il participe au mouvement des Lumières mais développe une pensée originale, souvent critique envers la société et le progrès. Il accorde une grande importance à la nature et à la sensibilité.</p>
+Rousseau est un écrivain et philosophe du XVIIIe siècle. Né à Genève, il mène une vie marquée par l'errance et les conflits avec la société. Il participe au mouvement des Lumières mais développe une pensée originale, souvent critique envers la société et le progrès. Il accorde une grande importance à la nature et à la sensibilité.</p>
 
 <p><strong>Œuvres principales :</strong><br>
 - Les Confessions (1782)<br>
 - Les Rêveries du promeneur solitaire (1782)<br>
 - Du contrat social (1762)<br>
-- Émile ou De l’éducation (1762)</p>
+- Émile ou De l'éducation (1762)</p>
 
 <p><strong>Caractéristiques de son écriture :</strong></p>
 
-<p><strong>1. L’importance de l’autobiographie :</strong><br>
-Rousseau est l’un des premiers à raconter sa vie avec sincérité et à analyser ses sentiments.</p>
+<p><strong>1. L'importance de l'autobiographie :</strong><br>
+Rousseau est l'un des premiers à raconter sa vie avec sincérité et à analyser ses sentiments.</p>
 
 <p><strong>2. Le lien avec la nature :</strong><br>
 La nature est un refuge et un lieu de paix, opposé à la société.</p>
@@ -1050,10 +1075,10 @@ Il dénonce les inégalités et les effets négatifs de la civilisation.</p>
 Il met en avant les émotions et les sensations.</p>
 
 <p><strong>Thèmes principaux :</strong><br>
-La nature, la liberté, la société, l’éducation, la sensibilité.</p>
+La nature, la liberté, la société, l'éducation, la sensibilité.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
-Rousseau développe une pensée centrée sur la nature et la sensibilité. Il critique la société et valorise l’expression sincère des émotions, notamment dans ses œuvres autobiographiques.</p>
+Rousseau développe une pensée centrée sur la nature et la sensibilité. Il critique la société et valorise l'expression sincère des émotions, notamment dans ses œuvres autobiographiques.</p>
 
 <p><strong>Résumé rapide (oral) :</strong><br>
 Rousseau est un écrivain des Lumières qui critique la société et met en avant la nature et les émotions. Il est aussi un des premiers auteurs à écrire une autobiographie sincère.</p>
@@ -1090,16 +1115,16 @@ Molière est un dramaturge et comédien français du XVIIe siècle. Il fonde sa 
 Molière utilise le rire pour dénoncer les défauts humains (hypocrisie, orgueil, égoïsme).</p>
 
 <p><strong>2. Des personnages types :</strong><br>
-Ses personnages représentent souvent des défauts (l’hypocrite, le séducteur, le misanthrope).</p>
+Ses personnages représentent souvent des défauts (l'hypocrite, le séducteur, le misanthrope).</p>
 
 <p><strong>3. Le mélange des registres :</strong><br>
 Il mêle comique et sérieux pour faire réfléchir le spectateur.</p>
 
-<p><strong>4. L’importance du théâtre :</strong><br>
+<p><strong>4. L'importance du théâtre :</strong><br>
 Ses pièces sont faites pour être jouées, avec des dialogues vivants et dynamiques.</p>
 
 <p><strong>Thèmes principaux :</strong><br>
-L’hypocrisie, la religion, la morale, les relations sociales.</p>
+L'hypocrisie, la religion, la morale, les relations sociales.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
 Molière utilise la comédie pour critiquer la société et les comportements humains. Derrière le rire, ses pièces ont une dimension sérieuse et morale.</p>
@@ -1125,10 +1150,10 @@ if(id === "colette"){
 <strong>Mouvement :</strong> Littérature du XXe siècle</p>
 
 <p><strong>Biographie :</strong><br>
-Colette est une écrivaine française majeure du XXe siècle. Elle commence sa carrière en écrivant les romans de la série des Claudine, publiés sous le nom de son mari. Elle s’émancipe progressivement et devient une auteure reconnue. Sa vie est marquée par une grande liberté personnelle et artistique. Elle est aussi journaliste et comédienne. Elle est l’une des premières femmes à recevoir des funérailles nationales en France.</p>
+Colette est une écrivaine française majeure du XXe siècle. Elle commence sa carrière en écrivant les romans de la série des Claudine, publiés sous le nom de son mari. Elle s'émancipe progressivement et devient une auteure reconnue. Sa vie est marquée par une grande liberté personnelle et artistique. Elle est aussi journaliste et comédienne. Elle est l'une des premières femmes à recevoir des funérailles nationales en France.</p>
 
 <p><strong>Œuvres principales :</strong><br>
-- Claudine à l’école (1900)<br>
+- Claudine à l'école (1900)<br>
 - Sido (1930)<br>
 - La Naissance du jour (1928)</p>
 
@@ -1138,22 +1163,22 @@ Colette est une écrivaine française majeure du XXe siècle. Elle commence sa c
 Colette accorde une grande importance aux sensations (odeurs, couleurs, toucher), ce qui rend ses textes très vivants.</p>
 
 <p><strong>2. Le lien avec la nature :</strong><br>
-La nature est omniprésente dans son œuvre, souvent associée aux souvenirs d’enfance.</p>
+La nature est omniprésente dans son œuvre, souvent associée aux souvenirs d'enfance.</p>
 
-<p><strong>3. L’autobiographie :</strong><br>
-Elle s’inspire largement de sa vie personnelle, notamment de son enfance et de sa relation avec sa mère.</p>
+<p><strong>3. L'autobiographie :</strong><br>
+Elle s'inspire largement de sa vie personnelle, notamment de son enfance et de sa relation avec sa mère.</p>
 
 <p><strong>4. Une attention au quotidien :</strong><br>
 Elle valorise les petits moments de la vie, les détails simples.</p>
 
 <p><strong>Thèmes principaux :</strong><br>
-L’enfance, la nature, la mémoire, les sensations, la liberté.</p>
+L'enfance, la nature, la mémoire, les sensations, la liberté.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
-Colette développe une écriture très sensorielle et autobiographique. Elle met en valeur les souvenirs d’enfance et le lien avec la nature, en accordant une grande importance aux sensations.</p>
+Colette développe une écriture très sensorielle et autobiographique. Elle met en valeur les souvenirs d'enfance et le lien avec la nature, en accordant une grande importance aux sensations.</p>
 
 <p><strong>Résumé rapide (oral) :</strong><br>
-Colette est une écrivaine française du XXe siècle connue pour son écriture sensorielle et autobiographique. Elle évoque souvent l’enfance et la nature, en donnant une grande place aux sensations et aux souvenirs.</p>
+Colette est une écrivaine française du XXe siècle connue pour son écriture sensorielle et autobiographique. Elle évoque souvent l'enfance et la nature, en donnant une grande place aux sensations et aux souvenirs.</p>
 
 </div>
 
@@ -1173,7 +1198,7 @@ if(id === "sarraute"){
 <strong>Mouvement :</strong> Nouveau Roman</p>
 
 <p><strong>Biographie :</strong><br>
-Nathalie Sarraute est une écrivaine française du XXe siècle. Elle passe une partie de son enfance en Russie avant de s’installer en France. Elle fait des études de droit et devient avocate. Elle se tourne ensuite vers la littérature et participe au mouvement du Nouveau Roman, qui remet en question les formes traditionnelles du récit. Elle s’intéresse particulièrement aux mouvements intérieurs, invisibles, qui traversent les individus.</p>
+Nathalie Sarraute est une écrivaine française du XXe siècle. Elle passe une partie de son enfance en Russie avant de s'installer en France. Elle fait des études de droit et devient avocate. Elle se tourne ensuite vers la littérature et participe au mouvement du Nouveau Roman, qui remet en question les formes traditionnelles du récit. Elle s'intéresse particulièrement aux mouvements intérieurs, invisibles, qui traversent les individus.</p>
 
 <p><strong>Œuvres principales :</strong><br>
 - Tropismes (1939)<br>
@@ -1185,23 +1210,23 @@ Nathalie Sarraute est une écrivaine française du XXe siècle. Elle passe une p
 <p><strong>1. Le refus du roman traditionnel :</strong><br>
 Sarraute rejette les intrigues classiques, les personnages bien définis et les descriptions détaillées.</p>
 
-<p><strong>2. Les “tropismes” :</strong><br>
+<p><strong>2. Les "tropismes" :</strong><br>
 Elle met en avant des mouvements intérieurs très subtils, presque invisibles, qui influencent les relations humaines.</p>
 
-<p><strong>3. L’importance du langage :</strong><br>
+<p><strong>3. L'importance du langage :</strong><br>
 Elle montre que les mots, même les plus simples, peuvent provoquer des malentendus et des conflits.</p>
 
 <p><strong>4. Une écriture du non-dit :</strong><br>
-Ses textes reposent sur ce qui n’est pas dit explicitement, sur les sous-entendus.</p>
+Ses textes reposent sur ce qui n'est pas dit explicitement, sur les sous-entendus.</p>
 
 <p><strong>Thèmes principaux :</strong><br>
 Le langage, les relations humaines, le non-dit, les malentendus.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
-Sarraute montre que les conflits naissent souvent de détails invisibles, notamment dans la manière de parler. Elle s’intéresse à ce qui se passe à l’intérieur des personnages plutôt qu’à leurs actions.</p>
+Sarraute montre que les conflits naissent souvent de détails invisibles, notamment dans la manière de parler. Elle s'intéresse à ce qui se passe à l'intérieur des personnages plutôt qu'à leurs actions.</p>
 
 <p><strong>Résumé rapide (oral) :</strong><br>
-Nathalie Sarraute est une écrivaine du Nouveau Roman qui s’intéresse aux mouvements intérieurs des individus. Dans ses œuvres, elle montre que le langage et les non-dits peuvent provoquer des tensions et des conflits, même à partir de détails très subtils.</p>
+Nathalie Sarraute est une écrivaine du Nouveau Roman qui s'intéresse aux mouvements intérieurs des individus. Dans ses œuvres, elle montre que le langage et les non-dits peuvent provoquer des tensions et des conflits, même à partir de détails très subtils.</p>
 
 </div>
 
@@ -1221,7 +1246,7 @@ Nathalie Sarraute est une écrivaine du Nouveau Roman qui s’intéresse aux mou
 <strong>Mouvement :</strong> Poète inclassable, proche du symbolisme</p>
 
 <p><strong>Biographie :</strong><br>
-Arthur Rimbaud est un poète extrêmement précoce. Il écrit ses premiers textes à l’adolescence et se fait rapidement remarquer par son talent et son originalité. Il mène une vie marquée par la révolte et le refus des normes. Il monte à Paris pendant la guerre de 1870 et rencontre Verlaine, avec qui il entretient une relation intense et conflictuelle. Il abandonne complètement la poésie vers l’âge de 20 ans, puis mène une vie d’aventurier et de commerçant en Afrique.</p>
+Arthur Rimbaud est un poète extrêmement précoce. Il écrit ses premiers textes à l'adolescence et se fait rapidement remarquer par son talent et son originalité. Il mène une vie marquée par la révolte et le refus des normes. Il monte à Paris pendant la guerre de 1870 et rencontre Verlaine, avec qui il entretient une relation intense et conflictuelle. Il abandonne complètement la poésie vers l'âge de 20 ans, puis mène une vie d'aventurier et de commerçant en Afrique.</p>
 
 <p><strong>Œuvres principales :</strong><br>
 - Poésies (Le Dormeur du val, Ma Bohème, Le Mal, Vénus anadyomène)<br>
@@ -1234,7 +1259,7 @@ Arthur Rimbaud est un poète extrêmement précoce. Il écrit ses premiers texte
 Rimbaud rejette les règles classiques. Il mélange les registres et cherche à choquer le lecteur.</p>
 
 <p><strong>2. Le poète voyant :</strong><br>
-Il développe l’idée que le poète doit explorer l’inconnu. Il écrit : « Je est un autre ».</p>
+Il développe l'idée que le poète doit explorer l'inconnu. Il écrit : « Je est un autre ».</p>
 
 <p><strong>3. Importance des sensations :</strong><br>
 Sa poésie mélange les sens (couleurs, sons, sensations).</p>
@@ -1246,10 +1271,10 @@ Il critique la guerre et la société, notamment dans Le Mal.</p>
 Liberté, révolte, voyage, jeunesse, refus des normes.</p>
 
 <p><strong>À retenir pour le bac :</strong><br>
-Rimbaud est un poète révolutionnaire qui transforme la poésie et abandonne l’écriture très tôt, ce qui en fait une figure unique.</p>
+Rimbaud est un poète révolutionnaire qui transforme la poésie et abandonne l'écriture très tôt, ce qui en fait une figure unique.</p>
 
 <p><strong>Résumé rapide (oral) :</strong><br>
-Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œuvre très jeune. Il révolutionne la poésie en refusant les règles traditionnelles et en cherchant un langage nouveau. Il abandonne la poésie à 20 ans pour mener une vie d’aventurier.</p>
+Arthur Rimbaud est un poète français du XIXe siècle qui a écrit toute son œuvre très jeune. Il révolutionne la poésie en refusant les règles traditionnelles et en cherchant un langage nouveau. Il abandonne la poésie à 20 ans pour mener une vie d'aventurier.</p>
 
 </div>
 
@@ -1263,10 +1288,7 @@ function back(){
     document.getElementById("viewer").style.display = "none";
     document.getElementById("home").style.display = "block";
     document.getElementById("topbar").classList.remove("hidden");
-    document.getElementById("backContainer").classList.add("hidden");
-	document.getElementById("toggleModeBtn").style.display = "none";
-    document.querySelector(".back-btn").style.display = "none";
-
+    hideBackContainer();
     window.scrollTo(0, 0);
 }
 
@@ -1274,29 +1296,37 @@ function toggleAnalysis(element){
 
     const id = element.getAttribute("data-id");
 
-    const analysis = document.querySelector(
-        `.analysis-line[data-id="${id}"]`
-    );
+    // Texte 2 : les .analysis sont directement dans les .line
+    if(!id){
+        const analysis = element.querySelector(".analysis");
+        if(!analysis) return;
+        if(analysis.style.display === "block"){
+            analysis.style.display = "none";
+        } else {
+            document.querySelectorAll(".analysis").forEach(a => {
+                a.style.display = "none";
+            });
+            analysis.style.display = "block";
+        }
+        return;
+    }
 
+    // Texte 1 : les .analysis-line sont dans #analysis-data
+    const analysis = document.querySelector(`.analysis-line[data-id="${id}"]`);
     if(!analysis) return;
 
-    // Si déjà affichée → on la cache
     if(analysis.classList.contains("active")){
         analysis.classList.remove("active");
         analysis.style.display = "none";
         return;
     }
 
-    // 🔥 Ferme toutes les analyses
     document.querySelectorAll(".analysis-line").forEach(a => {
         a.style.display = "none";
         a.classList.remove("active");
     });
 
-    // 🔥 Déplace l’analyse juste sous la ligne
     element.insertAdjacentElement("afterend", analysis);
-
-    // 🔥 Affiche
     analysis.style.display = "block";
     analysis.classList.add("active");
 }
@@ -1304,10 +1334,8 @@ function toggleAnalysis(element){
 function openWork(id){
     document.getElementById("home").style.display="none";
     document.getElementById("viewer").style.display="block";
-    document.getElementById("topbar").style.display="none";
-
-    document.querySelector(".back-btn").style.display = "block";
-    document.getElementById("toggleModeBtn").style.display = "none";
+    document.getElementById("topbar").classList.add("hidden");
+    showBackContainer(false);
 
     document.getElementById("content").innerHTML = "<h2>Indisponible pour le moment...</h2>";
 
@@ -1320,12 +1348,10 @@ function goTo(page, btn){
 
     currentPage = page;
 
-    // reset boutons
     document.querySelectorAll(".top-btn").forEach(b => {
         b.classList.remove("active");
     });
 
-    // bouton actif
     btn.classList.add("active");
 
     const content = document.getElementById("contentList");
@@ -1369,7 +1395,7 @@ const content = `
 <strong>H. 1</strong> : Si, dis-moi... je te connais trop bien : il y a quelque chose de changé... Tu étais toujours à une certaine distance... de tout le monde, du reste... mais maintenant avec moi... encore l'autre jour, au téléphone... tu étais à l'autre bout du monde... ça me fait de la peine, tu sais...
 
 <div class="analysis">
-Le début du dialogue installe une situation de malaise : H.I cherche à comprendre une distance qu’il perçoit sans pouvoir en identifier la cause. Le dialogue est marqué par l’hésitation et des mots vagues comme « rien ». L’évocation d’une amitié ancienne rend la situation incompréhensible et pose un conflit invisible.
+Le début du dialogue installe une situation de malaise : H.I cherche à comprendre une distance qu'il perçoit sans pouvoir en identifier la cause. Le dialogue est marqué par l'hésitation et des mots vagues comme « rien ». L'évocation d'une amitié ancienne rend la situation incompréhensible et pose un conflit invisible.
 </div>
 </div>
 
@@ -1392,7 +1418,7 @@ Le début du dialogue installe une situation de malaise : H.I cherche à compren
 <strong>H. 1</strong> : Eh bien, je te demande au nom de tout ce que tu prétends que j'ai été pour toi... au nom de ta mère... de nos parents... je t'adjure solennellement, tu ne peux plus reculer... Qu'est-ce qu'il y a eu ? Dis-le... tu me dois ça...
 
 <div class="analysis">
-Le dialogue devient une enquête impossible : H.I insiste mais H.2 reste vague. Le mot « rien » devient central et paradoxal. La communication tourne en rond et montre que le conflit repose sur quelque chose d’indicible.
+Le dialogue devient une enquête impossible : H.I insiste mais H.2 reste vague. Le mot « rien » devient central et paradoxal. La communication tourne en rond et montre que le conflit repose sur quelque chose d'indicible.
 </div>
 </div>
 
@@ -1436,12 +1462,12 @@ function toggleMove(element){
     }
 }
 
-let mode = "lineaire"; // ou "mouvements"
+let mode = "lineaire";
 
 document.getElementById("toggleModeBtn").onclick = function(){
     if(mode === "lineaire"){
         mode = "mouvements";
-        this.innerText = "Voir l’analyse linéaire";
+        this.innerText = "Voir l'analyse linéaire";
         buildMouvements();
     } else {
         mode = "lineaire";
