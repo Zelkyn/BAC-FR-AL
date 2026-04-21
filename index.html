@@ -66,7 +66,6 @@ display:flex; justify-content:center; align-items:center; will-change:transform;
 
 .full-text { width:100%; margin-top:80px; padding:0 10px; box-sizing:border-box; }
 
-/* Ligne cliquable — serré */
 .line {
 cursor:pointer; display:block;
 margin:0;
@@ -116,106 +115,10 @@ max-width:900px; padding:0 10px;
 .oeuvre-fiche .separateur { border:none; border-top:1px solid #ddd; margin:24px 0; }
 .oeuvre-fiche .procede-title { font-weight:bold; }
 .oeuvre-fiche .accroche { font-style:italic; background:#f9f9f9; padding:8px 12px; border-left:3px solid #c0392b; margin:10px 0; }
-
-/* =====================================================================
-MODE NUIT
-===================================================================== */
-#night-toggle {
-position:fixed; bottom:24px; right:24px; z-index:3000;
-background:#222; color:#f0e6c8; border:none; border-radius:50px;
-padding:12px 20px; font-size:16px; cursor:pointer;
-box-shadow:0 4px 14px rgba(0,0,0,0.35);
-display:flex; align-items:center; gap:8px;
-transition:background 0.3s, color 0.3s, box-shadow 0.3s;
-font-family:Georgia,serif;
-}
-#night-toggle:hover { box-shadow:0 6px 20px rgba(0,0,0,0.5); transform:scale(1.04); }
-#night-toggle:active { transform:scale(0.95); }
-
-/* Variables du thème clair (défaut) */
-:root {
-–bg:          #f4f4f4;
-–body-color:  #111;
-–card-bg:     white;
-–card-sub:    #666;
-–title-color: #333;
-–line-hover:  #f0f0f0;
-–line-active: #ddd;
-–analysis-bg: #fafafa;
-–analysis-border: #333;
-–plan-border: #ccc;
-–badge-bg:    #c0392b;
-–accroche-bg: #f9f9f9;
-–h3-border:   #ccc;
-–sep-color:   #ddd;
-–meta-color:  #555;
-}
-
-/* Variables du thème nuit */
-body.night {
-–bg:          #121212;
-–body-color:  #e0d7c6;
-–card-bg:     #1e1e1e;
-–card-sub:    #999;
-–title-color: #ccc;
-–line-hover:  #2a2a2a;
-–line-active: #333;
-–analysis-bg: #1a1a1a;
-–analysis-border: #888;
-–plan-border: #444;
-–badge-bg:    #9b2335;
-–accroche-bg: #1c1c1c;
-–h3-border:   #444;
-–sep-color:   #333;
-–meta-color:  #999;
-}
-
-body { background:var(–bg); color:var(–body-color); transition:background 0.4s, color 0.4s; }
-
-.card { background:var(–card-bg); box-shadow:0 2px 10px rgba(0,0,0,0.25); transition:background 0.4s; }
-.card-sub { color:var(–card-sub); }
-.card-badge { background:var(–badge-bg); }
-
-#page-title { color:var(–title-color); }
-h1 { color:var(–body-color); }
-
-.line:hover  { background:var(–line-hover); }
-.line:active { background:var(–line-active); }
-
-.analysis-line {
-background:var(–analysis-bg);
-border-left-color:var(–analysis-border);
-color:#e07070;
-}
-
-.plan-section { border-top-color:var(–plan-border); }
-
-.author-oeuvre-badge { background:var(–badge-bg); }
-
-.oeuvre-fiche h3 { border-bottom-color:var(–h3-border); }
-.oeuvre-fiche .meta { color:var(–meta-color); }
-.oeuvre-fiche .separateur { border-top-color:var(–sep-color); }
-.oeuvre-fiche .accroche { background:var(–accroche-bg); }
-
-/* Boutons navigation — nuit */
-body.night .top-btn         { background:#2a2a2a; color:#e0d7c6; }
-body.night .top-btn.active  { background:#444; }
-body.night .top-btn:active  { background:#555; }
-body.night .back-btn        { background:#2a2a2a; color:#e0d7c6; }
-body.night .back-btn:hover  { background:#3a3a3a; }
-
-/* Texte coloré inline (strong, em) — lisibilité nuit */
-body.night strong { color:#e0d7c6; }
-body.night em     { color:#b0a898; }
-
-/* Bandeau du haut */
-body.night #home div[style*=“color:#666”] { color:#888 !important; }
 </style>
 
 </head>
 <body>
-
-<button id="night-toggle" onclick="toggleNight()" title="Mode nuit">🌙 Mode nuit</button>
 
 <div id="backContainer">
   <button class="back-btn" onclick="back()">← Retour</button>
@@ -451,7 +354,7 @@ const analysesData = {
   T8l10:`Nouveau repère temporel. Passage du bonheur solitaire au bonheur collectif.`,
   T8l11:`Bien-être physique. Détente commune. Énumération joyeuse des activités conviviales.`,
   T8l12:`Satisfaction paisible et complète. Idéal de bonheur fondé sur la répétition sereine des mêmes plaisirs.`,
-  T9l1:`Métaphore dévalorisante : la baignoire comparée à un cercueil. Champ lexical de la mort remplace l'idée habituelle de beauté féminine.`,
+  T9l1:`Comparaison dévalorisante : la baignoire comparée à un cercueil. Champ lexical de la mort remplace l'idée habituelle de beauté féminine. "une tête" = Métonymie, déshumanise la femme en décomposant verbalement son corps.`,
   T9l2:`Apparition progressive du corps. La femme n'est réduite qu'à une partie, déshumanisation. Détail réaliste et péjoratif : l'adverbe « fortement » suggère l'excès et la vulgarité.`,
   T9l3:`Verbes et adjectifs dépréciatifs. Le mouvement paraît lourd, maladroit, presque animal. La femme est ridiculisée.`,
   T9l4:`Vocabulaire du manque et de la réparation. Le corps est assimilé à un objet usé. Rupture avec l'idéalisation traditionnelle du blason amoureux.`,
@@ -464,7 +367,7 @@ const analysesData = {
   T9l11:`Ironie scientifique. Le corps devient objet d'examen clinique.`,
   T9l12:`Parodie du blason amoureux. Référence à Vénus, déesse de la beauté, totalement opposée à la réalité. Contraste comique et provocateur.`,
   T9l13:`Vision mécanique et animale. Lexique charnel et trivial.`,
-  T9l14:`Oxymore majeur : « Belle hideusement ». Rimbaud renverse les codes esthétiques. Chute violente et scandaleuse. Fin choquante typique de la poésie moderne de rupture.`,
+  T9l14:`Oxymore majeur : « Belle hideusement ». Rimbaud renverse les codes esthétiques. Chute violente et scandaleuse. Fin choquante typique de la poésie moderne de rupture. L'ulcère à l'anus laisse entendre qu'il s'agit d'une prostituée.`,
   T10l1:`Métaphore violente et dégradante. Les tirs comparés à des « crachats » : image sale et méprisante. Couleur rouge du sang et de la violence.`,
   T10l2:`Opposition entre la beauté du ciel et les bruits meurtriers. Contraste nature paisible / guerre destructrice.`,
   T10l3:`Couleurs des uniformes militaires. Les soldats réduits à leurs camps, sans individualité.`,
@@ -1332,49 +1235,6 @@ document.getElementById("toggleModeBtn").onclick=function(){
     openText(currentTextId);
   }
 };
-
-/* =====================================================================
-   MODE NUIT
-   ===================================================================== */
-let nightManual = null; /* null = auto, true = forcé ON, false = forcé OFF */
-
-function isNightHour(){
-  const h = new Date().getHours();
-  return h >= 21 || h < 6; /* 21h → 6h */
-}
-
-function applyNight(on){
-  const btn = document.getElementById("night-toggle");
-  if(on){
-    document.body.classList.add("night");
-    btn.innerHTML = "☀️ Mode jour";
-    btn.title = "Passer en mode jour";
-  } else {
-    document.body.classList.remove("night");
-    btn.innerHTML = "🌙 Mode nuit";
-    btn.title = "Passer en mode nuit";
-  }
-}
-
-function toggleNight(){
-  const isCurrentlyNight = document.body.classList.contains("night");
-  nightManual = !isCurrentlyNight;   /* bascule et mémorise le choix */
-  applyNight(nightManual);
-}
-
-/* Initialisation : auto selon l'heure, sauf si l'utilisateur a déjà choisi */
-function initNightMode(){
-  if(nightManual === null){
-    applyNight(isNightHour());
-  }
-}
-
-initNightMode();
-
-/* Vérifie chaque minute si on passe 21h ou 6h (pour basculement auto sans rechargement) */
-setInterval(function(){
-  if(nightManual === null) applyNight(isNightHour());
-}, 60000);
 </script>
 
 </body>
