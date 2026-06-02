@@ -97,6 +97,13 @@ body.night #analyseModalTable td{border-bottom-color:#333;color:#e0d7c6;}
 body.night #analyseModalTable td:first-child{color:#999;}
 body.night #analyseModalClose{color:#bbb;}
 body.night .grammaire-def{background:#1c1c1c;border-left-color:#c0392b;color:#e0d7c6;}
+body.night #content p[style*="background:#f9f9f9"],
+body.night #content div[style*="background:#f9f9f9"]{background:#1c1c1c !important;color:#e0d7c6 !important;}
+body.night #content table tr:nth-child(even) td{background:#2a2a2a !important;color:#e0d7c6 !important;}
+body.night #content table tr td{color:#e0d7c6 !important;border-bottom-color:#333 !important;}
+body.night #content table tr[style*="background:#c0392b"] td{color:white !important;}
+body.night #content h3,body.night #content h4{color:#e0d7c6;}
+body.night #content ul li,body.night #content ol li{color:#e0d7c6;}
 </style>
 </head>
 <body>
@@ -2696,7 +2703,7 @@ function buildTextHTML(items,prefix){
       lineIdx++;
       const id=`${prefix}l${lineIdx}`;
       const txt=analysesData[id]||"Pas d'analyse pour cette ligne.";
-      const showNum=(lineIdx%5===0);
+      const showNum=true;
       s+=`<div class="line-wrapper">`;
       if(showNum) s+=`<span class="line-num">${lineIdx}</span>`;
       s+=`<div class="line" data-id="${id}" onclick="toggleAnalysis(this)">${item}</div>`;
